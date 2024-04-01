@@ -24,7 +24,8 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
@@ -47,12 +48,20 @@ public class MainPanel extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseExited(evt);
+            }
         });
         navBar.add(logoutButton);
 
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseExited
+        logoutButton.setBackground(navBar.getBackground());
+    }// GEN-LAST:event_logoutButtonMouseExited
 
     private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseEntered
         logoutButton.setBackground(Colors.WHITE_HOVER);
