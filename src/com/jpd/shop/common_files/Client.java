@@ -42,6 +42,7 @@ public class Client {
 
     private void closeEverything() {
         MAIN_FRAME_REF.setClient(null);
+        MAIN_FRAME_REF.getTransparentPanel().setVisible(false);
         // TODO: add code
     }
 }

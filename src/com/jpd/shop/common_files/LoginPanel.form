@@ -102,7 +102,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -113,7 +113,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPasswordField1KeyReleased"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="passwordFieldKeyReleased"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPasswordField() {&#xd;&#xa;            private Shape shape;&#xd;&#xa;            private final int RADIUS = 18;&#xd;&#xa;&#xd;&#xa;            @Override&#xd;&#xa;            protected void paintComponent(Graphics g) {&#xd;&#xa;                g.setColor(getBackground());&#xd;&#xa;                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);&#xd;&#xa;                super.paintComponent(g);&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            @Override&#xd;&#xa;            protected void paintBorder(Graphics g) {&#xd;&#xa;                g.setColor(getForeground());&#xd;&#xa;                g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            @Override&#xd;&#xa;            public boolean contains(int x, int y) {&#xd;&#xa;                if (shape == null || !shape.getBounds().equals(getBounds())) {&#xd;&#xa;                    shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,&#xd;&#xa;                            getHeight() - 1, RADIUS, RADIUS);&#xd;&#xa;                }&#xd;&#xa;                return shape.contains(x, y);&#xd;&#xa;            }&#xd;&#xa;        }"/>
