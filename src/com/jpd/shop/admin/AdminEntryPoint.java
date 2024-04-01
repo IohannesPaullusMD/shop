@@ -11,7 +11,7 @@ import com.jpd.shop.common_files.MainPanel_Interface;
 public class AdminEntryPoint {
     public static void main(String[] args) {
         MainPanel_Interface mainPanel = new MainPanel();
-        MainFrame mainFrame = new MainFrame(mainPanel);
+        MainFrame mainFrame = new MainFrame(mainPanel, true);
 
         mainPanel.setMainFrameRef(mainFrame);
         mainFrame.setVisible(true);

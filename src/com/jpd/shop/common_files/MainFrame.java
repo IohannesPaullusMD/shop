@@ -14,22 +14,20 @@ public class MainFrame extends javax.swing.JFrame {
             "/com/jpd/shop/common_files/icons/close_button.png"));
     private final ImageIcon redCloseIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/red_close_button.png"));
-    private final ImageIcon greenWifiIcon = new ImageIcon(getClass().getResource(
-            "/com/jpd/shop/common_files/icons/green_wifi.png"));
-    private final ImageIcon redWifiIcon = new ImageIcon(getClass().getResource(
-            "/com/jpd/shop/common_files/icons/red_wifi.png"));
 
-    private final MainPanel_Interface mainPanelRef;
+    private final MainPanel_Interface MAIN_PANEL_REF;
+    private final boolean IS_ADMIN_APP;
 
     private Client client;
 
-    public MainFrame(MainPanel_Interface mainPanelRef) {
-        this.mainPanelRef = mainPanelRef;
+    public MainFrame(MainPanel_Interface mainPanelRef, boolean isAdminApp) {
+        MAIN_PANEL_REF = mainPanelRef;
+        IS_ADMIN_APP = isAdminApp;
         initComponents();
     }
 
-    public final MainPanel_Interface getMainPanelRef() {
-        return mainPanelRef;
+    public final MainPanel_Interface getMAIN_PANEL_REF() {
+        return MAIN_PANEL_REF;
     }
 
     public final JPanel getLoginPanel() {
@@ -50,6 +48,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     public com.jpd.shop.common_files.ConnectionConfigPanel getConnectionConfigPanel() {
         return connectionConfigPanel;
+    }
+
+    public boolean isAdminApp() {
+        return IS_ADMIN_APP;
+    }
+
+    public javax.swing.JLabel getConnectionButton() {
+        return connectionButton;
     }
 
     /**

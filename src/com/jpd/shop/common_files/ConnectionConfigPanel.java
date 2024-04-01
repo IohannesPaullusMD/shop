@@ -3,9 +3,12 @@ package com.jpd.shop.common_files;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -16,6 +19,11 @@ import javax.swing.text.DocumentFilter;
  * @author jpd
  */
 public class ConnectionConfigPanel extends javax.swing.JPanel {
+
+    private final ImageIcon greenWifiIcon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/green_wifi.png"));
+    private final ImageIcon redWifiIcon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/red_wifi.png"));
 
     private final MainFrame mainFrameRef;
     private final int RADIUS = 18;
@@ -39,12 +47,24 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
         return ipv4AddressField.getText();
     }
 
-    // public
+    public int getPortNumber() {
+        return Integer.parseInt(portNumField.getText());
+    }
 
     private void customInit() {
         this.setLayout(null);
         this.setOpaque(false);
         this.setVisible(false);
+    }
+
+    private boolean connectToServer() {
+        try {
+            mainFrameRef.setClient(new Client(mainFrameRef));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(); // TODO: tanggala ini
+            return false;
+        }
     }
 
     @Override
@@ -301,10 +321,22 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_buttonMouseExited
 
     private void buttonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMouseReleased
-        // TODO: add code
-
-        button.setBackground(Colors.WHITE);
+        button.setBackground(Colors.WHITE_HOVER);
         button.setForeground(Colors.BLACK);
+
+        // TODO: add code
+        if (button.getText().equals("Connect")) {
+            if (!connectToServer()) {
+                return;
+            }
+
+            button.setText("Disconnect");
+            mainFrameRef.getConnectionButton().setIcon(greenWifiIcon);
+        } else {
+            mainFrameRef.setClient(null);
+            button.setText("Connect");
+            mainFrameRef.getConnectionButton().setIcon(redWifiIcon);
+        }
     }// GEN-LAST:event_buttonMouseReleased
 
     private void buttonMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMousePressed
