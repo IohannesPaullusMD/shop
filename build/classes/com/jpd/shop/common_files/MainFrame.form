@@ -132,7 +132,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="com.jpd.shop.admin.LoginPanel" name="loginPanel1">
+    <Component class="com.jpd.shop.common_files.LoginPanel" name="loginPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new LoginPanel(this)"/>
       </AuxValues>

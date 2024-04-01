@@ -1,5 +1,7 @@
 package com.jpd.shop.admin;
 
+import com.jpd.shop.common_files.MainFrame;
+
 /**
  *
  * @author jpd

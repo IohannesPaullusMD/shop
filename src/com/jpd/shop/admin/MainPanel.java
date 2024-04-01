@@ -1,5 +1,6 @@
 package com.jpd.shop.admin;
 
+import com.jpd.shop.common_files.Colors;
 import javax.swing.ImageIcon;
 
 /**

@@ -1,4 +1,4 @@
-package com.jpd.shop.admin;
+package com.jpd.shop.common_files;
 
 import javax.swing.JTextField;
 
@@ -35,7 +35,7 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -60,7 +60,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                            getHeight() - 1, RADIUS, RADIUS);
+                        getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -87,7 +87,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                            getHeight() - 1, RADIUS, RADIUS);
+                        getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -165,15 +165,12 @@ public class LoginPanel extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loginButtonMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 loginButtonMouseExited(evt);
             }
-
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 loginButtonMousePressed(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 loginButtonMouseReleased(evt);
             }

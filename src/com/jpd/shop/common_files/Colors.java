@@ -1,4 +1,4 @@
-package com.jpd.shop.admin;
+package com.jpd.shop.common_files;
 
 import java.awt.Color;
 
