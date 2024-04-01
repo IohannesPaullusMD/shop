@@ -1,5 +1,6 @@
 package com.jpd.shop.common_files;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
 import java.awt.Graphics;
@@ -35,7 +36,9 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -60,7 +63,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                        getHeight() - 1, RADIUS, RADIUS);
+                            getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -87,7 +90,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                        getHeight() - 1, RADIUS, RADIUS);
+                            getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -118,6 +121,7 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         };
 
+        setBackground(Colors.WHITE);
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
         setLayout(null);
@@ -132,6 +136,7 @@ public class LoginPanel extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(400, 175, 200, 25);
 
+        usernameField.setEnabled(false);
         usernameField.setMaximumSize(new java.awt.Dimension(200, 25));
         usernameField.setMinimumSize(new java.awt.Dimension(200, 25));
         usernameField.setOpaque(false);
@@ -145,6 +150,7 @@ public class LoginPanel extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(400, 250, 200, 25);
 
+        jPasswordField1.setEnabled(false);
         jPasswordField1.setOpaque(false);
         jPasswordField1.setPreferredSize(new java.awt.Dimension(200, 25));
         jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -165,12 +171,15 @@ public class LoginPanel extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loginButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 loginButtonMouseExited(evt);
             }
+
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 loginButtonMousePressed(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 loginButtonMouseReleased(evt);
             }
@@ -181,11 +190,13 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void loginButtonMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loginButtonMousePressed
         loginButton.setBackground(Colors.BLUE);
+        loginButton.setForeground(Colors.WHITE);
     }// GEN-LAST:event_loginButtonMousePressed
 
     private void loginButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_loginButtonMouseReleased
         if (loginButton.getBackground().equals(Colors.BLUE)) {
-            loginButtonMouseEntered(null);
+            loginButton.setBackground(Colors.WHITE_HOVER);
+            loginButton.setForeground(Colors.BLACK);
         }
 
         // TODO: ayusa ini

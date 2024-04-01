@@ -3,6 +3,13 @@ package com.jpd.shop.common_files;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -28,15 +35,21 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
         customInit();
     }
 
+    public String getIpv4Address() {
+        return ipv4AddressField.getText();
+    }
+
+    // public
+
     private void customInit() {
         this.setLayout(null);
-        this.setBounds(680, 20, 300, 255);
         this.setOpaque(false);
+        this.setVisible(false);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.setColor(getBackground());
+        g.setColor(Colors.WHITE);
         g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
         super.paintComponent(g);
     }
@@ -62,24 +75,246 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        ipv4AddressField = new javax.swing.JTextField() {
+            private Shape shape;
+            private final int RADIUS = 18;
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(getBackground());
+                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                super.paintComponent(g);
+            }
+
+            @Override
+            protected void paintBorder(Graphics g) {
+                g.setColor(getForeground());
+                g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+            }
+
+            @Override
+            public boolean contains(int x, int y) {
+                if (shape == null || !shape.getBounds().equals(getBounds())) {
+                    shape = new RoundRectangle2D.Float(0, 0,
+                            getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                }
+                return shape.contains(x, y);
+            }
+        };
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        portNumField = new javax.swing.JTextField() {
+            private Shape shape;
+            private final int RADIUS = 18;
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(getBackground());
+                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                super.paintComponent(g);
+            }
+
+            @Override
+            protected void paintBorder(Graphics g) {
+                g.setColor(getForeground());
+                g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+            }
+
+            @Override
+            public boolean contains(int x, int y) {
+                if (shape == null || !shape.getBounds().equals(getBounds())) {
+                    shape = new RoundRectangle2D.Float(0, 0,
+                            getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                }
+                return shape.contains(x, y);
+            }
+        };
+        button = new javax.swing.JLabel() {
+            final int RADIUS = 18;
+            Shape shape;
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(getBackground());
+                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                super.paintComponent(g);
+            }
+
+            @Override
+            protected void paintBorder(Graphics g) {
+                g.setColor(getForeground());
+                g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+            }
+
+            @Override
+            public boolean contains(int x, int y) {
+                if (shape == null || !shape.getBounds().equals(getBounds())) {
+                    shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                }
+                return shape.contains(x, y);
+            }
+        };
 
         setMaximumSize(new java.awt.Dimension(300, 225));
         setMinimumSize(new java.awt.Dimension(300, 225));
+        setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-        );
+        jLabel1.setText("IPv4 Address:");
+        jLabel1.setMaximumSize(new java.awt.Dimension(200, 25));
+        jLabel1.setMinimumSize(new java.awt.Dimension(200, 25));
+        jLabel1.setPreferredSize(new java.awt.Dimension(200, 25));
+        add(jLabel1);
+        jLabel1.setBounds(50, 25, 200, 25);
+
+        ipv4AddressField.setText("127.0.0.1");
+        ipv4AddressField.setPreferredSize(new java.awt.Dimension(200, 25));
+        ((AbstractDocument) ipv4AddressField.getDocument()).setDocumentFilter(
+                new DocumentFilter() {
+
+                    Pattern pattern = Pattern.compile("^([0-9.]+)$");
+
+                    @Override
+                    public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
+                            throws BadLocationException {
+                        if (string == null) {
+                            return;
+                        }
+                        String currentText = fb.getDocument().getText(
+                                0, fb.getDocument().getLength());
+                        String newText = currentText.substring(0, offset)
+                                + string + currentText.substring(offset);
+                        if (isValidInput(newText)) {
+                            super.insertString(fb, offset, string, attr);
+                        }
+                    }
+
+                    @Override
+                    public void replace(FilterBypass fb, int offset, int length,
+                            String text, AttributeSet attrs)
+                            throws BadLocationException {
+                        if (text == null) {
+                            return;
+                        }
+                        String currentText = fb.getDocument().getText(
+                                0, fb.getDocument().getLength());
+                        String newText = currentText.substring(0, offset) + text
+                                + currentText.substring(offset + length);
+                        if (isValidInput(newText)) {
+                            super.replace(fb, offset, length, text, attrs);
+                        }
+                    }
+
+                    private boolean isValidInput(String text) {
+                        Matcher matcher = pattern.matcher(text);
+                        return matcher.matches();
+                    }
+                });
+        add(ipv4AddressField);
+        ipv4AddressField.setBounds(50, 50, 200, 25);
+
+        jLabel2.setText("Port:");
+        jLabel2.setMaximumSize(new java.awt.Dimension(200, 25));
+        jLabel2.setMinimumSize(new java.awt.Dimension(200, 25));
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
+        add(jLabel2);
+        jLabel2.setBounds(50, 85, 200, 25);
+
+        portNumField.setText("55555");
+        portNumField.setMaximumSize(new java.awt.Dimension(200, 25));
+        portNumField.setMinimumSize(new java.awt.Dimension(200, 25));
+        portNumField.setPreferredSize(new java.awt.Dimension(200, 25));
+        ((AbstractDocument) portNumField.getDocument()).setDocumentFilter(
+                new DocumentFilter() {
+                    @Override
+                    public void insertString(FilterBypass fb, int offset,
+                            String string, AttributeSet attr) throws BadLocationException {
+
+                        if (string == null) {
+                            return;
+                        }
+                        if (isValidInput(string)) {
+                            super.insertString(fb, offset, string, attr);
+                        }
+                    }
+
+                    @Override
+                    public void replace(FilterBypass fb, int offset, int length,
+                            String text, AttributeSet attrs) throws BadLocationException {
+
+                        if (text == null) {
+                            return;
+                        }
+                        if (isValidInput(text)) {
+                            super.replace(fb, offset, length, text, attrs);
+                        }
+                    }
+
+                    private boolean isValidInput(String text) {
+                        // Use a regular expression to check if the input is a valid integer
+                        return text.matches("^[0-9]+$");
+                    }
+                });
+        add(portNumField);
+        portNumField.setBounds(50, 110, 200, 25);
+
+        button.setBackground(Colors.WHITE);
+        button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        button.setText("Connect");
+        button.setMaximumSize(new java.awt.Dimension(200, 50));
+        button.setMinimumSize(new java.awt.Dimension(200, 50));
+        button.setOpaque(false);
+        button.setPreferredSize(new java.awt.Dimension(200, 50));
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonMouseEntered(evt);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonMouseExited(evt);
+            }
+
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                buttonMousePressed(evt);
+            }
+
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                buttonMouseReleased(evt);
+            }
+        });
+        add(button);
+        button.setBounds(50, 150, 200, 50);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMouseEntered
+        button.setBackground(Colors.WHITE_HOVER);
+    }// GEN-LAST:event_buttonMouseEntered
+
+    private void buttonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMouseExited
+        button.setBackground(Colors.WHITE);
+    }// GEN-LAST:event_buttonMouseExited
+
+    private void buttonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMouseReleased
+        // TODO: add code
+
+        button.setBackground(Colors.WHITE);
+        button.setForeground(Colors.BLACK);
+    }// GEN-LAST:event_buttonMouseReleased
+
+    private void buttonMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_buttonMousePressed
+        button.setBackground(Colors.BLUE);
+        button.setForeground(Colors.WHITE);
+    }// GEN-LAST:event_buttonMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel button;
+    private javax.swing.JTextField ipv4AddressField;
+    private javax.swing.JTextField portNumField;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,7 +55,7 @@
               <Connection component="navBar" name="background" type="property"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/jpd/shop/admin/icons/logout.png"/>
+              <Image iconType="3" name="/com/jpd/shop/common_files/icons/logout.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="opaque" type="boolean" value="true"/>
