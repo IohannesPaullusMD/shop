@@ -26,14 +26,20 @@ public class DatabaseQueries {
             statement.setString(1, employeeLoginInfo.username());
             statement.setString(2, employeeLoginInfo.password());
             ResultSet result = statement.executeQuery();
-            result.next();
+
+            if (!result.next()) {
+                employeeLoginInfo = null;
+                return null;
+            }
 
             int id = result.getInt("id_pk");
             String type = result.getString("type");
             String username = result.getString("username");
             String password = result.getString("password");
 
-            if (employeeLoginInfo.username().equals(username)) {
+            if (employeeLoginInfo.username().equals(username)
+                    && employeeLoginInfo.password().equals(password)) {
+
                 employeeLoginInfo = new EmployeeLoginInfo(id, type, username, password);
             } else {
                 employeeLoginInfo = null;
@@ -53,7 +59,7 @@ public class DatabaseQueries {
         Connection connection = null;
 
         try {
-            // Class.forName("com.mysql.jdbc.Driver");
+            // Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();

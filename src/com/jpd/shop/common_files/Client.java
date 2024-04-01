@@ -26,6 +26,8 @@ public class Client {
 
         OUTPUT_STREAM.writeBoolean(mainFrameRef.isAdminApp());
 
+        mainFrameRef.getTransparentPanel().setVisible(false);
+        mainFrameRef.getLoginPanel().enableUsernameAndPasswordField(true);
         MAIN_FRAME_REF = mainFrameRef;
     }
 
@@ -42,7 +44,11 @@ public class Client {
 
     private void closeEverything() {
         MAIN_FRAME_REF.setClient(null);
-        MAIN_FRAME_REF.getTransparentPanel().setVisible(false);
+        MAIN_FRAME_REF.getTransparentPanel().setVisible(true);
+
+        if (MAIN_FRAME_REF.getLoginPanel().isVisible()) {
+            MAIN_FRAME_REF.getLoginPanel().enableUsernameAndPasswordField(false);
+        }
         // TODO: add code
     }
 }

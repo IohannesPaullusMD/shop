@@ -47,10 +47,10 @@ public class ClientHandler implements Runnable {
 
                 if (employeeLoginInfo == null) {
                     OUTPUT_STREAM.writeObject(-1); // wrong username or password
-                } else if (!employeeLoginInfo.type().equals("ADMIN") && IS_ADMIN_APP) {
-                    OUTPUT_STREAM.writeObject(0); // no access
-                } else {
+                } else if (!employeeLoginInfo.type().equals("CASHIER") && IS_ADMIN_APP) {
                     OUTPUT_STREAM.writeObject(1); // has access
+                } else {
+                    OUTPUT_STREAM.writeObject(0); // no access
                 }
 
             } else if (employeeLoginInfo.id() == EmployeeLoginInfo.NO_ID_YET) {

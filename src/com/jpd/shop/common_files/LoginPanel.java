@@ -2,6 +2,7 @@ package com.jpd.shop.common_files;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import java.awt.Graphics;
@@ -25,6 +26,11 @@ public class LoginPanel extends javax.swing.JPanel {
         this.mainFrameRef = mainFrameRef;
 
         initComponents();
+    }
+
+    public void enableUsernameAndPasswordField(boolean enable) {
+        usernameField.setEnabled(enable);
+        passwordField.setEnabled(enable);
     }
 
     private boolean isCorrectUserAndPassword() {
@@ -58,6 +64,11 @@ public class LoginPanel extends javax.swing.JPanel {
         }
 
         return false;
+    }
+
+    private boolean isFieldsEmpty() {
+        return (usernameField.getText().equals("")
+                && (passwordField.getPassword().length == 0));
     }
 
     /**
@@ -233,6 +244,15 @@ public class LoginPanel extends javax.swing.JPanel {
         if (loginButton.getBackground().equals(Colors.BLUE)) {
             loginButton.setBackground(Colors.WHITE_HOVER);
             loginButton.setForeground(Colors.BLACK);
+        }
+
+        if (isFieldsEmpty()) {
+            JOptionPane.showMessageDialog(null,
+                    "Field/s is/are empty.");
+
+            usernameField.setText("");
+            passwordField.setText("");
+            return;
         }
 
         if (isCorrectUserAndPassword()) {
