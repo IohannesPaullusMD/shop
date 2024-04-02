@@ -46,11 +46,12 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -59,27 +60,33 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         navBar.setBackground(Colors.GRAY);
         navBar.setPreferredSize(new java.awt.Dimension(1000, 50));
-        navBar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+        navBar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
         logoutButton.setBackground(navBar.getBackground());
-        logoutButton.setIcon(
-                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }
         });
         navBar.add(logoutButton);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logo.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
+        jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
+        jLabel1.setPreferredSize(new java.awt.Dimension(50, 50));
+        navBar.add(jLabel1);
 
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
@@ -98,6 +105,7 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     }// GEN-LAST:event_logoutButtonMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;
     // End of variables declaration//GEN-END:variables
