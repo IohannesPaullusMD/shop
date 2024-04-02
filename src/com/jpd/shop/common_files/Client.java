@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 @SuppressWarnings("finally")
 public class Client implements Runnable {
 
+    public static final int GET_PRODUCTS_LIST = 1;
+
     // public static final
 
     private final Socket SOCKET;
