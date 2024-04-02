@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.jpd.shop.common_files.EmployeeLoginInfo;
+import com.jpd.shop.common_files.ProductData;
 
 public class ClientHandler implements Runnable {
     private final Socket SOCKET;
@@ -37,6 +38,8 @@ public class ClientHandler implements Runnable {
     private void handleRequest(Object object) {
         if (object instanceof EmployeeLoginInfo) {
             handleEmployeeLoginInfoRequest((EmployeeLoginInfo) object);
+        } else if (object instanceof ProductData) {
+            handleProductDataRequest((ProductData) object);
         }
     }
 
@@ -55,6 +58,18 @@ public class ClientHandler implements Runnable {
 
             } else if (employeeLoginInfo.id() == EmployeeLoginInfo.NO_ID_YET) {
 
+            }
+        } catch (IOException e) {
+            closeEverything();
+        }
+    }
+
+    private void handleProductDataRequest(ProductData productData) {
+        try {
+            if (productData.id() == ProductData.NO_ID_YET) {
+                DatabaseQueries.addNewProduct(productData);
+
+                OUTPUT_STREAM.writeObject(productData); // TODO: send list of all products
             }
         } catch (IOException e) {
             closeEverything();

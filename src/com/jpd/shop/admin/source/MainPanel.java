@@ -1,15 +1,22 @@
 package com.jpd.shop.admin.source;
 
-import com.jpd.shop.admin.AdminEntryPoint;
+import javax.swing.ImageIcon;
+
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.MainFrame;
 import com.jpd.shop.common_files.MainPanel_Interface;
+import com.jpd.shop.common_files.NavButton;
 
 /**
  *
  * @author jpd
  */
 public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface {
+
+    private final ImageIcon SHOW_PRODUCTS_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/logo.png"));
+    private final ImageIcon BLUE_SHOW_PRODUCTS_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/blue_logo.png"));
 
     private MainFrame mainFrameRef;
 
@@ -21,6 +28,10 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     private void customInit() {
         this.setBounds(0, 0, 1000, 580);
         this.setVisible(true);
+    }
+
+    public MainFrame getMainFrameRef() {
+        return mainFrameRef;
     }
 
     @Override
@@ -46,12 +57,17 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        showProductsButton = new com.jpd.shop.common_files.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        productsPanel1 = new com.jpd.shop.admin.source.ProductsPanel(this);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -79,17 +95,19 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
             }
         });
         navBar.add(logoutButton);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logo.png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.setMaximumSize(new java.awt.Dimension(50, 50));
-        jLabel1.setMinimumSize(new java.awt.Dimension(50, 50));
-        jLabel1.setPreferredSize(new java.awt.Dimension(50, 50));
-        navBar.add(jLabel1);
+        NavButton.changeLastClickedButton(showProductsButton);
+        navBar.add(showProductsButton);
 
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
+
+        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1000, 530));
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1000, 530));
+        jLayeredPane1.add(productsPanel1);
+        productsPanel1.setBounds(0, 0, 1000, 530);
+
+        add(jLayeredPane1);
+        jLayeredPane1.setBounds(0, 0, 1000, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseReleased
@@ -105,9 +123,11 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     }// GEN-LAST:event_logoutButtonMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;
+    private com.jpd.shop.admin.source.ProductsPanel productsPanel1;
+    private com.jpd.shop.common_files.NavButton showProductsButton;
     // End of variables declaration//GEN-END:variables
 
 }

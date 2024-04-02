@@ -67,6 +67,14 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
         }
     }
 
+    public ImageIcon getRedWifiIcon() {
+        return redWifiIcon;
+    }
+
+    public javax.swing.JLabel getButton() {
+        return button;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Colors.WHITE);
@@ -334,6 +342,8 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
             mainFrameRef.getConnectionButton().setIcon(greenWifiIcon);
         } else {
             mainFrameRef.setClient(null);
+            System.gc();
+
             button.setText("Connect");
             mainFrameRef.getConnectionButton().setIcon(redWifiIcon);
         }

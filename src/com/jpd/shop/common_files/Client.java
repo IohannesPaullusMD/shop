@@ -6,8 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
+
 @SuppressWarnings("finally")
-public class Client {
+public class Client implements Runnable {
 
     // public static final
 
@@ -29,6 +31,8 @@ public class Client {
         mainFrameRef.getTransparentPanel().setVisible(false);
         mainFrameRef.getLoginPanel().enableUsernameAndPasswordField(true);
         MAIN_FRAME_REF = mainFrameRef;
+
+        // new Thread(this).start();
     }
 
     public Object makeARequestToServer(Object object) {
@@ -49,6 +53,19 @@ public class Client {
         if (MAIN_FRAME_REF.getLoginPanel().isVisible()) {
             MAIN_FRAME_REF.getLoginPanel().enableUsernameAndPasswordField(false);
         }
+
+        MAIN_FRAME_REF.getConnectionButton().setIcon(
+                MAIN_FRAME_REF.getConnectionConfigPanel().getRedWifiIcon());
+        MAIN_FRAME_REF.getConnectionConfigPanel().getButton().setText("Connect");
         // TODO: add code
+    }
+
+    @Override
+    public void run() {
+        try {
+            INPUT_STREAM.readBoolean();
+        } catch (IOException e) {
+            closeEverything();
+        }
     }
 }

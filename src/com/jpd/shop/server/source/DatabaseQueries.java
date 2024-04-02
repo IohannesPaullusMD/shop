@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.jpd.shop.common_files.EmployeeLoginInfo;
+import com.jpd.shop.common_files.ProductData;
 
 @SuppressWarnings("finally")
 public class DatabaseQueries {
@@ -49,6 +50,33 @@ public class DatabaseQueries {
             closeConnection();
         } finally {
             return employeeLoginInfo;
+        }
+    }
+
+    static boolean addNewProduct(ProductData newProduct) {
+        if (databaseConnection == null) {
+            databaseConnection = getConnection();
+        }
+
+        boolean isSuccessful = false;
+        String query = "INSERT INTO products"
+                + "(name, price, stock, category, image)"
+                + " VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, newProduct.name());
+            preparedStatement.setFloat(2, newProduct.price() / 100.f);
+            preparedStatement.setInt(3, newProduct.stock());
+            preparedStatement.setString(4, newProduct.category());
+            preparedStatement.setBytes(5, newProduct.image());
+
+            isSuccessful = (preparedStatement.executeUpdate() > 0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
+        } finally {
+            return isSuccessful;
         }
     }
 
