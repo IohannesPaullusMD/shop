@@ -13,7 +13,6 @@ public class AdminEntryPoint {
         MainPanel_Interface mainPanel = new MainPanel();
         MainFrame mainFrame = new MainFrame(mainPanel, true);
 
-        mainPanel.setMainFrameRef(mainFrame);
         mainFrame.setVisible(true);
     }
 }

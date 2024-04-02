@@ -51,6 +51,7 @@ public class ProductsPanel extends javax.swing.JPanel {
 
         categoryPanel2 = new com.jpd.shop.admin.source.CategoryPanel(this);
         editProductPanel2 = new com.jpd.shop.admin.source.EditProductPanel(MAIN_PANEL_REF);
+        displayProductsPanel1 = new com.jpd.shop.admin.source.DisplayProductsPanel(MAIN_PANEL_REF);
 
         setMaximumSize(new java.awt.Dimension(1000, 530));
         setMinimumSize(new java.awt.Dimension(1000, 530));
@@ -59,10 +60,13 @@ public class ProductsPanel extends javax.swing.JPanel {
         categoryPanel2.setBounds(0, 0, 50, 529);
         add(editProductPanel2);
         editProductPanel2.setBounds(750, 0, 250, 530);
+        add(displayProductsPanel1);
+        displayProductsPanel1.setBounds(50, 0, 700, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpd.shop.admin.source.CategoryPanel categoryPanel2;
+    private com.jpd.shop.admin.source.DisplayProductsPanel displayProductsPanel1;
     private com.jpd.shop.admin.source.EditProductPanel editProductPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  */
 package com.jpd.shop.common_files;
 
+import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -20,13 +21,22 @@ public class ProductCard extends javax.swing.JPanel {
         PRODUCT_DATA = productData;
 
         initComponents();
+        customInit();
+    }
+
+    private void customInit() {
+        Dimension dimension = new Dimension(150, 200);
+        this.setPreferredSize(dimension);
+        // this.setMaximumSize(dimension);
+        // this.setMinimumSize(dimension);
+        // this.setBounds(0, 0, 150, 200);
+        this.setVisible(true);
     }
 
     private ImageIcon getProductImage() {
         Image image = new ImageIcon(PRODUCT_DATA.image()).getImage();
         return (new ImageIcon(image.getScaledInstance(
-                this.image.getWidth(), this.image.getHeight(),
-                Image.SCALE_SMOOTH)));
+                100, 100, Image.SCALE_SMOOTH)));
     }
 
     private String getProductName() {
@@ -47,7 +57,9 @@ public class ProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         image = new javax.swing.JLabel(getProductImage());
@@ -61,7 +73,6 @@ public class ProductCard extends javax.swing.JPanel {
         setLayout(null);
 
         image.setBackground(new java.awt.Color(204, 204, 204));
-        image.setText("jLabel1");
         image.setMaximumSize(new java.awt.Dimension(100, 100));
         image.setMinimumSize(new java.awt.Dimension(100, 100));
         image.setName(""); // NOI18N
@@ -69,7 +80,6 @@ public class ProductCard extends javax.swing.JPanel {
         image.setPreferredSize(new java.awt.Dimension(100, 100));
         add(image);
         image.setBounds(25, 10, 100, 100);
-        image.getAccessibleContext().setAccessibleName("");
 
         jSeparator1.setMaximumSize(new java.awt.Dimension(150, 5));
         jSeparator1.setMinimumSize(new java.awt.Dimension(150, 5));
@@ -86,7 +96,7 @@ public class ProductCard extends javax.swing.JPanel {
 
         productPrice.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         add(productPrice);
-        productPrice.setBounds(50, 180, 80, 15);
+        productPrice.setBounds(60, 180, 70, 15);
 
         productName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         productName.setMaximumSize(new java.awt.Dimension(110, 40));

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.jpd.shop.common_files.EmployeeLoginInfo;
 import com.jpd.shop.common_files.ProductData;
@@ -50,6 +51,48 @@ public class DatabaseQueries {
             closeConnection();
         } finally {
             return employeeLoginInfo;
+        }
+    }
+
+    static ProductData[] getProducts() {
+        if (databaseConnection == null) {
+            databaseConnection = getConnection();
+        }
+
+        ProductData[] products = null;
+        String query = "SELECT * FROM products ORDER BY stock DESC";
+
+        try (PreparedStatement statement = databaseConnection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<ProductData> productDataList = new ArrayList<>();
+
+            String name;
+            int price;
+            int stock;
+            String category;
+            byte[] image;
+            int id;
+
+            while (resultSet.next()) {
+                name = resultSet.getString("name");
+                price = (int) (resultSet.getFloat("price") * 100);
+                stock = resultSet.getInt("stock");
+                category = resultSet.getString("category");
+                image = resultSet.getBytes("image");
+                id = resultSet.getInt("id_pk");
+
+                productDataList.add(
+                        new ProductData(name, price, stock, category, image, id));
+            }
+
+            products = new ProductData[productDataList.size()];
+            products = productDataList.toArray(products);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
+        } finally {
+            return products;
         }
     }
 

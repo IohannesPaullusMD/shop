@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import com.jpd.shop.common_files.Client;
 import com.jpd.shop.common_files.EmployeeLoginInfo;
 import com.jpd.shop.common_files.ProductData;
 
@@ -36,10 +37,12 @@ public class ClientHandler implements Runnable {
     }
 
     private void handleRequest(Object object) {
-        if (object instanceof EmployeeLoginInfo) {
-            handleEmployeeLoginInfoRequest((EmployeeLoginInfo) object);
-        } else if (object instanceof ProductData) {
-            handleProductDataRequest((ProductData) object);
+        if (object instanceof Integer number) {
+            readReceivedInt(number);
+        } else if (object instanceof EmployeeLoginInfo employeeLoginInfo) {
+            handleEmployeeLoginInfoRequest(employeeLoginInfo);
+        } else if (object instanceof ProductData productData) {
+            handleProductDataRequest(productData);
         }
     }
 
@@ -70,6 +73,18 @@ public class ClientHandler implements Runnable {
                 DatabaseQueries.addNewProduct(productData);
 
                 OUTPUT_STREAM.writeObject(productData); // TODO: send list of all products
+            }
+        } catch (IOException e) {
+            closeEverything();
+        }
+    }
+
+    private void readReceivedInt(int number) {
+        try {
+            switch (number) {
+                case Client.GET_PRODUCTS_LIST:
+                    OUTPUT_STREAM.writeObject(DatabaseQueries.getProducts());
+                    break;
             }
         } catch (IOException e) {
             closeEverything();

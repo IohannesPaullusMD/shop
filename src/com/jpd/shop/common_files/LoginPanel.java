@@ -256,6 +256,7 @@ public class LoginPanel extends javax.swing.JPanel {
         }
 
         if (isCorrectUserAndPassword()) {
+            mainFrameRef.getMAIN_PANEL_REF().initComponents(mainFrameRef);
             usernameField.setText("");
             this.setVisible(false);
 
