@@ -4,14 +4,9 @@
  */
 package com.jpd.shop.admin.source;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import com.jpd.shop.common_files.Client;
-import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.ProductCard;
 import com.jpd.shop.common_files.ProductData;
 
@@ -35,14 +30,14 @@ public class DisplayProductsPanel extends javax.swing.JPanel {
         initComponents();
 
         if (mainPanelRef != null) {
-            loadProducts();
+            loadProducts(Client.GET_BURGER_PRODUCTS);
         }
     }
 
-    public void loadProducts() {
-        Object object = MAIN_PANEL_REF.getMainFrameRef().getClient().makeARequestToServer(
-                Client.GET_PRODUCTS_LIST);
+    public void loadProducts(int request) {
         ProductData[] products = null;
+        Object object = MAIN_PANEL_REF.getMainFrameRef()
+                .getClient().makeARequestToServer(request);
 
         if (object instanceof ProductData[]) {
             products = (ProductData[]) object;
@@ -61,10 +56,8 @@ public class DisplayProductsPanel extends javax.swing.JPanel {
                 (products.length * 200) + ((products.length + 1) * 5));
         PRODUCT_CARDS_CONTAINER.setLayout(layout);
 
-        PRODUCT_CARDS_CONTAINER.revalidate();
-        PRODUCT_CARDS_CONTAINER.repaint();
-        // PRODUCT_CARDS_CONTAINER.setBackground(Colors.BLACK);
-        // PRODUCT_CARDS_CONTAINER.setOpaque(true);
+        // PRODUCT_CARDS_CONTAINER.revalidate();
+        // PRODUCT_CARDS_CONTAINER.repaint();
         PRODUCT_CARDS_CONTAINER.setVisible(true);
 
         scrollPane.revalidate();

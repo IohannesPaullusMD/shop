@@ -81,9 +81,9 @@ public class ClientHandler implements Runnable {
 
     private void readReceivedInt(int number) {
         try {
-            switch (number) {
-                case Client.GET_PRODUCTS_LIST:
-                    OUTPUT_STREAM.writeObject(DatabaseQueries.getProducts());
+            switch (number / 10) {
+                case 1: // get Products it request kun 1
+                    OUTPUT_STREAM.writeObject(DatabaseQueries.getProducts(number));
                     break;
             }
         } catch (IOException e) {

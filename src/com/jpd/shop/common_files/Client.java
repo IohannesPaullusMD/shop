@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 @SuppressWarnings("finally")
 public class Client implements Runnable {
 
-    public static final int GET_PRODUCTS_LIST = 1;
+    public static final int GET_BURGER_PRODUCTS = 11; // TODO: change to byte or short
+    public static final int GET_FRIES_PRODUCTS = 12;
+    public static final int GET_DRINKS_PRODUCTS = 13;
 
     // public static final
 

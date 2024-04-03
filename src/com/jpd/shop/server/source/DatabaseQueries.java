@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.jpd.shop.common_files.Client;
 import com.jpd.shop.common_files.EmployeeLoginInfo;
 import com.jpd.shop.common_files.ProductData;
 
@@ -54,15 +55,18 @@ public class DatabaseQueries {
         }
     }
 
-    static ProductData[] getProducts() {
+    static ProductData[] getProducts(int productsCategory) {
         if (databaseConnection == null) {
             databaseConnection = getConnection();
         }
 
         ProductData[] products = null;
-        String query = "SELECT * FROM products ORDER BY stock DESC";
+        String query = "SELECT * FROM products WHERE category = ?"
+                + " ORDER BY stock DESC";
 
         try (PreparedStatement statement = databaseConnection.prepareStatement(query)) {
+            statement.setString(1, ProductData.categories[productsCategory - 10]);
+
             ResultSet resultSet = statement.executeQuery();
             ArrayList<ProductData> productDataList = new ArrayList<>();
 

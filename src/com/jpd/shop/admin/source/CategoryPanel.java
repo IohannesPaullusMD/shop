@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 
+import com.jpd.shop.common_files.Client;
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.NavButton;
 
@@ -59,9 +60,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-
-                    // TODO: add code
-
+                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                            .loadProducts(Client.GET_BURGER_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -80,8 +80,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO: add code
-
+                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                            .loadProducts(Client.GET_FRIES_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -100,8 +100,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO: add code
-
+                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                            .loadProducts(Client.GET_DRINKS_PRODUCTS);
                 }
             });
             button.setVisible(true);

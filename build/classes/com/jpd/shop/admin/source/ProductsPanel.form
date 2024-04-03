@@ -26,7 +26,7 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
-    <Component class="com.jpd.shop.admin.source.CategoryPanel" name="categoryPanel2">
+    <Component class="com.jpd.shop.admin.source.CategoryPanel" name="categoryPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.admin.source.CategoryPanel(this)"/>
       </AuxValues>
@@ -36,7 +36,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="com.jpd.shop.admin.source.EditProductPanel" name="editProductPanel2">
+    <Component class="com.jpd.shop.admin.source.EditProductPanel" name="editProductPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.admin.source.EditProductPanel(MAIN_PANEL_REF)"/>
       </AuxValues>
@@ -46,7 +46,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="com.jpd.shop.admin.source.DisplayProductsPanel" name="displayProductsPanel1">
+    <Component class="com.jpd.shop.admin.source.DisplayProductsPanel" name="displayProductsPanel">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.admin.source.DisplayProductsPanel(MAIN_PANEL_REF)"/>
       </AuxValues>

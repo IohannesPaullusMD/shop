@@ -4,17 +4,6 @@
  */
 package com.jpd.shop.admin.source;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import javax.swing.ImageIcon;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import com.jpd.shop.common_files.Colors;
-import com.jpd.shop.common_files.NavButton;
-
 /**
  *
  * @author jpd
@@ -35,6 +24,10 @@ public class ProductsPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public com.jpd.shop.admin.source.DisplayProductsPanel getDisplayProductsPanel() {
+        return displayProductsPanel;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,27 +39,29 @@ public class ProductsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        categoryPanel2 = new com.jpd.shop.admin.source.CategoryPanel(this);
-        editProductPanel2 = new com.jpd.shop.admin.source.EditProductPanel(MAIN_PANEL_REF);
-        displayProductsPanel1 = new com.jpd.shop.admin.source.DisplayProductsPanel(MAIN_PANEL_REF);
+        categoryPanel = new com.jpd.shop.admin.source.CategoryPanel(this);
+        editProductPanel = new com.jpd.shop.admin.source.EditProductPanel(MAIN_PANEL_REF);
+        displayProductsPanel = new com.jpd.shop.admin.source.DisplayProductsPanel(MAIN_PANEL_REF);
 
         setMaximumSize(new java.awt.Dimension(1000, 530));
         setMinimumSize(new java.awt.Dimension(1000, 530));
         setLayout(null);
-        add(categoryPanel2);
-        categoryPanel2.setBounds(0, 0, 50, 529);
-        add(editProductPanel2);
-        editProductPanel2.setBounds(750, 0, 250, 530);
-        add(displayProductsPanel1);
-        displayProductsPanel1.setBounds(50, 0, 700, 530);
+        add(categoryPanel);
+        categoryPanel.setBounds(0, 0, 50, 529);
+        add(editProductPanel);
+        editProductPanel.setBounds(750, 0, 250, 530);
+        add(displayProductsPanel);
+        displayProductsPanel.setBounds(50, 0, 700, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jpd.shop.admin.source.CategoryPanel categoryPanel2;
-    private com.jpd.shop.admin.source.DisplayProductsPanel displayProductsPanel1;
-    private com.jpd.shop.admin.source.EditProductPanel editProductPanel2;
+    private com.jpd.shop.admin.source.CategoryPanel categoryPanel;
+    private com.jpd.shop.admin.source.DisplayProductsPanel displayProductsPanel;
+    private com.jpd.shop.admin.source.EditProductPanel editProductPanel;
     // End of variables declaration//GEN-END:variables
 }
