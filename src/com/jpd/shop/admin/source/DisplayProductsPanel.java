@@ -34,7 +34,7 @@ public class DisplayProductsPanel extends javax.swing.JPanel {
         }
     }
 
-    public void loadProducts(int request) {
+    private void loadProducts(int request) {
         ProductData[] products = null;
         Object object = MAIN_PANEL_REF.getMainFrameRef()
                 .getClient().makeARequestToServer(request);

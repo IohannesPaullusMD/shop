@@ -57,14 +57,12 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
         showProductsButton = new com.jpd.shop.common_files.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        productsPanel2 = new com.jpd.shop.admin.source.ProductsPanel(this);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -77,19 +75,16 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(
-                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }
@@ -100,14 +95,6 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
-
-        jLayeredPane1.setMaximumSize(new java.awt.Dimension(1000, 530));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1000, 530));
-        jLayeredPane1.add(productsPanel2);
-        productsPanel2.setBounds(0, 0, 1000, 530);
-
-        add(jLayeredPane1);
-        jLayeredPane1.setBounds(0, 0, 1000, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseReleased
@@ -123,10 +110,8 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     }// GEN-LAST:event_logoutButtonMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;
-    private com.jpd.shop.admin.source.ProductsPanel productsPanel2;
     private com.jpd.shop.common_files.NavButton showProductsButton;
     // End of variables declaration//GEN-END:variables
 

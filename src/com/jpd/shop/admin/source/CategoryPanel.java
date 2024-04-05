@@ -60,8 +60,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
-                            .loadProducts(Client.GET_BURGER_PRODUCTS);
+                    // PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                    // .loadProducts(Client.GET_BURGER_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -80,8 +80,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
-                            .loadProducts(Client.GET_FRIES_PRODUCTS);
+                    // PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                    // .loadProducts(Client.GET_FRIES_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -100,8 +100,8 @@ public class CategoryPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    PRODUCTS_PANEL_REF.getDisplayProductsPanel()
-                            .loadProducts(Client.GET_DRINKS_PRODUCTS);
+                    // PRODUCTS_PANEL_REF.getDisplayProductsPanel()
+                    // .loadProducts(Client.GET_DRINKS_PRODUCTS);
                 }
             });
             button.setVisible(true);

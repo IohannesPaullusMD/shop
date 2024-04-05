@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.jpd.shop.admin.source;
 
 import java.awt.Graphics;
@@ -32,36 +28,29 @@ import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.ProductData;
 
 @SuppressWarnings("finally")
-/**
- *
- * @author jpd
- */
 public class EditProductPanel extends javax.swing.JPanel {
 
-    private ImageIcon addIcon = new ImageIcon(getClass().getResource(
+    ImageIcon addIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/add_button.png"));
-    private ImageIcon blueAddIcon = new ImageIcon(getClass().getResource(
+    ImageIcon blueAddIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/blue_add_button.png"));
 
-    private File[] imageFile = new File[1];
-    private boolean isClickedAddButton = false;
-    private boolean isEditButton = true;
+    File[] imageFile = new File[1];
+    boolean isClickedAddButton = false;
+    boolean isEditButton = true;
 
-    private MainPanel mainPanelRef;
-    private JLabel addButton = new JLabel(addIcon);
-    private JLabel productImage = new JLabel();
-    private JLabel uploadImageButton;
-    private JTextField nameTextField = new JTextField();
-    private JSpinner priceNumField = new JSpinner();
-    private JSpinner stockNumField = new JSpinner();
-    private JComboBox<String> categoryBox = new JComboBox<>(
+    MainPanel mainPanelRef;
+    JLabel addButton = new JLabel(addIcon);
+    JLabel productImage = new JLabel();
+    JLabel uploadImageButton;
+    JTextField nameTextField = new JTextField();
+    JSpinner priceNumField = new JSpinner();
+    JSpinner stockNumField = new JSpinner();
+    JComboBox<String> categoryBox = new JComboBox<>(
             new DefaultComboBoxModel<>(ProductData.categories));
-    private JLabel editSaveButton;
-    private JLabel deleteCancelButton;
+    JLabel editSaveButton;
+    JLabel deleteCancelButton;
 
-    /**
-     * Creates new form EditProductPanel
-     */
     public EditProductPanel() {
         this(null);
     }
@@ -71,7 +60,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         initializeComponents();
     }
 
-    private void initializeComponents() {
+    void initializeComponents() {
         this.add(addDivider(0, 0, 1, 530));
 
         // initialize addButton
@@ -315,7 +304,7 @@ public class EditProductPanel extends javax.swing.JPanel {
                     editSaveButton.setBackground(Colors.WHITE);
                 }
 
-                private boolean checkIfValidInputs() {
+                boolean checkIfValidInputs() {
                     return ((productImage.getIcon() != null)
                             && !nameTextField.getText().equals("")
                             && (((Number) priceNumField.getValue()).floatValue() != 0.0)
@@ -405,7 +394,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         this.setVisible(true);
     }
 
-    private void enableAdminPanelFields(boolean state) {
+    void enableAdminPanelFields(boolean state) {
         uploadImageButton.setVisible(state);
         nameTextField.setEnabled(state);
         priceNumField.setEnabled(state);
@@ -413,7 +402,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         categoryBox.setEnabled(state);
     }
 
-    private void clearAdminPanelFields() {
+    void clearAdminPanelFields() {
         productImage.setIcon(null);
         nameTextField.setText("");
         priceNumField.setValue(0);
@@ -421,7 +410,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         categoryBox.setSelectedIndex(0);
     }
 
-    private void changeButtonsState(boolean state) {
+    void changeButtonsState(boolean state) {
         if (isClickedAddButton && editSaveButton.getText().equals("Save")) {
             isClickedAddButton = !isClickedAddButton;
             addButton.getMouseListeners()[0].mouseExited(null);
@@ -432,7 +421,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         deleteCancelButton.setText(state ? "Cancel" : "Delete");
     }
 
-    private JLabel addDivider(int x, int y, int w, int h) {
+    JLabel addDivider(int x, int y, int w, int h) {
         JLabel divider = new JLabel();
 
         divider.setBackground(Colors.GRAY);
@@ -443,7 +432,7 @@ public class EditProductPanel extends javax.swing.JPanel {
         return divider;
     }
 
-    private ProductData getNewProductDetails() {
+    ProductData getNewProductDetails() {
         String name = nameTextField.getText();
         int price = ((int) ((Number) priceNumField.getValue()).floatValue()) * 100;
         int stock = Integer.valueOf(stockNumField.getValue().toString());
@@ -486,7 +475,7 @@ public class EditProductPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    void initComponents() {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
