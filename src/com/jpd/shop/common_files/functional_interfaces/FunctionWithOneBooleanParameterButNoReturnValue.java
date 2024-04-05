@@ -1,4 +1,4 @@
-package com.jpd.shop.common_files.functinal_interfaces;
+package com.jpd.shop.common_files.functional_interfaces;
 
 @FunctionalInterface
 public interface FunctionWithOneBooleanParameterButNoReturnValue {

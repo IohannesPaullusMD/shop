@@ -9,13 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 public class NavButton extends JLayeredPane implements MouseListener {
-    private static NavButton[] lastClickedNavBarButton = new NavButton[1];
-    private static NavButton[] lastClickedProductCategoryButton = new NavButton[1];
+    private static final NavButton[] lastClickedNavBarButton = new NavButton[1];
+    private static final NavButton[] lastClickedProductCategoryButton = new NavButton[1];
 
     public static void changeLastClickedButton(NavButton button) {
-        NavButton lastClickedButton[] = (button.isNavBarButton
-                ? lastClickedNavBarButton
-                : lastClickedProductCategoryButton);
+        final NavButton[] lastClickedButton = button.getLastClickedButton();
 
         lastClickedButton[0].setIcon(lastClickedButton[0].icon);
         lastClickedButton[0].clickedIndicator.setVisible(false);
