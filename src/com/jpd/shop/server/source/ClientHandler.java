@@ -10,13 +10,13 @@ import com.jpd.shop.common_files.EmployeeLoginInfo;
 import com.jpd.shop.common_files.ProductData;
 
 public class ClientHandler implements Runnable {
-    private final Socket SOCKET;
+    private Socket socket;
     private final ObjectOutputStream OUTPUT_STREAM;
     private final ObjectInputStream INPUT_STREAM;
     private final boolean IS_ADMIN_APP;
 
     public ClientHandler(Socket socket) throws IOException {
-        SOCKET = socket;
+        this.socket = socket;
         OUTPUT_STREAM = new ObjectOutputStream(socket.getOutputStream());
         INPUT_STREAM = new ObjectInputStream(socket.getInputStream());
 
@@ -26,7 +26,7 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
 
-        while (!SOCKET.isClosed()) {
+        while (socket != null) {
             try {
                 Object object = INPUT_STREAM.readObject();
                 handleRequest(object);
@@ -93,11 +93,14 @@ public class ClientHandler implements Runnable {
 
     private void closeEverything() {
         try {
-            if (!SOCKET.isClosed()) {
-                SOCKET.close();
+            if (socket != null) {
+                socket.close();
+                socket = null;
             }
+
+            System.gc();
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 }

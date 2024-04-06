@@ -1,5 +1,6 @@
 package com.jpd.shop.admin.source;
 
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -28,8 +29,11 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.jpd.shop.common_files.Client;
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.NavButton;
+import com.jpd.shop.common_files.ProductCard;
+import com.jpd.shop.common_files.ProductCardTemplate;
 import com.jpd.shop.common_files.ProductData;
 import com.jpd.shop.common_files.functional_interfaces.FunctionWithFourIntegerParametersButReturnsJLabel;
 import com.jpd.shop.common_files.functional_interfaces.FunctionWithNoParameterButReturnsProductData;
@@ -39,21 +43,53 @@ import com.jpd.shop.common_files.functional_interfaces.FunctionWithOneBooleanPar
 public class ProductsPanel extends javax.swing.JPanel {
 
     private static ProductsPanel productsPanel;
+    private static final FlowLayout layout = new FlowLayout(
+            FlowLayout.LEFT, 20, 20);
 
-    public static ProductsPanel getInstance() {
+    public static final ProductsPanel getInstance() {
         if (productsPanel == null) {
             productsPanel = new ProductsPanel();
+            loadProducts(Client.GET_BURGER_PRODUCTS);
         }
         return productsPanel;
     }
 
-    public static void dispose() {
+    public static final void dispose() {
         if (productsPanel == null) {
             return;
         }
 
         productsPanel.setVisible(false);
         productsPanel = null;
+    }
+
+    public static final void loadProducts(int category) {
+        ProductData[] products = null;
+        Object object = Client.getInstance().makeARequestToServer(category);
+
+        if (object instanceof ProductData[]) {
+            products = (ProductData[]) object;
+        }
+
+        if (productsPanel.PRODUCT_CARDS_CONTAINER.getComponents().length > 0) {
+            productsPanel.PRODUCT_CARDS_CONTAINER.removeAll();
+        }
+
+        for (ProductData productData : products) {
+            productsPanel.PRODUCT_CARDS_CONTAINER.add(new ProductCard(productData));
+        }
+
+        productsPanel.PRODUCT_CARDS_CONTAINER.setSize(
+                productsPanel.getWidth(),
+                (products.length * 200) + ((products.length + 1) * 5));
+        productsPanel.PRODUCT_CARDS_CONTAINER.setLayout(layout);
+
+        // PRODUCT_CARDS_CONTAINER.revalidate();
+        // PRODUCT_CARDS_CONTAINER.repaint();
+        productsPanel.PRODUCT_CARDS_CONTAINER.setVisible(true);
+
+        productsPanel.SCROLL_PANE.revalidate();
+        productsPanel.SCROLL_PANE.repaint();
     }
 
     private boolean isClickedADD_BUTTON = false;
@@ -70,9 +106,22 @@ public class ProductsPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMaximumSize(new java.awt.Dimension(1000, 530));
+        setMinimumSize(new java.awt.Dimension(1000, 530));
+        setLayout(null);
+
+        CATEGORY_PANEL.setBackground(Colors.WHITE);
+        CATEGORY_PANEL.setMaximumSize(new java.awt.Dimension(50, 529));
+        CATEGORY_PANEL.setMinimumSize(new java.awt.Dimension(50, 529));
+        CATEGORY_PANEL.setPreferredSize(new java.awt.Dimension(50, 529));
         final ImageIcon ADD_ICON = new ImageIcon(getClass().getResource(
                 "/com/jpd/shop/common_files/icons/add_button.png"));
         final ImageIcon BLUE_ADD_ICON = new ImageIcon(getClass().getResource(
@@ -232,19 +281,7 @@ public class ProductsPanel extends javax.swing.JPanel {
         };
 
         //
-        final javax.swing.JPanel CATEGORY_PANEL = new javax.swing.JPanel();
-        final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
-        final javax.swing.JPanel PRODUCT_CARDS_CONTAINER = new javax.swing.JPanel();
-        final javax.swing.JPanel EDIT_PRODUCT_PANEL = new javax.swing.JPanel();
 
-        setMaximumSize(new java.awt.Dimension(1000, 530));
-        setMinimumSize(new java.awt.Dimension(1000, 530));
-        setLayout(null);
-
-        CATEGORY_PANEL.setBackground(Colors.WHITE);
-        CATEGORY_PANEL.setMaximumSize(new java.awt.Dimension(50, 529));
-        CATEGORY_PANEL.setMinimumSize(new java.awt.Dimension(50, 529));
-        CATEGORY_PANEL.setPreferredSize(new java.awt.Dimension(50, 529));
         CATEGORY_PANEL.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -268,7 +305,7 @@ public class ProductsPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO: add code
+                    loadProducts(Client.GET_BURGER_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -287,7 +324,7 @@ public class ProductsPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO: add code
+                    loadProducts(Client.GET_FRIES_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -306,7 +343,7 @@ public class ProductsPanel extends javax.swing.JPanel {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // TODO: add code
+                    loadProducts(Client.GET_DRINKS_PRODUCTS);
                 }
             });
             button.setVisible(true);
@@ -499,7 +536,8 @@ public class ProductsPanel extends javax.swing.JPanel {
                     }
 
                     if (!isEditButton) {
-                        // TODO: add code
+                        Client.getInstance().makeARequestToServer(
+                                GET_NEW_PRODUCT_DATA.call());
                     }
 
                     CHANGE_BUTTON_STATE.call(isEditButton);
@@ -586,5 +624,9 @@ public class ProductsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private final javax.swing.JPanel CATEGORY_PANEL = new javax.swing.JPanel();
+    private final javax.swing.JPanel EDIT_PRODUCT_PANEL = new javax.swing.JPanel();
+    private final javax.swing.JPanel PRODUCT_CARDS_CONTAINER = new javax.swing.JPanel();
+    private final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
     // End of variables declaration//GEN-END:variables
 }

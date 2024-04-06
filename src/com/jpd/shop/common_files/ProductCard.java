@@ -4,10 +4,11 @@
  */
 package com.jpd.shop.common_files;
 
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
 
-import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,31 +22,6 @@ public class ProductCard extends javax.swing.JPanel {
         PRODUCT_DATA = productData;
 
         initComponents();
-        customInit();
-    }
-
-    private void customInit() {
-        Dimension dimension = new Dimension(150, 200);
-        this.setPreferredSize(dimension);
-        // this.setMaximumSize(dimension);
-        // this.setMinimumSize(dimension);
-        // this.setBounds(0, 0, 150, 200);
-        this.setVisible(true);
-    }
-
-    private ImageIcon getProductImage() {
-        Image image = new ImageIcon(PRODUCT_DATA.image()).getImage();
-        return (new ImageIcon(image.getScaledInstance(
-                100, 100, Image.SCALE_SMOOTH)));
-    }
-
-    private String getProductName() {
-        return ("<html><body style='width: 200px; word-wrap: break-word;'>"
-                + PRODUCT_DATA.name() + "</body></html>");
-    }
-
-    private String getProductPrice() {
-        return Float.toString(PRODUCT_DATA.price() / 100.f);
     }
 
     /**
@@ -58,59 +34,96 @@ public class ProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        image = new javax.swing.JLabel(getProductImage());
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        productPrice = new javax.swing.JLabel(getProductPrice());
-        productName = new javax.swing.JLabel(getProductName());
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        productNotAvailable = new javax.swing.JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g); // Paint the panel's components and borders
+
+                // Set the color with an alpha value (e.g., 128 for 50% transparency)
+                Color semiTransparentColor = new Color(128, 128, 128, 191);
+                g.setColor(semiTransparentColor);
+
+                // Fill the panel with the semi-transparent color
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        productCardTemplate1 = new com.jpd.shop.common_files.ProductCardTemplate(PRODUCT_DATA);
 
         setMaximumSize(new java.awt.Dimension(150, 200));
         setMinimumSize(new java.awt.Dimension(150, 200));
-        setLayout(null);
 
-        image.setBackground(new java.awt.Color(204, 204, 204));
-        image.setMaximumSize(new java.awt.Dimension(100, 100));
-        image.setMinimumSize(new java.awt.Dimension(100, 100));
-        image.setName(""); // NOI18N
-        image.setOpaque(true);
-        image.setPreferredSize(new java.awt.Dimension(100, 100));
-        add(image);
-        image.setBounds(25, 10, 100, 100);
+        productNotAvailable.setOpaque(false);
 
-        jSeparator1.setMaximumSize(new java.awt.Dimension(150, 5));
-        jSeparator1.setMinimumSize(new java.awt.Dimension(150, 5));
-        jSeparator1.setPreferredSize(new java.awt.Dimension(150, 5));
-        add(jSeparator1);
-        jSeparator1.setBounds(0, 120, 150, 5);
+        javax.swing.GroupLayout productNotAvailableLayout = new javax.swing.GroupLayout(productNotAvailable);
+        productNotAvailable.setLayout(productNotAvailableLayout);
+        productNotAvailableLayout.setHorizontalGroup(
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        productNotAvailableLayout.setVerticalGroup(
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
-        jLabel1.setText("Price:");
-        jLabel1.setMaximumSize(new java.awt.Dimension(30, 15));
-        jLabel1.setMinimumSize(new java.awt.Dimension(30, 15));
-        jLabel1.setPreferredSize(new java.awt.Dimension(30, 15));
-        add(jLabel1);
-        jLabel1.setBounds(20, 180, 30, 15);
+        javax.swing.GroupLayout productCardTemplate1Layout = new javax.swing.GroupLayout(productCardTemplate1);
+        productCardTemplate1.setLayout(productCardTemplate1Layout);
+        productCardTemplate1Layout.setHorizontalGroup(
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        productCardTemplate1Layout.setVerticalGroup(
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
-        productPrice.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        add(productPrice);
-        productPrice.setBounds(60, 180, 70, 15);
+        JLabel notAvailableText = new JLabel("Not Available");
+        notAvailableText.setForeground(Colors.WHITE);
+        notAvailableText.setHorizontalAlignment(JLabel.CENTER);
+        notAvailableText.setVisible(true);
 
-        productName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        productName.setMaximumSize(new java.awt.Dimension(110, 40));
-        productName.setMinimumSize(new java.awt.Dimension(110, 40));
-        productName.setPreferredSize(new java.awt.Dimension(110, 40));
-        add(productName);
-        productName.setBounds(20, 130, 110, 40);
+        productNotAvailable.setLayout(new BorderLayout());
+        productNotAvailable.add(notAvailableText, BorderLayout.CENTER);
+        productNotAvailable.setSize(getWidth(), getHeight());
+        productNotAvailable.setLocation(0, 0);
+        productNotAvailable.setOpaque(false);
+        productNotAvailable.setVisible(true);
+        jLayeredPane1.setLayer(productNotAvailable, javax.swing.JLayeredPane.DRAG_LAYER);
+        jLayeredPane1.setLayer(productCardTemplate1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(productNotAvailable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(productNotAvailable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLayeredPane1)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel image;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel productName;
-    private javax.swing.JLabel productPrice;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private com.jpd.shop.common_files.ProductCardTemplate productCardTemplate1;
+    private javax.swing.JPanel productNotAvailable;
     // End of variables declaration//GEN-END:variables
 }

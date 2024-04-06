@@ -23,6 +23,7 @@ public class Client implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            System.gc();
             return (client != null);
         }
     }
@@ -36,6 +37,10 @@ public class Client implements Runnable {
     }
 
     public static final void close() {
+        if (client != null) {
+            return;
+        }
+
         MainFrame.getInstance().getTransparentPanel().setVisible(true);
         MainFrame.getInstance().getLayeredPane().repaint();
 
@@ -65,7 +70,8 @@ public class Client implements Runnable {
         OUTPUT_STREAM = new ObjectOutputStream(SOCKET.getOutputStream());
         INPUT_STREAM = new ObjectInputStream(SOCKET.getInputStream());
 
-        OUTPUT_STREAM.writeBoolean(MainFrame.getInstance().isAdminApp());
+        OUTPUT_STREAM.writeBoolean(MainFrame.getInstance().IS_ADMIN_APP);
+        OUTPUT_STREAM.flush();
 
         MainFrame.getInstance().getTransparentPanel().setVisible(false);
 
@@ -73,7 +79,7 @@ public class Client implements Runnable {
             LoginPanel.getInstance().enableUsernameAndPasswordField(true);
         }
 
-        // new Thread(this).start();
+        new Thread(this).start();
     }
 
     public Object makeARequestToServer(Object object) {
