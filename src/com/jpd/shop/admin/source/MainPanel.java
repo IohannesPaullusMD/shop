@@ -3,6 +3,7 @@ package com.jpd.shop.admin.source;
 import javax.swing.ImageIcon;
 
 import com.jpd.shop.common_files.Colors;
+import com.jpd.shop.common_files.LoginPanel;
 import com.jpd.shop.common_files.MainFrame;
 import com.jpd.shop.common_files.MainPanel_Interface;
 import com.jpd.shop.common_files.NavButton;
@@ -13,6 +14,21 @@ import com.jpd.shop.common_files.NavButton;
  */
 public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface {
 
+    private static MainPanel mainPanel;
+
+    public static final MainPanel getInstance() {
+        if (mainPanel == null) {
+            mainPanel = new MainPanel();
+        }
+
+        return mainPanel;
+    }
+
+    private static final void closeMainPanel() {
+        MainFrame.showPanel(false, mainPanel);
+        mainPanel = null;
+    }
+
     private final ImageIcon SHOW_PRODUCTS_ICON = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/logo.png"));
     private final ImageIcon BLUE_SHOW_PRODUCTS_ICON = new ImageIcon(getClass().getResource(
@@ -21,7 +37,8 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     private MainFrame mainFrameRef;
 
     public MainPanel() {
-
+        initComponents();
+        customInit();
     }
 
     private void customInit() {
@@ -31,13 +48,6 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
     public MainFrame getMainFrameRef() {
         return mainFrameRef;
-    }
-
-    @Override
-    public void initComponents(MainFrame mainFrameRef) {
-        this.mainFrameRef = mainFrameRef;
-        initComponents();
-        customInit();
     }
 
     /**
@@ -57,7 +67,8 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
@@ -75,16 +86,19 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }
@@ -98,7 +112,8 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseReleased
-        mainFrameRef.getLoginPanel().setVisible(true);
+        closeMainPanel();
+        MainFrame.showPanel(true, LoginPanel.getInstance());
     }// GEN-LAST:event_logoutButtonMouseReleased
 
     private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseExited

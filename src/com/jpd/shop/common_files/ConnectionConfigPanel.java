@@ -3,8 +3,6 @@ package com.jpd.shop.common_files;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,16 +53,6 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
         this.setLayout(null);
         this.setOpaque(false);
         this.setVisible(false);
-    }
-
-    private boolean connectToServer() {
-        try {
-            mainFrameRef.setClient(new Client(mainFrameRef));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace(); // TODO: tanggala ini
-            return false;
-        }
     }
 
     public ImageIcon getRedWifiIcon() {
@@ -334,18 +322,21 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
 
         // TODO: add code
         if (button.getText().equals("Connect")) {
-            if (!connectToServer()) {
+            if (!Client.createInstance()) {
                 return;
             }
 
             button.setText("Disconnect");
             mainFrameRef.getConnectionButton().setIcon(greenWifiIcon);
         } else {
-            mainFrameRef.setClient(null);
-            System.gc();
+            Client.close();
 
             button.setText("Connect");
             mainFrameRef.getConnectionButton().setIcon(redWifiIcon);
+
+            if (!LoginPanel.hasNoInstance()) {
+                LoginPanel.getInstance().enableUsernameAndPasswordField(false);
+            }
         }
     }// GEN-LAST:event_buttonMouseReleased
 

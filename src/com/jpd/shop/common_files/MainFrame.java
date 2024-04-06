@@ -10,28 +10,38 @@ import javax.swing.JPanel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private static MainFrame mainFrame;
+
+    public static final MainFrame getInstance() {
+        if (mainFrame == null) { // TODO: tanggala ini
+            mainFrame = new MainFrame();
+        }
+
+        return mainFrame;
+    }
+
+    public static final void showPanel(boolean show, JPanel panel) {
+        if (show) {
+            mainFrame.layeredPane.add(panel, JLayeredPane.DEFAULT_LAYER);
+            mainFrame.layeredPane.revalidate();
+            mainFrame.layeredPane.repaint();
+        } else {
+            mainFrame.layeredPane.remove(panel);
+        }
+    }
+
     private final ImageIcon closeIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/close_button.png"));
     private final ImageIcon redCloseIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/red_close_button.png"));
 
-    private final MainPanel_Interface MAIN_PANEL_REF;
     private final boolean IS_ADMIN_APP;
 
     private Client client;
 
-    public MainFrame(MainPanel_Interface mainPanelRef, boolean isAdminApp) {
-        MAIN_PANEL_REF = mainPanelRef;
-        IS_ADMIN_APP = isAdminApp;
+    private MainFrame() {
+        IS_ADMIN_APP = true;
         initComponents();
-    }
-
-    public final MainPanel_Interface getMAIN_PANEL_REF() {
-        return MAIN_PANEL_REF;
-    }
-
-    public final LoginPanel getLoginPanel() {
-        return loginPanel;
     }
 
     JLayeredPane getJLayeredPane() {
@@ -71,6 +81,11 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -78,7 +93,6 @@ public class MainFrame extends javax.swing.JFrame {
         closeButton = new javax.swing.JLabel();
         connectionButton = new javax.swing.JLabel();
         layeredPane = new javax.swing.JLayeredPane();
-        loginPanel = new LoginPanel(this);
         transparentPanel = new javax.swing.JPanel();
         connectionConfigPanel = new ConnectionConfigPanel(this);
 
@@ -144,19 +158,8 @@ public class MainFrame extends javax.swing.JFrame {
     layeredPane.setMaximumSize(new java.awt.Dimension(1000, 580));
     layeredPane.setMinimumSize(new java.awt.Dimension(1000, 580));
     layeredPane.setOpaque(true);
-    layeredPane.add((JPanel) MAIN_PANEL_REF, JLayeredPane.DEFAULT_LAYER);
 
-    loginPanel.setMaximumSize(loginPanel.getMaximumSize());
-    loginPanel.setMinimumSize(loginPanel.getMinimumSize());
-    loginPanel.setPreferredSize(loginPanel.getPreferredSize());
-    layeredPane.setLayer(loginPanel, javax.swing.JLayeredPane.PALETTE_LAYER);
-    layeredPane.add(loginPanel);
-    loginPanel.setBounds(0, 0, 1000, 580);
-
-    transparentPanel.setMaximumSize(loginPanel.getMaximumSize());
-    transparentPanel.setMinimumSize(loginPanel.getMinimumSize());
     transparentPanel.setOpaque(false);
-    transparentPanel.setPreferredSize(loginPanel.getPreferredSize());
     transparentPanel.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             ConsumeMouseEventsForTransparentPanel(evt);
@@ -177,11 +180,13 @@ public class MainFrame extends javax.swing.JFrame {
     transparentPanel.setLayout(null);
     layeredPane.setLayer(transparentPanel, javax.swing.JLayeredPane.POPUP_LAYER);
     layeredPane.add(transparentPanel);
-    transparentPanel.setBounds(0, 0, 1000, 580);
+    transparentPanel.setBounds(0, 0, 0, 0);
     layeredPane.setLayer(connectionConfigPanel, javax.swing.JLayeredPane.DRAG_LAYER);
     layeredPane.add(connectionConfigPanel);
     connectionConfigPanel.setBounds(680, 20, 300, 225);
 
+    LoginPanel.getInstance().enableUsernameAndPasswordField(false);
+    layeredPane.add(LoginPanel.getInstance(), JLayeredPane.DEFAULT_LAYER);
     getContentPane().add(layeredPane);
     layeredPane.setBounds(0, 20, 1000, 580);
 
@@ -229,7 +234,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel connectionButtonContainer;
     private com.jpd.shop.common_files.ConnectionConfigPanel connectionConfigPanel;
     private javax.swing.JLayeredPane layeredPane;
-    private com.jpd.shop.common_files.LoginPanel loginPanel;
     private javax.swing.JPanel transparentPanel;
     // End of variables declaration//GEN-END:variables
 
