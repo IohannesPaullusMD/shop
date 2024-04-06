@@ -59,7 +59,7 @@ public class ProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         image = new javax.swing.JLabel(getProductImage());
@@ -92,7 +92,7 @@ public class ProductCard extends javax.swing.JPanel {
         jLabel1.setMinimumSize(new java.awt.Dimension(30, 15));
         jLabel1.setPreferredSize(new java.awt.Dimension(30, 15));
         add(jLabel1);
-        jLabel1.setBounds(20, 180, 30, 15);
+        jLabel1.setBounds(20, 180, 40, 15);
 
         productPrice.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         add(productPrice);

@@ -105,7 +105,7 @@ public class MainFrame extends javax.swing.JFrame {
     setSize(new java.awt.Dimension(1000, 600));
     getContentPane().setLayout(null);
 
-    connectionButtonContainer.setBackground(new java.awt.Color(204, 255, 255));
+    connectionButtonContainer.setBackground(Colors.GRAY);
     connectionButtonContainer.setMaximumSize(new java.awt.Dimension(1000, 20));
     connectionButtonContainer.setMinimumSize(new java.awt.Dimension(1000, 20));
     connectionButtonContainer.setPreferredSize(new java.awt.Dimension(1000, 20));
