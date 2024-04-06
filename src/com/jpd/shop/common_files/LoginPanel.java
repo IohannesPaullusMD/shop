@@ -272,7 +272,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
             JPanel panel = null;
 
-            if (MainFrame.getInstance().IS_ADMIN_APP) {
+            if (MainFrame.getInstance().isAdminApp()) {
                 panel = com.jpd.shop.admin.source.MainPanel.getInstance();
             } else {
                 // panel = TODO: add code

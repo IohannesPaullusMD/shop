@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -324,9 +323,6 @@ public class ConnectionConfigPanel extends javax.swing.JPanel {
         // TODO: add code
         if (button.getText().equals("Connect")) {
             if (!Client.createInstance()) {
-                JOptionPane.showMessageDialog(
-                        null, "unable to connect server");
-
                 return;
             }
 
