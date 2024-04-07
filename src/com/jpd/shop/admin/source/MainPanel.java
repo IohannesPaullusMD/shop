@@ -67,7 +67,7 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
@@ -85,19 +85,16 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(
-                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }

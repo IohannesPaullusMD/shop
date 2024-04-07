@@ -65,7 +65,7 @@ public class DatabaseQueries {
                 + " ORDER BY stock DESC";
 
         try (PreparedStatement statement = databaseConnection.prepareStatement(query)) {
-            statement.setString(1, ProductData.categories[productsCategory - 10]);
+            statement.setInt(1, productsCategory - 10);
 
             ResultSet resultSet = statement.executeQuery();
             ArrayList<ProductData> productDataList = new ArrayList<>();

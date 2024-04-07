@@ -20,22 +20,40 @@ import javax.swing.JLabel;
  */
 public class ProductCard extends javax.swing.JPanel {
 
-    private static ProductCard selectedCard;
+    private static ProductCard selectedCard = null;
 
     public static final void changeSelectedCard(ProductCard newSelectedCard) {
-        selectedCard.setBackground(Colors.WHITE);
+        if (selectedCard != null) {
+            changeSelectedCardColor(false);
+        }
 
         selectedCard = newSelectedCard;
 
-        selectedCard.setBackground(Colors.WHITE_HOVER);
+        changeSelectedCardColor(true);
     }
 
     public static final ProductCard getSelectedCard() {
         return selectedCard;
     }
 
-    public static void setSelectedCardToNull() {
-        selectedCard = null;
+    private static void changeSelectedCardColor(boolean isSelected) {
+        if (selectedCard == null) {
+            return;
+        }
+
+        JLabel[] labels = {
+                selectedCard.productCardTemplate1.getProductNameLabel(),
+                selectedCard.productCardTemplate1.getPriceLabel(),
+                selectedCard.productCardTemplate1.getRealPriceLabel()
+        };
+
+        for (JLabel label : labels) {
+            label.setForeground(isSelected ? Colors.WHITE : Colors.BLACK);
+        }
+
+        selectedCard.layerdPane.setBackground(isSelected
+                ? Colors.BLUE
+                : Colors.WHITE);
     }
 
     public final ProductData PRODUCT_DATA;
@@ -46,11 +64,6 @@ public class ProductCard extends javax.swing.JPanel {
         PRODUCT_DATA = productData;
 
         initComponents();
-
-        if (selectedCard == null) {
-            selectedCard = this;
-            selectedCard.setBackground(Colors.WHITE_HOVER);
-        }
 
         this.setOpaque(false);
     }
@@ -67,8 +80,10 @@ public class ProductCard extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated
+    //
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc=" Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,10 +111,9 @@ public class ProductCard extends javax.swing.JPanel {
             }
         };
         productCardTemplate1 = new com.jpd.shop.common_files.ProductCard.ProductCardTemplate(PRODUCT_DATA);
-        productNotAvailable = (MainFrame.getInstance().IS_ADMIN_APP || (PRODUCT_DATA.stock() > 0)
-                ? null
-                : (new javax.swing.JPanel()));
+        productNotAvailable = new javax.swing.JPanel();
 
+        setForeground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(150, 200));
         setMinimumSize(new java.awt.Dimension(150, 200));
 
@@ -185,6 +199,8 @@ public class ProductCard extends javax.swing.JPanel {
                         .addGroup(layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(productNotAvailable, javax.swing.GroupLayout.DEFAULT_SIZE,
                                         javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
+
+        productNotAvailable.setVisible(!(MainFrame.getInstance().IS_ADMIN_APP && PRODUCT_DATA.stock() > 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
