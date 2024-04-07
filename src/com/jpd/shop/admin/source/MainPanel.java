@@ -42,6 +42,10 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     private static final void dispose() {
         MainFrame.showPanel(false, mainPanel);
         mainPanel = null;
+
+        ProductsPanel.dispose();
+
+        // TODO: add code
         System.gc();
     }
 
@@ -67,12 +71,14 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
-        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
+        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON,
+                BLUE_SHOW_PRODUCTS_ICON, true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -85,16 +91,19 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }

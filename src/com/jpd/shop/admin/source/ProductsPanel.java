@@ -58,6 +58,8 @@ public class ProductsPanel extends javax.swing.JPanel {
 
         productsPanel.setVisible(false);
         productsPanel = null;
+
+        ProductCard.changeSelectedCard(null);
     }
 
     private final JLabel PRODUCT_IMAGE = new JLabel();
