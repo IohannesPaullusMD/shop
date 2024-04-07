@@ -1,5 +1,8 @@
 package com.jpd.shop.common_files;
 
+import com.jpd.shop.common_files.data_types.Client;
+import com.jpd.shop.common_files.Panels.ConnectionConfigPanel;
+import com.jpd.shop.common_files.Panels.LoginPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -35,7 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final ImageIcon redCloseIcon = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/red_close_button.png"));
 
-    private final boolean IS_ADMIN_APP;
+    public final boolean IS_ADMIN_APP;
 
     private Client client;
 
@@ -56,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.client = client;
     }
 
-    public com.jpd.shop.common_files.ConnectionConfigPanel getConnectionConfigPanel() {
+    public com.jpd.shop.common_files.Panels.ConnectionConfigPanel getConnectionConfigPanel() {
         return connectionConfigPanel;
     }
 
@@ -232,7 +235,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel closeButton;
     private javax.swing.JLabel connectionButton;
     private javax.swing.JPanel connectionButtonContainer;
-    private com.jpd.shop.common_files.ConnectionConfigPanel connectionConfigPanel;
+    private com.jpd.shop.common_files.Panels.ConnectionConfigPanel connectionConfigPanel;
     private javax.swing.JLayeredPane layeredPane;
     private javax.swing.JPanel transparentPanel;
     // End of variables declaration//GEN-END:variables

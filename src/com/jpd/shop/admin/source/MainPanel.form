@@ -66,10 +66,10 @@
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoutButtonMouseReleased"/>
           </Events>
         </Component>
-        <Component class="com.jpd.shop.common_files.NavButton" name="showProductsButton">
+        <Component class="com.jpd.shop.common_files.data_types.NavButton" name="showProductsButton">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="NavButton.changeLastClickedButton(showProductsButton);&#xd;&#xa;"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.common_files.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true)"/>
           </AuxValues>
         </Component>
       </SubComponents>

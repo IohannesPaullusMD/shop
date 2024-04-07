@@ -186,7 +186,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
         </Container>
-        <Container class="com.jpd.shop.common_files.ConnectionConfigPanel" name="connectionConfigPanel">
+        <Container class="com.jpd.shop.common_files.Panels.ConnectionConfigPanel" name="connectionConfigPanel">
           <AuxValues>
             <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="400"/>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ConnectionConfigPanel(this)"/>

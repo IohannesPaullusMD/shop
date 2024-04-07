@@ -4,10 +4,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import com.jpd.shop.common_files.Colors;
-import com.jpd.shop.common_files.LoginPanel;
+import com.jpd.shop.common_files.Panels.LoginPanel;
 import com.jpd.shop.common_files.MainFrame;
-import com.jpd.shop.common_files.MainPanel_Interface;
-import com.jpd.shop.common_files.NavButton;
+import com.jpd.shop.common_files.Panels.MainPanel_Interface;
+import com.jpd.shop.common_files.data_types.NavButton;
 
 /**
  *
@@ -72,7 +72,7 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
-        showProductsButton = new com.jpd.shop.common_files.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
+        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -126,7 +126,7 @@ public class MainPanel extends javax.swing.JPanel implements MainPanel_Interface
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;
-    private com.jpd.shop.common_files.NavButton showProductsButton;
+    private com.jpd.shop.common_files.data_types.NavButton showProductsButton;
     // End of variables declaration//GEN-END:variables
 
 }

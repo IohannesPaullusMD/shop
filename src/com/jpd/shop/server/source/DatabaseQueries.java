@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.jpd.shop.common_files.Client;
-import com.jpd.shop.common_files.EmployeeLoginInfo;
-import com.jpd.shop.common_files.ProductData;
+import com.jpd.shop.common_files.data_types.Client;
+import com.jpd.shop.common_files.data_types.EmployeeLoginInfo;
+import com.jpd.shop.common_files.data_types.ProductData;
 
 @SuppressWarnings("finally")
 public class DatabaseQueries {
@@ -73,7 +73,7 @@ public class DatabaseQueries {
             String name;
             int price;
             int stock;
-            String category;
+            int category;
             byte[] image;
             int id;
 
@@ -81,7 +81,7 @@ public class DatabaseQueries {
                 name = resultSet.getString("name");
                 price = (int) (resultSet.getFloat("price") * 100);
                 stock = resultSet.getInt("stock");
-                category = resultSet.getString("category");
+                category = resultSet.getInt("category");
                 image = resultSet.getBytes("image");
                 id = resultSet.getInt("id_pk");
 
@@ -115,7 +115,7 @@ public class DatabaseQueries {
             preparedStatement.setString(1, newProduct.name());
             preparedStatement.setFloat(2, newProduct.price() / 100.f);
             preparedStatement.setInt(3, newProduct.stock());
-            preparedStatement.setString(4, newProduct.category());
+            preparedStatement.setInt(4, newProduct.category());
             preparedStatement.setBytes(5, newProduct.image());
 
             isSuccessful = (preparedStatement.executeUpdate() > 0);

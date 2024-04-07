@@ -5,9 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import com.jpd.shop.common_files.Client;
-import com.jpd.shop.common_files.EmployeeLoginInfo;
-import com.jpd.shop.common_files.ProductData;
+import com.jpd.shop.common_files.data_types.Client;
+import com.jpd.shop.common_files.data_types.EmployeeLoginInfo;
+import com.jpd.shop.common_files.data_types.ProductData;
 
 public class ClientHandler implements Runnable {
     private final Socket SOCKET;
