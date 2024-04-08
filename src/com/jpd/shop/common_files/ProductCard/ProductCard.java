@@ -85,10 +85,10 @@ public class ProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc=" Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        layerdPane = new javax.swing.JLayeredPane() {
+        layerdPane = new javax.swing.JLayeredPane(){
             @Override
             protected void paintComponent(Graphics g) {
                 g.setColor(getBackground());
@@ -130,11 +130,13 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout productCardTemplate1Layout = new javax.swing.GroupLayout(productCardTemplate1);
         productCardTemplate1.setLayout(productCardTemplate1Layout);
         productCardTemplate1Layout.setHorizontalGroup(
-                productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 150, Short.MAX_VALUE));
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
         productCardTemplate1Layout.setVerticalGroup(
-                productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 200, Short.MAX_VALUE));
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
         productNotAvailable.setMaximumSize(new java.awt.Dimension(150, 200));
         productNotAvailable.setMinimumSize(new java.awt.Dimension(150, 200));
@@ -143,19 +145,15 @@ public class ProductCard extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
@@ -164,11 +162,13 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout productNotAvailableLayout = new javax.swing.GroupLayout(productNotAvailable);
         productNotAvailable.setLayout(productNotAvailableLayout);
         productNotAvailableLayout.setHorizontalGroup(
-                productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 150, Short.MAX_VALUE));
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
         productNotAvailableLayout.setVerticalGroup(
-                productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 200, Short.MAX_VALUE));
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
         layerdPane.setLayer(productCardTemplate1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         JLabel notAvailableText = new JLabel("Not Available");
@@ -178,7 +178,7 @@ public class ProductCard extends javax.swing.JPanel {
 
         productNotAvailable.setLayout(new BorderLayout());
         productNotAvailable.add(notAvailableText, BorderLayout.CENTER);
-        productNotAvailable.setBounds(0, 0, 150, 200);
+        productNotAvailable.setBounds(0,0,150,200);
         productNotAvailable.setOpaque(false);
         productNotAvailable.setVisible(true);
         layerdPane.setLayer(productNotAvailable, javax.swing.JLayeredPane.PALETTE_LAYER);
@@ -186,32 +186,30 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout layerdPaneLayout = new javax.swing.GroupLayout(layerdPane);
         layerdPane.setLayout(layerdPaneLayout);
         layerdPaneLayout.setHorizontalGroup(
-                layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(productNotAvailable, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
+            layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(productNotAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         layerdPaneLayout.setVerticalGroup(
-                layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(productNotAvailable, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
+            layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(productCardTemplate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layerdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(productNotAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        productNotAvailable.setVisible(!(MainFrame.getInstance().IS_ADMIN_APP && PRODUCT_DATA.stock() > 0));
+        productNotAvailable.setVisible(!(MainFrame.getInstance().IS_ADMIN_APP || PRODUCT_DATA.stock() > 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void consumeMouseEventsForProductNotAvailablePanel(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_consumeMouseEventsForProductNotAvailablePanel

@@ -68,15 +68,13 @@ public class ClientHandler implements Runnable {
     }
 
     private void handleProductDataRequest(ProductData productData) {
-        try {
-            if (productData.id() == ProductData.NO_ID_YET) {
-                DatabaseQueries.addNewProduct(productData);
-
-                OUTPUT_STREAM.writeObject(productData); // TODO: send list of all products
-            }
-        } catch (IOException e) {
-            closeEverything();
+        if (productData.id() == ProductData.NO_ID_YET) {
+            DatabaseQueries.addNewProduct(productData);
+        } else {
+            DatabaseQueries.updateProductDetails(productData);
         }
+
+        readReceivedInt(11); // TODO: tanggala ini
     }
 
     private void readReceivedInt(int number) {

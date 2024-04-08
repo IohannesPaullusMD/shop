@@ -112,7 +112,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JLayeredPane.layer" type="java.lang.Integer" value="100"/>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="productNotAvailable.setVisible(!(MainFrame.getInstance().IS_ADMIN_APP &amp;&amp; PRODUCT_DATA.stock() &gt; 0));"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="productNotAvailable.setVisible(!(MainFrame.getInstance().IS_ADMIN_APP || PRODUCT_DATA.stock() &gt; 0));"/>
             <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="JLabel notAvailableText = new JLabel(&quot;Not Available&quot;);&#xa;        notAvailableText.setForeground(Colors.WHITE);&#xa;        notAvailableText.setHorizontalAlignment(JLabel.CENTER);&#xa;        notAvailableText.setVisible(true);&#xa;&#xa;        productNotAvailable.setLayout(new BorderLayout());&#xa;        productNotAvailable.add(notAvailableText, BorderLayout.CENTER);&#xa;        productNotAvailable.setBounds(0,0,150,200);&#xa;        productNotAvailable.setOpaque(false);&#xa;        productNotAvailable.setVisible(true);"/>
           </AuxValues>
 

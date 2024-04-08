@@ -57,7 +57,7 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     }
 
     private String getProductName() {
-        return ("<html><body style='width: 200px; word-wrap: break-word;'>"
+        return ("<html><body style='width: 110px; word-wrap: break-word;'>"
                 + PRODUCT_DATA.name() + "</body></html>");
     }
 

@@ -18,13 +18,9 @@ public class DatabaseQueries {
     static EmployeeLoginInfo checkIfEmployeeLoginInfoExists(
             EmployeeLoginInfo employeeLoginInfo) {
 
-        if (databaseConnection == null) {
-            databaseConnection = getConnection();
-        }
-
         String query = "SELECT * FROM employees WHERE username = ? && password = ?";
 
-        try (PreparedStatement statement = databaseConnection.prepareStatement(query)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
 
             statement.setString(1, employeeLoginInfo.username());
             statement.setString(2, employeeLoginInfo.password());
@@ -56,15 +52,12 @@ public class DatabaseQueries {
     }
 
     static ProductData[] getProducts(int productsCategory) {
-        if (databaseConnection == null) {
-            databaseConnection = getConnection();
-        }
 
         ProductData[] products = null;
         String query = "SELECT * FROM products WHERE category = ?"
                 + " ORDER BY stock DESC";
 
-        try (PreparedStatement statement = databaseConnection.prepareStatement(query)) {
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setInt(1, productsCategory - 10);
 
             ResultSet resultSet = statement.executeQuery();
@@ -100,17 +93,13 @@ public class DatabaseQueries {
         }
     }
 
-    static boolean addNewProduct(ProductData newProduct) {
-        if (databaseConnection == null) {
-            databaseConnection = getConnection();
-        }
+    static void addNewProduct(ProductData newProduct) {
 
-        boolean isSuccessful = false;
         String query = "INSERT INTO products"
                 + "(name, price, stock, category, image)"
                 + " VALUES (?, ?, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = databaseConnection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
 
             preparedStatement.setString(1, newProduct.name());
             preparedStatement.setFloat(2, newProduct.price() / 100.f);
@@ -118,30 +107,54 @@ public class DatabaseQueries {
             preparedStatement.setInt(4, newProduct.category());
             preparedStatement.setBytes(5, newProduct.image());
 
-            isSuccessful = (preparedStatement.executeUpdate() > 0);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             closeConnection();
-        } finally {
-            return isSuccessful;
+        }
+    }
+
+    static void updateProductDetails(ProductData productData) {
+
+        String query = "UPDATE products "
+                + "SET name = ?, price = ?, stock = ?, "
+                + "category = ?, image = ? WHERE id_pk = ?";
+
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query)) {
+            preparedStatement.setString(1, productData.name());
+            preparedStatement.setFloat(2, productData.price() / 100.f);
+            preparedStatement.setInt(3, productData.stock());
+            preparedStatement.setInt(4, productData.category());
+            preparedStatement.setBytes(5, productData.image());
+            preparedStatement.setInt(6, productData.id());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
         }
     }
 
     private static Connection getConnection() {
+        if (databaseConnection == null) {
+            connectToDatabase();
+        }
+
+        return databaseConnection;
+    }
+
+    private static void connectToDatabase() {
+
         final String DATABASE_URL = "jdbc:mysql://localhost:3306/ikaw_bahala";
         final String USERNAME = "root";
         final String PASSWORD = "";
-        Connection connection = null;
 
         try {
             // Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+            databaseConnection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            return connection;
         }
-
     }
 
     private static void closeConnection() {
