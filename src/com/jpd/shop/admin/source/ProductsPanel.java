@@ -33,6 +33,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.jpd.shop.common_files.data_types.Client;
 import com.jpd.shop.common_files.data_types.JLabelWithCurvedBorder;
+import com.jpd.shop.common_files.data_types.MyPanel_Interface;
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.data_types.NavButton;
 import com.jpd.shop.common_files.ProductCard.ProductCard;
@@ -42,7 +43,7 @@ import com.jpd.shop.common_files.functional_interfaces.FunctionWithNoParameterBu
 import com.jpd.shop.common_files.functional_interfaces.FunctionWithOneBooleanParameterButNoReturnValue;
 
 @SuppressWarnings("finally")
-public class ProductsPanel extends javax.swing.JPanel {
+public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interface {
 
     private static ProductsPanel productsPanel;
 
@@ -54,15 +55,8 @@ public class ProductsPanel extends javax.swing.JPanel {
         return productsPanel;
     }
 
-    public static void dispose() {
-        if (productsPanel == null) {
-            return;
-        }
-
-        productsPanel.setVisible(false);
-        productsPanel = null;
-
-        ProductCard.changeSelectedCard(null);
+    public static boolean hasAnInstance() {
+        return productsPanel != null;
     }
 
     private final JLabel ADD_BUTTON = new JLabel();
@@ -83,6 +77,17 @@ public class ProductsPanel extends javax.swing.JPanel {
 
     private ProductsPanel() {
         initComponents();
+    }
+
+    @Override
+    public void disposePanel() {
+        if (productsPanel == null) {
+            return;
+        }
+
+        productsPanel = null;
+
+        ProductCard.changeSelectedCard(null);
     }
 
     private void loadProducts(int category) {
@@ -653,4 +658,5 @@ public class ProductsPanel extends javax.swing.JPanel {
     private final javax.swing.JPanel PRODUCT_CARDS_CONTAINER = new javax.swing.JPanel();
     private final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
     // End of variables declaration//GEN-END:variables
+
 }
