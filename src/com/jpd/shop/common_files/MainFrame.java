@@ -162,6 +162,8 @@ public class MainFrame extends javax.swing.JFrame {
     layeredPane.setMinimumSize(new java.awt.Dimension(1000, 580));
     layeredPane.setOpaque(true);
 
+    transparentPanel.setMaximumSize(layeredPane.getPreferredSize());
+    transparentPanel.setMinimumSize(layeredPane.getPreferredSize());
     transparentPanel.setOpaque(false);
     transparentPanel.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,9 +183,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
     });
     transparentPanel.setLayout(null);
+    transparentPanel.setPreferredSize(layeredPane.getPreferredSize());
+    transparentPanel.repaint();
     layeredPane.setLayer(transparentPanel, javax.swing.JLayeredPane.POPUP_LAYER);
     layeredPane.add(transparentPanel);
-    transparentPanel.setBounds(0, 0, 0, 0);
+    transparentPanel.setBounds(0, 0, 1000, 580);
     layeredPane.setLayer(connectionConfigPanel, javax.swing.JLayeredPane.DRAG_LAYER);
     layeredPane.add(connectionConfigPanel);
     connectionConfigPanel.setBounds(680, 20, 300, 225);

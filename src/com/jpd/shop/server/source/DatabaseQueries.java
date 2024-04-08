@@ -135,6 +135,17 @@ public class DatabaseQueries {
         }
     }
 
+    static void deleteProduct(int id_pk) {
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(
+                "DELETE FROM products WHERE id_pk = " + id_pk)) {
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
+        }
+    }
+
     private static Connection getConnection() {
         if (databaseConnection == null) {
             connectToDatabase();

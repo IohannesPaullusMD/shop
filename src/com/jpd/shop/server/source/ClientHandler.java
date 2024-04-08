@@ -70,8 +70,10 @@ public class ClientHandler implements Runnable {
     private void handleProductDataRequest(ProductData productData) {
         if (productData.id() == ProductData.NO_ID_YET) {
             DatabaseQueries.addNewProduct(productData);
-        } else {
+        } else if (!productData.name().equals("")) {
             DatabaseQueries.updateProductDetails(productData);
+        } else {
+            DatabaseQueries.deleteProduct(productData.id());
         }
 
         readReceivedInt(11); // TODO: tanggala ini
