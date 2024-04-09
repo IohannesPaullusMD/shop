@@ -30,7 +30,7 @@ public class MainPanel extends javax.swing.JPanel {
     public static void showPanel(MyPanel_Interface panel) {
         if (shownPanel != null) {
             mainPanel.remove((JPanel) shownPanel);
-            panel.disposePanel();
+            shownPanel.disposePanel();
         }
 
         ((JPanel) panel).setBounds(0, 0, 1000, 530);

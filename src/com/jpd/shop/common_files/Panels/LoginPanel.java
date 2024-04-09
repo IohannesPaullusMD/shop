@@ -72,6 +72,10 @@ public class LoginPanel extends javax.swing.JPanel {
                 return true;
 
             case 0:
+                if (!MainFrame.getInstance().IS_ADMIN_APP) {
+                    return true;
+                }
+
                 JOptionPane.showMessageDialog(null,
                         "You do not have access to this app.");
                 break;
@@ -97,7 +101,8 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -122,7 +127,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                        getHeight() - 1, RADIUS, RADIUS);
+                            getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -149,7 +154,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public boolean contains(int x, int y) {
                 if (shape == null || !shape.getBounds().equals(getBounds())) {
                     shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1,
-                        getHeight() - 1, RADIUS, RADIUS);
+                            getHeight() - 1, RADIUS, RADIUS);
                 }
                 return shape.contains(x, y);
             }
@@ -228,12 +233,15 @@ public class LoginPanel extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loginButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 loginButtonMouseExited(evt);
             }
+
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 loginButtonMousePressed(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 loginButtonMouseReleased(evt);
             }
@@ -270,7 +278,7 @@ public class LoginPanel extends javax.swing.JPanel {
             if (MainFrame.getInstance().isAdminApp()) {
                 panel = com.jpd.shop.admin.source.MainPanel.getInstance();
             } else {
-                // panel = TODO: add code
+                panel = com.jpd.shop.cashier.source.MainPanel.getInstance();
             }
 
             MainFrame.showPanel(true, panel);

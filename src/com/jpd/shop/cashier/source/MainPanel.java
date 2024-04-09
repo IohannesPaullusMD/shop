@@ -21,7 +21,7 @@ public class MainPanel extends javax.swing.JPanel {
     public static final MainPanel getInstance() {
         if (mainPanel == null) {
             mainPanel = new MainPanel();
-//            showPanel(ProductsPanel.getInstance());
+            showPanel(ProductsPanel.getInstance());
         }
 
         return mainPanel;
@@ -30,7 +30,7 @@ public class MainPanel extends javax.swing.JPanel {
     public static void showPanel(MyPanel_Interface panel) {
         if (shownPanel != null) {
             mainPanel.remove((JPanel) shownPanel);
-            panel.disposePanel();
+            shownPanel.disposePanel();
         }
 
         ((JPanel) panel).setBounds(0, 0, 1000, 530);
@@ -47,9 +47,9 @@ public class MainPanel extends javax.swing.JPanel {
         MainFrame.showPanel(false, mainPanel);
         mainPanel = null;
 
-//        if (ProductsPanel.hasAnInstance()) {
-//            ProductsPanel.getInstance().disposePanel();
-//        }
+        // if (ProductsPanel.hasAnInstance()) {
+        // ProductsPanel.getInstance().disposePanel();
+        // }
 
         // TODO: add code
         System.gc();
@@ -79,12 +79,14 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
-        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
+        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON,
+                BLUE_SHOW_PRODUCTS_ICON, true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -97,16 +99,19 @@ public class MainPanel extends javax.swing.JPanel {
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText("");
         logoutButton.setOpaque(true);
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }
@@ -126,7 +131,11 @@ public class MainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showProductsButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_showProductsButtonMouseReleased
-//        showPanel(ProductsPanel.getInstance());
+        if (ProductsPanel.hasAnInstance()) {
+            return;
+        }
+
+        showPanel(ProductsPanel.getInstance());
     }// GEN-LAST:event_showProductsButtonMouseReleased
 
     private void logoutButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_logoutButtonMouseReleased

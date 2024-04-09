@@ -8,6 +8,6 @@ import com.jpd.shop.common_files.MainFrame;
  */
 public class AdminEntryPoint {
     public static void main(String[] args) {
-        MainFrame.getInstance().setVisible(true);
+        MainFrame.createInstance(true).setVisible(true);
     }
 }

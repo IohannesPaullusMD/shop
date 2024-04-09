@@ -50,7 +50,6 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     public static ProductsPanel getInstance() {
         if (productsPanel == null) {
             productsPanel = new ProductsPanel();
-            productsPanel.loadProducts(Client.GET_BURGER_PRODUCTS);
         }
         return productsPanel;
     }
@@ -77,6 +76,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
     private ProductsPanel() {
         initComponents();
+        loadProducts(Client.GET_BURGER_PRODUCTS);
     }
 
     @Override

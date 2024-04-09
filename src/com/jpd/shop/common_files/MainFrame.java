@@ -15,11 +15,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private static MainFrame mainFrame;
 
-    public static final MainFrame getInstance() {
-        if (mainFrame == null) { // TODO: tanggala ini
-            mainFrame = new MainFrame();
-        }
+    public static final MainFrame createInstance(boolean isAdminApp) {
+        mainFrame = new MainFrame(isAdminApp);
 
+        return mainFrame;
+    }
+
+    public static final MainFrame getInstance() {
         return mainFrame;
     }
 
@@ -42,8 +44,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private Client client;
 
-    private MainFrame() {
-        IS_ADMIN_APP = true;
+    private MainFrame(boolean isAdminApp) {
+        IS_ADMIN_APP = isAdminApp;
         initComponents();
     }
 

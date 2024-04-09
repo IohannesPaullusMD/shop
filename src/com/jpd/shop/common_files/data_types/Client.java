@@ -68,6 +68,7 @@ public class Client implements Runnable {
         INPUT_STREAM = new ObjectInputStream(SOCKET.getInputStream());
 
         OUTPUT_STREAM.writeBoolean(MainFrame.getInstance().isAdminApp());
+        OUTPUT_STREAM.flush();
 
         MainFrame.getInstance().getTransparentPanel().setVisible(false);
 

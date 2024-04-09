@@ -98,6 +98,8 @@ public class ClientHandler implements Runnable {
             }
         } catch (Exception e) {
             // TODO: handle exception
+        } finally {
+            System.gc();
         }
     }
 }

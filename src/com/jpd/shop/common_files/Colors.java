@@ -8,7 +8,7 @@ public class Colors {
     public static final Color WHITE = new Color(0xFFFFFF);
 
     /** an white nga gagamiton kun ma hover ha mga buttons */
-    public static final Color WHITE_HOVER = new Color(0xF2F2F2);
+    public static final Color WHITE_HOVER = new Color(0xF2F2F0);
 
     /** pan background la nga white */
     public static final Color WHITE_BACKGROUND = new Color(0xF0F2F5);
