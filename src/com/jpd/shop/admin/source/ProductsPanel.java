@@ -112,6 +112,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         }
 
         products = (ProductData[]) object;
+
         for (ProductData productData : products) {
             ProductCard productCard = new ProductCard(productData);
             productCard.getProductCardTemplate().addMouseListener(new MouseAdapter() {

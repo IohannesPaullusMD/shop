@@ -114,6 +114,7 @@ public class ProductCard extends javax.swing.JPanel {
         productNotAvailable = new javax.swing.JPanel();
 
         setForeground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setMaximumSize(new java.awt.Dimension(150, 200));
         setMinimumSize(new java.awt.Dimension(150, 200));
 

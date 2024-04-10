@@ -57,8 +57,8 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     }
 
     private String getProductName() {
-        return ("<html><body style='width: 110px; word-wrap: break-word;'>"
-                + PRODUCT_DATA.name() + "</body></html>");
+        return ("<html><body style:'width: "+ productName.getWidth() + "px'><p>"
+                + PRODUCT_DATA.name() + "</p></body></html>");
     }
 
     private String getProductPrice() {
@@ -79,14 +79,14 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         image = new javax.swing.JLabel(getProductImage());
         jSeparator1 = new javax.swing.JSeparator();
         priceLabel = new javax.swing.JLabel();
         productPrice = new javax.swing.JLabel(getProductPrice());
-        productName = new javax.swing.JLabel(getProductName());
+        productName = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
         setMaximumSize(new java.awt.Dimension(150, 200));
@@ -120,11 +120,12 @@ public class ProductCardTemplate extends javax.swing.JPanel {
         productPrice.setBounds(60, 180, 70, 15);
 
         productName.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        productName.setMaximumSize(new java.awt.Dimension(110, 40));
-        productName.setMinimumSize(new java.awt.Dimension(110, 40));
-        productName.setPreferredSize(new java.awt.Dimension(110, 40));
+        productName.setMaximumSize(new java.awt.Dimension(110, 50));
+        productName.setMinimumSize(new java.awt.Dimension(110, 50));
+        productName.setPreferredSize(new java.awt.Dimension(110, 50));
         add(productName);
         productName.setBounds(20, 120, 110, 50);
+        productName.setText(getProductName());
         add(jSeparator2);
         jSeparator2.setBounds(0, 170, 150, 10);
     }// </editor-fold>//GEN-END:initComponents

@@ -124,12 +124,13 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         PRODUCT_NAME = new javax.swing.JLabel();
         javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
-        ADD_TO_TRAY_BUTTON = new javax.swing.JLabel() {
+        ADD_TO_TRAY_BUTTON = new javax.swing.JLabel(){
             final int RADIUS = 18;
             Shape shape;
 
@@ -159,6 +160,8 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         QUANTITY_SPINNER = new javax.swing.JSpinner();
         PRODUCT_STOCK = new javax.swing.JLabel();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        trayProductCard1 = new com.jpd.shop.cashier.source.TrayProductCard();
 
         setMaximumSize(new java.awt.Dimension(1000, 530));
         setMinimumSize(new java.awt.Dimension(1000, 530));
@@ -181,146 +184,151 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         // initialize burger button
         {
             icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/hamburger_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
-            button = new NavButton(icon, blueIcon, false);
+                "/com/jpd/shop/common_files/icons/hamburger_button.png"));
+        blueIcon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
+    button = new NavButton(icon, blueIcon, false);
 
-            NavButton.changeLastClickedButton(button);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_BURGER_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+    NavButton.changeLastClickedButton(button);
+    button.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            loadProducts(Client.GET_BURGER_PRODUCTS);
         }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
 
-        // initialize fries button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/fries_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
-            button = new NavButton(icon, blueIcon, false);
+    // initialize fries button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/fries_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
+button = new NavButton(icon, blueIcon, false);
 
-            button.setIcon(icon);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_FRIES_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+button.setIcon(icon);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_FRIES_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+
+    // initialize drinks button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/drinks_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
+button = new NavButton(icon, blueIcon, false);
+
+button.setIcon(icon);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_DRINKS_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+    add(CATEGORY_PANEL);
+    CATEGORY_PANEL.setBounds(0, 0, 50, 530);
+
+    SCROLL_PANE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
+
+    PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
+    SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
+
+    add(SCROLL_PANE);
+    SCROLL_PANE.setBounds(50, 0, 700, 380);
+
+    PRODUCT_TO_TRAY_PANEL.setBackground(Colors.WHITE_BACKGROUND);
+    PRODUCT_TO_TRAY_PANEL.setBorder(SCROLL_PANE.getBorder());
+    PRODUCT_TO_TRAY_PANEL.setLayout(null);
+
+    PRODUCT_NAME.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+    PRODUCT_NAME.setText("jLabel1");
+    PRODUCT_NAME.setPreferredSize(new java.awt.Dimension(37, 50));
+    PRODUCT_TO_TRAY_PANEL.add(PRODUCT_NAME);
+    PRODUCT_NAME.setBounds(20, 6, 650, 40);
+
+    jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+    PRODUCT_TO_TRAY_PANEL.add(jSeparator1);
+    jSeparator1.setBounds(0, 50, 700, 10);
+
+    ADD_TO_TRAY_BUTTON.setBackground(Colors.WHITE);
+    ADD_TO_TRAY_BUTTON.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+    ADD_TO_TRAY_BUTTON.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ADD_TO_TRAY_BUTTON.setText("ADD TO TRAY");
+    ADD_TO_TRAY_BUTTON.setMaximumSize(new java.awt.Dimension(200, 50));
+    ADD_TO_TRAY_BUTTON.setMinimumSize(new java.awt.Dimension(200, 50));
+    ADD_TO_TRAY_BUTTON.setPreferredSize(new java.awt.Dimension(200, 50));
+    ADD_TO_TRAY_BUTTON.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            ADD_TO_TRAY_BUTTONMouseEntered(evt);
         }
-
-        // initialize drinks button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/drinks_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
-            button = new NavButton(icon, blueIcon, false);
-
-            button.setIcon(icon);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_DRINKS_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            ADD_TO_TRAY_BUTTONMouseExited(evt);
         }
-        add(CATEGORY_PANEL);
-        CATEGORY_PANEL.setBounds(0, 0, 50, 530);
+    });
+    PRODUCT_TO_TRAY_PANEL.add(ADD_TO_TRAY_BUTTON);
+    ADD_TO_TRAY_BUTTON.setBounds(340, 70, 330, 70);
 
-        SCROLL_PANE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
+    PRODUCT_PRICE.setBackground(Colors.WHITE);
+    PRODUCT_PRICE.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    PRODUCT_PRICE.setText("0.00");
+    PRODUCT_PRICE.setBorder(PRODUCT_TO_TRAY_PANEL.getBorder());
+    PRODUCT_PRICE.setOpaque(true);
+    PRODUCT_TO_TRAY_PANEL.add(PRODUCT_PRICE);
+    PRODUCT_PRICE.setBounds(60, 70, 60, 20);
 
-        PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
-        SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
+    jLabel4.setText("Stock:");
+    PRODUCT_TO_TRAY_PANEL.add(jLabel4);
+    jLabel4.setBounds(150, 70, 40, 20);
 
-        add(SCROLL_PANE);
-        SCROLL_PANE.setBounds(50, 0, 700, 380);
+    jLabel5.setText("Quantity:");
+    PRODUCT_TO_TRAY_PANEL.add(jLabel5);
+    jLabel5.setBounds(20, 110, 60, 30);
 
-        PRODUCT_TO_TRAY_PANEL.setBackground(Colors.WHITE_BACKGROUND);
-        PRODUCT_TO_TRAY_PANEL.setBorder(SCROLL_PANE.getBorder());
-        PRODUCT_TO_TRAY_PANEL.setLayout(null);
+    QUANTITY_SPINNER.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+    QUANTITY_SPINNER.setBorder(PRODUCT_TO_TRAY_PANEL.getBorder());
+    {
+        JTextField textField = ((JSpinner.DefaultEditor) QUANTITY_SPINNER.getEditor()).getTextField();
+        textField.setCaretColor(textField.getBackground());
+        textField.getCaret().setBlinkRate(0);
+    }
+    PRODUCT_TO_TRAY_PANEL.add(QUANTITY_SPINNER);
+    QUANTITY_SPINNER.setBounds(80, 110, 180, 30);
 
-        PRODUCT_NAME.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        PRODUCT_NAME.setText("jLabel1");
-        PRODUCT_NAME.setPreferredSize(new java.awt.Dimension(37, 50));
-        PRODUCT_TO_TRAY_PANEL.add(PRODUCT_NAME);
-        PRODUCT_NAME.setBounds(20, 6, 650, 40);
+    PRODUCT_STOCK.setBackground(Colors.WHITE);
+    PRODUCT_STOCK.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    PRODUCT_STOCK.setText("0");
+    PRODUCT_STOCK.setBorder(PRODUCT_PRICE.getBorder());
+    PRODUCT_STOCK.setOpaque(true);
+    PRODUCT_TO_TRAY_PANEL.add(PRODUCT_STOCK);
+    PRODUCT_STOCK.setBounds(190, 70, 70, 20);
 
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        PRODUCT_TO_TRAY_PANEL.add(jSeparator1);
-        jSeparator1.setBounds(0, 50, 700, 10);
+    jLabel7.setText("Price:");
+    PRODUCT_TO_TRAY_PANEL.add(jLabel7);
+    jLabel7.setBounds(20, 70, 40, 20);
 
-        ADD_TO_TRAY_BUTTON.setBackground(Colors.WHITE);
-        ADD_TO_TRAY_BUTTON.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ADD_TO_TRAY_BUTTON.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ADD_TO_TRAY_BUTTON.setText("ADD TO TRAY");
-        ADD_TO_TRAY_BUTTON.setMaximumSize(new java.awt.Dimension(200, 50));
-        ADD_TO_TRAY_BUTTON.setMinimumSize(new java.awt.Dimension(200, 50));
-        ADD_TO_TRAY_BUTTON.setPreferredSize(new java.awt.Dimension(200, 50));
-        ADD_TO_TRAY_BUTTON.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ADD_TO_TRAY_BUTTONMouseEntered(evt);
-            }
+    add(PRODUCT_TO_TRAY_PANEL);
+    PRODUCT_TO_TRAY_PANEL.setBounds(50, 380, 700, 150);
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ADD_TO_TRAY_BUTTONMouseExited(evt);
-            }
-        });
-        PRODUCT_TO_TRAY_PANEL.add(ADD_TO_TRAY_BUTTON);
-        ADD_TO_TRAY_BUTTON.setBounds(340, 70, 330, 70);
+    jPanel1.add(trayProductCard1);
 
-        PRODUCT_PRICE.setBackground(Colors.WHITE);
-        PRODUCT_PRICE.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        PRODUCT_PRICE.setText("0.00");
-        PRODUCT_PRICE.setBorder(PRODUCT_TO_TRAY_PANEL.getBorder());
-        PRODUCT_PRICE.setOpaque(true);
-        PRODUCT_TO_TRAY_PANEL.add(PRODUCT_PRICE);
-        PRODUCT_PRICE.setBounds(60, 70, 60, 20);
-
-        jLabel4.setText("Stock:");
-        PRODUCT_TO_TRAY_PANEL.add(jLabel4);
-        jLabel4.setBounds(150, 70, 40, 20);
-
-        jLabel5.setText("Quantity:");
-        PRODUCT_TO_TRAY_PANEL.add(jLabel5);
-        jLabel5.setBounds(20, 110, 60, 30);
-
-        QUANTITY_SPINNER.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
-        QUANTITY_SPINNER.setBorder(PRODUCT_TO_TRAY_PANEL.getBorder());
-        {
-            JTextField textField = ((JSpinner.DefaultEditor) QUANTITY_SPINNER.getEditor()).getTextField();
-            textField.setCaretColor(textField.getBackground());
-            textField.getCaret().setBlinkRate(0);
-        }
-        PRODUCT_TO_TRAY_PANEL.add(QUANTITY_SPINNER);
-        QUANTITY_SPINNER.setBounds(80, 110, 180, 30);
-
-        PRODUCT_STOCK.setBackground(Colors.WHITE);
-        PRODUCT_STOCK.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        PRODUCT_STOCK.setText("0");
-        PRODUCT_STOCK.setBorder(PRODUCT_PRICE.getBorder());
-        PRODUCT_STOCK.setOpaque(true);
-        PRODUCT_TO_TRAY_PANEL.add(PRODUCT_STOCK);
-        PRODUCT_STOCK.setBounds(190, 70, 70, 20);
-
-        jLabel7.setText("Price:");
-        PRODUCT_TO_TRAY_PANEL.add(jLabel7);
-        jLabel7.setBounds(20, 70, 40, 20);
-
-        add(PRODUCT_TO_TRAY_PANEL);
-        PRODUCT_TO_TRAY_PANEL.setBounds(50, 380, 700, 150);
+    add(jPanel1);
+    jPanel1.setBounds(750, 0, 250, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ADD_TO_TRAY_BUTTONMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_ADD_TO_TRAY_BUTTONMouseEntered
@@ -343,5 +351,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     private final javax.swing.JPanel PRODUCT_TO_TRAY_PANEL = new javax.swing.JPanel();
     private javax.swing.JSpinner QUANTITY_SPINNER;
     private final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
+    private javax.swing.JPanel jPanel1;
+    private com.jpd.shop.cashier.source.TrayProductCard trayProductCard1;
     // End of variables declaration//GEN-END:variables
 }
