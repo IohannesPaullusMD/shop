@@ -14,6 +14,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -105,6 +106,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
                     // add hin TrayProductCard if waray pa ini nga ProductCard ha tray
                     if (!isProductInTray()) {
+
                         TRAY_PRODUCTS_CONTAINER.add(new TrayProductCard(productData));
 
                         // TODO: add code
@@ -158,7 +160,9 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -175,7 +179,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
                 CATEGORY_PANELMouseExited(evt);
             }
         });
-        // post-listener
+        //post-listener
         CATEGORY_PANEL.setLayout(new java.awt.GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
@@ -190,102 +194,107 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         // initialize burger button
         {
             icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/hamburger_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
-            button = new NavButton(icon, blueIcon, false);
+                "/com/jpd/shop/common_files/icons/hamburger_button.png"));
+        blueIcon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
+    button = new NavButton(icon, blueIcon, false);
 
-            NavButton.changeLastClickedButton(button);
+    NavButton.changeLastClickedButton(button);
 
-            button.setCursor(MainFrame.HAND_CURSOR);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_BURGER_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+    button.setCursor(MainFrame.HAND_CURSOR);
+    button.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            loadProducts(Client.GET_BURGER_PRODUCTS);
         }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
 
-        // initialize fries button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/fries_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
-            button = new NavButton(icon, blueIcon, false);
+    // initialize fries button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/fries_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
+button = new NavButton(icon, blueIcon, false);
 
-            button.setIcon(icon);
-            button.setCursor(MainFrame.HAND_CURSOR);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_FRIES_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
-        }
+button.setIcon(icon);
+button.setCursor(MainFrame.HAND_CURSOR);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_FRIES_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
 
-        // initialize drinks button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/drinks_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
-            button = new NavButton(icon, blueIcon, false);
+    // initialize drinks button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/drinks_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
+button = new NavButton(icon, blueIcon, false);
 
-            button.setIcon(icon);
-            button.setCursor(MainFrame.HAND_CURSOR);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_DRINKS_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
-        }
-        add(CATEGORY_PANEL);
-        CATEGORY_PANEL.setBounds(0, 0, 50, 530);
+button.setIcon(icon);
+button.setCursor(MainFrame.HAND_CURSOR);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_DRINKS_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+    add(CATEGORY_PANEL);
+    CATEGORY_PANEL.setBounds(0, 0, 50, 530);
 
-        SCROLL_PANE.setBackground(new java.awt.Color(242, 242, 242));
-        SCROLL_PANE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setBackground(new java.awt.Color(242, 242, 242));
+    SCROLL_PANE.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    SCROLL_PANE.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
 
-        PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
-        SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
+    PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
+    SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
 
-        add(SCROLL_PANE);
-        SCROLL_PANE.setBounds(50, 0, 700, 530);
+    SCROLL_PANE.getVerticalScrollBar().setUnitIncrement(16);
+    add(SCROLL_PANE);
+    SCROLL_PANE.setBounds(50, 0, 700, 530);
 
-        TRAY_SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        TRAY_SCROLL_PANE.setMaximumSize(new java.awt.Dimension(250, 530));
-        TRAY_SCROLL_PANE.setMinimumSize(new java.awt.Dimension(250, 530));
-        TRAY_SCROLL_PANE.setPreferredSize(new java.awt.Dimension(250, 530));
+    TRAY_SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    TRAY_SCROLL_PANE.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    TRAY_SCROLL_PANE.setMaximumSize(new java.awt.Dimension(250, 530));
+    TRAY_SCROLL_PANE.setMinimumSize(new java.awt.Dimension(250, 530));
+    TRAY_SCROLL_PANE.setPreferredSize(new java.awt.Dimension(250, 530));
 
-        TRAY_PRODUCTS_CONTAINER.setMaximumSize(new java.awt.Dimension(250, 10000));
-        TRAY_PRODUCTS_CONTAINER.setMinimumSize(new java.awt.Dimension(250, 1));
-        TRAY_PRODUCTS_CONTAINER.setPreferredSize(new java.awt.Dimension(250, 530));
-        TRAY_SCROLL_PANE.setViewportView(TRAY_PRODUCTS_CONTAINER);
+    TRAY_PRODUCTS_CONTAINER.setMaximumSize(new java.awt.Dimension(250, 10000));
+    TRAY_PRODUCTS_CONTAINER.setMinimumSize(new java.awt.Dimension(250, 1));
+    TRAY_PRODUCTS_CONTAINER.setPreferredSize(new java.awt.Dimension(250, 1));
+    TRAY_PRODUCTS_CONTAINER.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+    TRAY_SCROLL_PANE.setViewportView(TRAY_PRODUCTS_CONTAINER);
 
-        add(TRAY_SCROLL_PANE);
-        TRAY_SCROLL_PANE.setBounds(750, 0, 250, 360);
+    TRAY_SCROLL_PANE.getVerticalScrollBar().setUnitIncrement(16);
+    add(TRAY_SCROLL_PANE);
+    TRAY_SCROLL_PANE.setBounds(750, 0, 250, 360);
 
-        jLabel1.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PLACE ORDER");
-        jLabel1.setCursor(MainFrame.HAND_CURSOR);
-        jLabel1.setMaximumSize(new java.awt.Dimension(200, 50));
-        jLabel1.setMinimumSize(new java.awt.Dimension(200, 50));
-        jLabel1.setOpaque(true);
-        jLabel1.setPreferredSize(new java.awt.Dimension(200, 50));
-        add(jLabel1);
-        jLabel1.setBounds(770, 470, 210, 50);
+    jLabel1.setBackground(new java.awt.Color(204, 255, 255));
+    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel1.setText("PLACE ORDER");
+    jLabel1.setCursor(MainFrame.HAND_CURSOR);
+    jLabel1.setMaximumSize(new java.awt.Dimension(200, 50));
+    jLabel1.setMinimumSize(new java.awt.Dimension(200, 50));
+    jLabel1.setOpaque(true);
+    jLabel1.setPreferredSize(new java.awt.Dimension(200, 50));
+    add(jLabel1);
+    jLabel1.setBounds(770, 470, 210, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CATEGORY_PANELMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_CATEGORY_PANELMouseExited
@@ -296,16 +305,41 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     private final javax.swing.JPanel CATEGORY_PANEL = new javax.swing.JPanel();
     private final javax.swing.JPanel PRODUCT_CARDS_CONTAINER = new javax.swing.JPanel();
     private final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
-    private final javax.swing.JPanel TRAY_PRODUCTS_CONTAINER = new javax.swing.JPanel() {
+    final javax.swing.JPanel TRAY_PRODUCTS_CONTAINER = new javax.swing.JPanel(){
+        // 145 it height han TrayProductCard
+        // 10 it vgap
+        private Dimension dimension = new Dimension(this.getPreferredSize().width, 1);
+
         @Override
         public Component add(Component comp) {
             if (comp instanceof TrayProductCard) {
                 super.add(comp);
+
+                dimension = new Dimension(dimension.width, dimension.height + 145 + 10);
+
+                this.setPreferredSize(dimension);
+
                 this.revalidate();
                 this.repaint();
+                //            TRAY_SCROLL_PANE.revalidate();
+                //            TRAY_SCROLL_PANE.repaint();
+
+                System.gc();
             }
 
             return comp;
+        }
+
+        @Override
+        public void remove(Component comp){
+            super.remove(comp);
+
+            dimension = new Dimension(dimension.width, dimension.height - 145 - 10);
+
+            this.setPreferredSize(dimension);
+            this.revalidate();
+            this.repaint();
+            System.gc();
         }
     };
     private final javax.swing.JScrollPane TRAY_SCROLL_PANE = new javax.swing.JScrollPane();

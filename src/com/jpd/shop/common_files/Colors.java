@@ -22,7 +22,8 @@ public class Colors {
     /** gamiton ini para ha mga texts */
     public static final Color BLACK = new Color(0x050505);
 
+    public static final Color RED = new Color(0xF02849);
+
     // 65676B para color hit icons
-    // F02849 red
     // 45BD62 green
 }

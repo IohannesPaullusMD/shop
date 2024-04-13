@@ -16,6 +16,7 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 
@@ -26,7 +27,7 @@ import javax.swing.JSpinner;
 public class TrayProductCard extends javax.swing.JPanel {
 
     public final ProductData PRODUCT_DATA;
-    
+
     private final int RADIUS = 18;
     private Shape shape;
 
@@ -85,18 +86,42 @@ public class TrayProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        this.setCursor(MainFrame.HAND_CURSOR);
-
-        //
         IMAGE = new javax.swing.JLabel(new ImageIcon(PRODUCT_DATA.image()));
         NAME = new javax.swing.JLabel();
         PRICE_LABEL = new javax.swing.JLabel();
         QUANTITY_LABEL = new javax.swing.JLabel();
         PRICE = new javax.swing.JLabel(getProductPrice());
-        removeButton = new javax.swing.JLabel();
+        removeButton = new javax.swing.JLabel(){
+            final int RADIUS = 18;
+            Shape shape;
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(getBackground());
+                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                super.paintComponent(g);
+            }
+
+            @Override
+            protected void paintBorder(Graphics g) {
+                g.setColor(getForeground());
+                g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+            }
+
+            @Override
+            public boolean contains(int x, int y) {
+                if (shape == null || !shape.getBounds().equals(getBounds())) {
+                    shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                }
+                return shape.contains(x, y);
+            }
+        };
         QUANTITY_SPINNER = new javax.swing.JSpinner();
 
         setBackground(Colors.WHITE);
@@ -126,24 +151,34 @@ public class TrayProductCard extends javax.swing.JPanel {
         PRICE_LABEL.setText("Price:");
         PRICE_LABEL.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         add(PRICE_LABEL);
-        PRICE_LABEL.setBounds(120, 70, 50, 16);
+        PRICE_LABEL.setBounds(120, 60, 50, 16);
 
         QUANTITY_LABEL.setText("Quantity:");
         add(QUANTITY_LABEL);
-        QUANTITY_LABEL.setBounds(120, 90, 60, 20);
+        QUANTITY_LABEL.setBounds(120, 80, 60, 20);
 
         PRICE.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         PRICE.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         add(PRICE);
-        PRICE.setBounds(170, 70, 40, 20);
+        PRICE.setBounds(170, 60, 40, 20);
 
-        removeButton.setBackground(new java.awt.Color(204, 255, 255));
+        removeButton.setBackground(Colors.WHITE);
         removeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        removeButton.setText("0");
-        removeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        removeButton.setOpaque(true);
+        removeButton.setText("Remove");
+        removeButton.setCursor(MainFrame.HAND_CURSOR);
+        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeButtonMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                removeButtonMouseReleased(evt);
+            }
+        });
         add(removeButton);
-        removeButton.setBounds(120, 120, 110, 20);
+        removeButton.setBounds(120, 110, 110, 30);
 
         QUANTITY_SPINNER.setModel(new javax.swing.SpinnerNumberModel(1, 1, PRODUCT_DATA.stock(), 1));
         QUANTITY_SPINNER.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -155,8 +190,22 @@ public class TrayProductCard extends javax.swing.JPanel {
             textField.getCaret().setBlinkRate(0);
         }
         add(QUANTITY_SPINNER);
-        QUANTITY_SPINNER.setBounds(180, 90, 50, 20);
+        QUANTITY_SPINNER.setBounds(180, 80, 50, 20);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseEntered
+        removeButton.setBackground(Colors.RED);
+        removeButton.setForeground(Colors.WHITE);
+    }//GEN-LAST:event_removeButtonMouseEntered
+
+    private void removeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseExited
+        removeButton.setBackground(Colors.WHITE);
+        removeButton.setForeground(Colors.BLACK);
+    }//GEN-LAST:event_removeButtonMouseExited
+
+    private void removeButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_removeButtonMouseReleased
+        ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.remove(this);
+    }// GEN-LAST:event_removeButtonMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IMAGE;
