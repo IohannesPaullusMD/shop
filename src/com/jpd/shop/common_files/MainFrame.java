@@ -3,6 +3,9 @@ package com.jpd.shop.common_files;
 import com.jpd.shop.common_files.data_types.Client;
 import com.jpd.shop.common_files.Panels.ConnectionConfigPanel;
 import com.jpd.shop.common_files.Panels.LoginPanel;
+
+import java.awt.Cursor;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -12,6 +15,8 @@ import javax.swing.JPanel;
  * @author jpd
  */
 public class MainFrame extends javax.swing.JFrame {
+
+    public static final Cursor HAND_CURSOR = new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR);
 
     private static MainFrame mainFrame;
 

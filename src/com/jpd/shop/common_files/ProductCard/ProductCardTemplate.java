@@ -18,7 +18,7 @@ public class ProductCardTemplate extends javax.swing.JPanel {
 
     private final ProductData PRODUCT_DATA;
 
-    public ProductCardTemplate() { //TODO: tanggala ini
+    public ProductCardTemplate() { // TODO: tanggala ini
         PRODUCT_DATA = new ProductData("", 0, 0, 0, new byte[1], 0);
     }
 
@@ -50,6 +50,14 @@ public class ProductCardTemplate extends javax.swing.JPanel {
         return productPrice;
     }
 
+    javax.swing.JLabel getStockLabel() {
+        return stockLabel;
+    }
+
+    javax.swing.JLabel getRealStockLabel() {
+        return productStock;
+    }
+
     private ImageIcon getProductImage() {
         Image image = new ImageIcon(PRODUCT_DATA.image()).getImage();
         return (new ImageIcon(image.getScaledInstance(
@@ -57,12 +65,16 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     }
 
     private String getProductName() {
-        return ("<html><body style:'width: "+ productName.getWidth() + "px'><p>"
+        return ("<html><body style:'width: " + productName.getWidth() + "px'><p>"
                 + PRODUCT_DATA.name() + "</p></body></html>");
     }
 
     private String getProductPrice() {
         return Float.toString(PRODUCT_DATA.price() / 100.f);
+    }
+
+    private String getProductStock() {
+        return Integer.toString(PRODUCT_DATA.stock());
     }
 
     /**
@@ -79,7 +91,9 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         image = new javax.swing.JLabel(getProductImage());
@@ -88,9 +102,12 @@ public class ProductCardTemplate extends javax.swing.JPanel {
         productPrice = new javax.swing.JLabel(getProductPrice());
         productName = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        stockLabel = new javax.swing.JLabel();
+        productStock = new javax.swing.JLabel(getProductStock());
 
-        setMaximumSize(new java.awt.Dimension(150, 200));
-        setMinimumSize(new java.awt.Dimension(150, 200));
+        setMaximumSize(new java.awt.Dimension(150, 225));
+        setMinimumSize(new java.awt.Dimension(150, 225));
+        setPreferredSize(new java.awt.Dimension(150, 225));
         setLayout(null);
 
         image.setBackground(new java.awt.Color(204, 204, 204));
@@ -128,6 +145,17 @@ public class ProductCardTemplate extends javax.swing.JPanel {
         productName.setText(getProductName());
         add(jSeparator2);
         jSeparator2.setBounds(0, 170, 150, 10);
+
+        stockLabel.setText("Stock:");
+        stockLabel.setMaximumSize(new java.awt.Dimension(30, 15));
+        stockLabel.setMinimumSize(new java.awt.Dimension(30, 15));
+        stockLabel.setPreferredSize(new java.awt.Dimension(30, 15));
+        add(stockLabel);
+        stockLabel.setBounds(20, 200, 40, 15);
+
+        productStock.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        add(productStock);
+        productStock.setBounds(60, 200, 70, 15);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -137,5 +165,7 @@ public class ProductCardTemplate extends javax.swing.JPanel {
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel productName;
     private javax.swing.JLabel productPrice;
+    private javax.swing.JLabel productStock;
+    private javax.swing.JLabel stockLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -131,13 +131,13 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
             PRODUCT_CARDS_CONTAINER.add(productCard);
         }
 
-        // 200px it height hiton mga cards
+        // 225px it height hiton mga cards
         // 25px it vertical gap hiton cards???
         // 4 nga cards it na fit kada row
         int rows = (int) Math.ceil(products.length / 4.0);
         PRODUCT_CARDS_CONTAINER.setPreferredSize(new Dimension(
                 SCROLL_PANE.getWidth(),
-                (rows * 225)));
+                (rows * 250)));
         PRODUCT_CARDS_CONTAINER.setLayout(layout);
 
         PRODUCT_CARDS_CONTAINER.revalidate();
