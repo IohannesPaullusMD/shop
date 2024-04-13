@@ -216,8 +216,12 @@ public class ProductCard extends javax.swing.JPanel {
     }// GEN-LAST:event_consumeMouseEventsForProductNotAvailablePanel
 
     private void productCardMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_productCardMouseReleased
-        changeSelectedCard(this);
+        cardClicked();
     }// GEN-LAST:event_productCardMouseReleased
+
+    protected void cardClicked() {
+        changeSelectedCard(this);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane layerdPane;

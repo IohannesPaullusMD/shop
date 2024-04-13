@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Component;
@@ -72,16 +73,21 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         ProductData[] products = null;
         Object object = Client.getInstance().makeARequestToServer(category);
 
-        if (!(object instanceof ProductData[])) {
+        if (object instanceof ProductData[]) {
+            products = (ProductData[]) object;
+        } else {
             return;
         }
 
-        products = (ProductData[]) object;
         for (ProductData productData : products) {
-            ProductCard productCard = new ProductCard(productData);
-            productCard.getProductCardTemplate().addMouseListener(new MouseAdapter() {
 
-                private TrayProductCard trayProductCard;
+            ProductCard productCard = new ProductCard(productData) {
+                @Override
+                protected void cardClicked() {
+                }// do nothing
+            };
+
+            productCard.getProductCardTemplate().addMouseListener(new MouseAdapter() {
 
                 private boolean isProductInTray() {
                     for (Component component : TRAY_PRODUCTS_CONTAINER.getComponents()) {
@@ -99,17 +105,12 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
                     // add hin TrayProductCard if waray pa ini nga ProductCard ha tray
                     if (!isProductInTray()) {
-                        TRAY_PRODUCTS_CONTAINER.add(
-                                trayProductCard = new TrayProductCard(productData));
+                        TRAY_PRODUCTS_CONTAINER.add(new TrayProductCard(productData));
 
                         // TODO: add code
                     }
                 }
             });
-
-            if (ProductCard.getSelectedCard() == null) {
-                ProductCard.changeSelectedCard(productCard);
-            }
 
             PRODUCT_CARDS_CONTAINER.add(productCard);
         }
