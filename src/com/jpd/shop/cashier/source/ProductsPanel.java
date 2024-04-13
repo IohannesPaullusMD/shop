@@ -32,11 +32,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
     public static ProductsPanel getInstance() {
         if (productsPanel == null) {
-            productsPanel = new ProductsPanel() {
-                @Override
-                protected void test(MouseEvent e) {
-                }
-            };
+            productsPanel = new ProductsPanel();
         }
         return productsPanel;
     }
@@ -106,8 +102,10 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
                     // add hin TrayProductCard if waray pa ini nga ProductCard ha tray
                     if (!isProductInTray()) {
+                        TrayProductCard trayProductCard = new TrayProductCard(productData);
 
-                        TRAY_PRODUCTS_CONTAINER.add(new TrayProductCard(productData));
+                        TRAY_PRODUCTS_CONTAINER.add(trayProductCard);
+                        recalculateTotalPrice(trayProductCard, true, 0, 1);
 
                         // TODO: add code
                     }
@@ -139,7 +137,19 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         System.gc();
     }
 
-    protected void test(MouseEvent evt) {
+    public void recalculateTotalPrice(TrayProductCard card, boolean newCard,
+            float prevQuantity, float newQuantity) {
+
+        float totalPrice = Float.parseFloat(totalPriceLabel.getText());
+        float productTotalPrice = newCard ? 0 : (card.PRODUCT_DATA.price() / 100.0f) * prevQuantity;
+
+        totalPrice -= productTotalPrice;
+
+        productTotalPrice = (card.PRODUCT_DATA.price() / 100.0f) * newQuantity;
+
+        totalPrice += productTotalPrice;
+
+        totalPriceLabel.setText(Float.toString(totalPrice));
     }
 
     /**
@@ -162,10 +172,14 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        orderButton = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        totalPriceLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1000, 530));
         setMinimumSize(new java.awt.Dimension(1000, 530));
@@ -285,16 +299,25 @@ button.addMouseListener(new MouseAdapter() {
     add(TRAY_SCROLL_PANE);
     TRAY_SCROLL_PANE.setBounds(750, 0, 250, 360);
 
-    jLabel1.setBackground(new java.awt.Color(204, 255, 255));
-    jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setText("PLACE ORDER");
-    jLabel1.setCursor(MainFrame.HAND_CURSOR);
-    jLabel1.setMaximumSize(new java.awt.Dimension(200, 50));
-    jLabel1.setMinimumSize(new java.awt.Dimension(200, 50));
-    jLabel1.setOpaque(true);
-    jLabel1.setPreferredSize(new java.awt.Dimension(200, 50));
-    add(jLabel1);
-    jLabel1.setBounds(770, 470, 210, 50);
+    orderButton.setBackground(new java.awt.Color(204, 255, 255));
+    orderButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    orderButton.setText("PLACE ORDER");
+    orderButton.setCursor(MainFrame.HAND_CURSOR);
+    orderButton.setMaximumSize(new java.awt.Dimension(200, 50));
+    orderButton.setMinimumSize(new java.awt.Dimension(200, 50));
+    orderButton.setOpaque(true);
+    orderButton.setPreferredSize(new java.awt.Dimension(200, 50));
+    add(orderButton);
+    orderButton.setBounds(770, 470, 210, 50);
+
+    jLabel2.setText("Total:");
+    add(jLabel2);
+    jLabel2.setBounds(770, 420, 40, 20);
+
+    totalPriceLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+    totalPriceLabel.setText("0.0");
+    add(totalPriceLabel);
+    totalPriceLabel.setBounds(820, 420, 160, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CATEGORY_PANELMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_CATEGORY_PANELMouseExited
@@ -343,6 +366,7 @@ button.addMouseListener(new MouseAdapter() {
         }
     };
     private final javax.swing.JScrollPane TRAY_SCROLL_PANE = new javax.swing.JScrollPane();
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel orderButton;
+    private javax.swing.JLabel totalPriceLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -158,6 +158,9 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="QUANTITY_SPINNERStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="{&#xa;JTextField textField = ((JSpinner.DefaultEditor) QUANTITY_SPINNER.getEditor()).getTextField();&#xa;textField.setCaretColor(textField.getBackground());&#xa;textField.getCaret().setBlinkRate(0);&#xa;}"/>
       </AuxValues>
