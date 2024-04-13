@@ -12,6 +12,7 @@ import com.jpd.shop.common_files.ProductCard.ProductCard;
 import com.jpd.shop.common_files.data_types.ProductData;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
@@ -76,6 +77,11 @@ public class TrayProductCard extends javax.swing.JPanel {
         return Float.toString(PRODUCT_DATA.price() / 100.f);
     }
 
+    private ImageIcon getImage() {
+        return new ImageIcon(new ImageIcon(PRODUCT_DATA.image())
+                .getImage().getScaledInstance(95, 95, Image.SCALE_SMOOTH));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,15 +104,16 @@ public class TrayProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        IMAGE = new javax.swing.JLabel(new ImageIcon(PRODUCT_DATA.image()));
+        IMAGE = new javax.swing.JLabel(getImage());
         NAME = new javax.swing.JLabel();
         PRICE_LABEL = new javax.swing.JLabel();
         QUANTITY_LABEL = new javax.swing.JLabel();
         PRICE = new javax.swing.JLabel(getProductPrice());
-        removeButton = new javax.swing.JLabel() {
+        removeButton = new javax.swing.JLabel(){
             final int RADIUS = 18;
             Shape shape;
 
@@ -134,19 +141,19 @@ public class TrayProductCard extends javax.swing.JPanel {
         QUANTITY_SPINNER = new javax.swing.JSpinner();
 
         setBackground(Colors.WHITE);
-        setMaximumSize(new java.awt.Dimension(240, 145));
-        setMinimumSize(new java.awt.Dimension(240, 145));
+        setMaximumSize(new java.awt.Dimension(230, 145));
+        setMinimumSize(new java.awt.Dimension(230, 145));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(240, 145));
+        setPreferredSize(new java.awt.Dimension(230, 145));
         setLayout(null);
 
         IMAGE.setBackground(new java.awt.Color(204, 255, 255));
         IMAGE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        IMAGE.setMaximumSize(new java.awt.Dimension(100, 100));
-        IMAGE.setMinimumSize(new java.awt.Dimension(100, 100));
-        IMAGE.setPreferredSize(new java.awt.Dimension(100, 100));
+        IMAGE.setMaximumSize(new java.awt.Dimension(95, 95));
+        IMAGE.setMinimumSize(new java.awt.Dimension(95, 95));
+        IMAGE.setPreferredSize(new java.awt.Dimension(95, 95));
         add(IMAGE);
-        IMAGE.setBounds(10, 10, 100, 100);
+        IMAGE.setBounds(10, 20, 95, 95);
 
         NAME.setBackground(new java.awt.Color(204, 255, 255));
         NAME.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -155,21 +162,21 @@ public class TrayProductCard extends javax.swing.JPanel {
         NAME.setPreferredSize(new java.awt.Dimension(110, 40));
         NAME.setText(getProductName());
         add(NAME);
-        NAME.setBounds(120, 10, 110, 50);
+        NAME.setBounds(110, 10, 110, 50);
 
         PRICE_LABEL.setText("Price:");
         PRICE_LABEL.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         add(PRICE_LABEL);
-        PRICE_LABEL.setBounds(120, 60, 50, 16);
+        PRICE_LABEL.setBounds(110, 60, 50, 16);
 
         QUANTITY_LABEL.setText("Quantity:");
         add(QUANTITY_LABEL);
-        QUANTITY_LABEL.setBounds(120, 80, 60, 20);
+        QUANTITY_LABEL.setBounds(110, 80, 60, 20);
 
         PRICE.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         PRICE.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         add(PRICE);
-        PRICE.setBounds(170, 60, 40, 20);
+        PRICE.setBounds(160, 60, 40, 20);
 
         removeButton.setBackground(Colors.WHITE);
         removeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,17 +186,15 @@ public class TrayProductCard extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 removeButtonMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 removeButtonMouseExited(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 removeButtonMouseReleased(evt);
             }
         });
         add(removeButton);
-        removeButton.setBounds(120, 110, 110, 30);
+        removeButton.setBounds(110, 110, 110, 30);
 
         QUANTITY_SPINNER.setModel(new javax.swing.SpinnerNumberModel(1, 1, PRODUCT_DATA.stock(), 1));
         QUANTITY_SPINNER.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -206,7 +211,7 @@ public class TrayProductCard extends javax.swing.JPanel {
             textField.getCaret().setBlinkRate(0);
         }
         add(QUANTITY_SPINNER);
-        QUANTITY_SPINNER.setBounds(180, 80, 50, 20);
+        QUANTITY_SPINNER.setBounds(170, 80, 50, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void QUANTITY_SPINNERStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_QUANTITY_SPINNERStateChanged
