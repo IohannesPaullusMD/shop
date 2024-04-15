@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Server implements Runnable {
     private ServerSocket serverSocket;
 
-    public Server(/* ServerSocket serverSocket */) throws IOException {
+    public Server() throws IOException {
         this.serverSocket = new ServerSocket(55555);
         MainFrame.jLabel1.setText(Boolean.toString(this.serverSocket.isClosed()));
     }
