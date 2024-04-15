@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.MainFrame;
@@ -15,12 +16,8 @@ import com.jpd.shop.common_files.MainFrame;
  */
 public class PaymentDialog extends javax.swing.JDialog {
 
-    public static void main(String[] args) {
-        showDialog(100.0f);
-    }
-
     public static void showDialog(float totalPrice) {
-        new PaymentDialog(totalPrice);
+        new PaymentDialog(totalPrice).setVisible(true);
     }
 
     private final Font[] FONT = {
@@ -38,7 +35,6 @@ public class PaymentDialog extends javax.swing.JDialog {
         this.setUndecorated(true);
         this.initComponents();
         this.setLocationRelativeTo(MainFrame.getInstance());
-        this.setVisible(true);
     }
 
     /**
@@ -56,7 +52,11 @@ public class PaymentDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -95,6 +95,12 @@ public class PaymentDialog extends javax.swing.JDialog {
         bayad.setFont(FONT[0]);
         bayad.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.25f));
         bayad.setBorder(null);
+        bayad.setFocusable(false);
+        bayad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                bayadStateChanged(evt);
+            }
+        });
         getContentPane().add(bayad);
         bayad.setBounds(110, 120, 250, 60);
 
@@ -144,9 +150,13 @@ public class PaymentDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bayadStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_bayadStateChanged
+        // bayad.setValue(((SpinnerNumberModel) bayad.getModel()).getNumber());
+    }// GEN-LAST:event_bayadStateChanged
+
     private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_orderButtonActionPerformed
 
-        if (TOTAL_PRICE > (float) bayad.getValue()) {
+        if (TOTAL_PRICE > (float) ((Number) (bayad.getValue()))) {
             kulangTimKwarta.setVisible(true);
             return;
         }
