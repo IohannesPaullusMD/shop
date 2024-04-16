@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 public class MainFrame extends javax.swing.JFrame {
 
     public static final Cursor HAND_CURSOR = new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR);
+    public static final Cursor DEFAULT_CURSOR = new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR);
 
     private static MainFrame mainFrame;
 

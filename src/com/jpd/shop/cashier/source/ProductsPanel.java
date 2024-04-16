@@ -323,6 +323,7 @@ button.addMouseListener(new MouseAdapter() {
     jLabel2.setBounds(770, 420, 40, 20);
 
     checkoutButton.setText("PROCEED TO CHECKOUT");
+    checkoutButton.setCursor(MainFrame.HAND_CURSOR);
     checkoutButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             checkoutButtonActionPerformed(evt);
@@ -341,7 +342,7 @@ button.addMouseListener(new MouseAdapter() {
     }// GEN-LAST:event_CATEGORY_PANELMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private final javax.swing.JPanel CATEGORY_PANEL = new javax.swing.JPanel();
+    public final javax.swing.JPanel CATEGORY_PANEL = new javax.swing.JPanel();
     private final javax.swing.JPanel PRODUCT_CARDS_CONTAINER = new javax.swing.JPanel();
     private final javax.swing.JScrollPane SCROLL_PANE = new javax.swing.JScrollPane();
     final javax.swing.JPanel TRAY_PRODUCTS_CONTAINER = new javax.swing.JPanel(){

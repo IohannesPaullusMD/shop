@@ -24,6 +24,8 @@ public class Colors {
 
     public static final Color RED = new Color(0xF02849);
 
+    public static final Color GRAY_TRANSPARENT = new Color(206, 208, 212, 80);
+
     // 65676B para color hit icons
     // 45BD62 green
 }

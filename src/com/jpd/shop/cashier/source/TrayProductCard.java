@@ -39,10 +39,6 @@ public class TrayProductCard extends javax.swing.JPanel {
         initComponents();
     }
 
-    public int getQuantity() {
-        return previousQuantity;
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());

@@ -8,6 +8,7 @@ import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.MainFrame;
 import com.jpd.shop.common_files.data_types.ProductData;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -88,10 +89,12 @@ public class ProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc=" Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        layerdPane = new javax.swing.JLayeredPane() {
+        layerdPane = new javax.swing.JLayeredPane(){
             @Override
             protected void paintComponent(Graphics g) {
                 g.setColor(getBackground());
@@ -114,10 +117,30 @@ public class ProductCard extends javax.swing.JPanel {
             }
         };
         productCardTemplate1 = new com.jpd.shop.common_files.ProductCard.ProductCardTemplate(PRODUCT_DATA);
-        productNotAvailable = new javax.swing.JPanel();
+        productNotAvailable = new javax.swing.JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g); // Paint the panel's components and borders
+
+                // Set the color with an alpha value (e.g., 128 for 50% transparency)
+                Color semiTransparentColor = new Color(128, 128, 128, 191);
+                g.setColor(semiTransparentColor);
+
+                // Fill the panel with the semi-transparent color
+                g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+            }
+
+            @Override
+            public boolean contains(int x, int y) {
+                if (shape == null || !shape.getBounds().equals(getBounds())) {
+                    shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, RADIUS, RADIUS);
+                }
+                return shape.contains(x, y);
+            }
+        };
 
         setForeground(new java.awt.Color(255, 255, 255));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor((PRODUCT_DATA.stock() > 0) ? MainFrame.HAND_CURSOR : MainFrame.DEFAULT_CURSOR);
         setMaximumSize(new java.awt.Dimension(150, 225));
         setMinimumSize(new java.awt.Dimension(150, 225));
         setPreferredSize(new java.awt.Dimension(150, 225));
@@ -126,7 +149,6 @@ public class ProductCard extends javax.swing.JPanel {
         layerdPane.setMaximumSize(new java.awt.Dimension(150, 225));
         layerdPane.setMinimumSize(new java.awt.Dimension(150, 225));
         layerdPane.setOpaque(false);
-        layerdPane.setPreferredSize(new java.awt.Dimension(150, 225));
 
         productCardTemplate1.setMaximumSize(new java.awt.Dimension(150, 225));
         productCardTemplate1.setMinimumSize(new java.awt.Dimension(150, 225));
@@ -140,11 +162,13 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout productCardTemplate1Layout = new javax.swing.GroupLayout(productCardTemplate1);
         productCardTemplate1.setLayout(productCardTemplate1Layout);
         productCardTemplate1Layout.setHorizontalGroup(
-                productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 150, Short.MAX_VALUE));
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
         productCardTemplate1Layout.setVerticalGroup(
-                productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 225, Short.MAX_VALUE));
+            productCardTemplate1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 225, Short.MAX_VALUE)
+        );
 
         layerdPane.add(productCardTemplate1);
         productCardTemplate1.setBounds(0, 0, 150, 225);
@@ -157,19 +181,15 @@ public class ProductCard extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
-
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 consumeMouseEventsForProductNotAvailablePanel(evt);
             }
@@ -178,11 +198,13 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout productNotAvailableLayout = new javax.swing.GroupLayout(productNotAvailable);
         productNotAvailable.setLayout(productNotAvailableLayout);
         productNotAvailableLayout.setHorizontalGroup(
-                productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 150, Short.MAX_VALUE));
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
         productNotAvailableLayout.setVerticalGroup(
-                productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 225, Short.MAX_VALUE));
+            productNotAvailableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 225, Short.MAX_VALUE)
+        );
 
         JLabel notAvailableText = new JLabel("Not Available");
         notAvailableText.setForeground(Colors.WHITE);
@@ -191,7 +213,7 @@ public class ProductCard extends javax.swing.JPanel {
 
         productNotAvailable.setLayout(new BorderLayout());
         productNotAvailable.add(notAvailableText, BorderLayout.CENTER);
-        productNotAvailable.setBounds(0, 0, 150, 200);
+        productNotAvailable.setBounds(0,0,150,200);
         productNotAvailable.setOpaque(false);
         productNotAvailable.setVisible(true);
         layerdPane.setLayer(productNotAvailable, javax.swing.JLayeredPane.MODAL_LAYER);
@@ -202,13 +224,13 @@ public class ProductCard extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(layerdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void consumeMouseEventsForProductNotAvailablePanel(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_consumeMouseEventsForProductNotAvailablePanel

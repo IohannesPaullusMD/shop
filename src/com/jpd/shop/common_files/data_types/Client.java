@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 import javax.swing.ImageIcon;
 
 @SuppressWarnings("finally")
-public class Client implements Runnable {
+public class Client {
 
     public static final int GET_BURGER_PRODUCTS = 11; // TODO: change to byte or short
     public static final int GET_FRIES_PRODUCTS = 12;
@@ -76,7 +76,6 @@ public class Client implements Runnable {
             LoginPanel.getInstance().enableUsernameAndPasswordField(true);
         }
 
-        // new Thread(this).start();
     }
 
     public Object makeARequestToServer(Object object) {
@@ -103,13 +102,4 @@ public class Client implements Runnable {
     // MAIN_FRAME_REF.getConnectionConfigPanel().getButton().setText("Connect");
     // // TODO: add code
     // }
-
-    @Override
-    public void run() {
-        try {
-            INPUT_STREAM.readBoolean();
-        } catch (IOException e) {
-            close();
-        }
-    }
 }
