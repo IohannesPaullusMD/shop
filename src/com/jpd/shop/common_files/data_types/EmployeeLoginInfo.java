@@ -18,4 +18,9 @@ public record EmployeeLoginInfo(int id, String type, String username, String pas
     public static final String[] TYPES_OF_EMPLOYEE = { "", "CASHIER", "MANAGER", "ADMIN" };
 
     public static final int NO_ID_YET = -1;
+
+    public Object[] toObjectArray() {
+        Object[] objectToReturn = { id, type, username, password };
+        return objectToReturn;
+    }
 }

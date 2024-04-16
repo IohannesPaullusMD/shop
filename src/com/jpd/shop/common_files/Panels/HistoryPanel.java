@@ -77,6 +77,8 @@ public class HistoryPanel extends javax.swing.JPanel implements MyPanel_Interfac
                 .makeARequestToServer(-id);
 
         TABLE2.setModel(new JpdTableModel(table2Data, TABLE2_COLUMN_NAMES));
+        TABLE2.getColumnModel().getColumn(0).setPreferredWidth(50);
+        TABLE2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     /**

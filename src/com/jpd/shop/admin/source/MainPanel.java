@@ -64,6 +64,10 @@ public class MainPanel extends javax.swing.JPanel {
             "/com/jpd/shop/common_files/icons/history.png"));
     private final ImageIcon BLUE_HISTORY_ICON = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/blue_history.png"));
+    private final ImageIcon LOG_BOOK_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/address_book.png"));
+    private final ImageIcon BLUE_LOG_BOOK_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/blue_address_book.png"));
 
     public MainPanel() {
         initComponents();
@@ -87,6 +91,8 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -95,6 +101,8 @@ public class MainPanel extends javax.swing.JPanel {
         showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON,
                 BLUE_SHOW_PRODUCTS_ICON, true);
         historyButton = new com.jpd.shop.common_files.data_types.NavButton(HISTORY_ICON, BLUE_HISTORY_ICON, true);
+        employeePanelButton = new com.jpd.shop.common_files.data_types.NavButton(LOG_BOOK_ICON, BLUE_LOG_BOOK_ICON,
+                true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -141,9 +149,20 @@ public class MainPanel extends javax.swing.JPanel {
         });
         navBar.add(historyButton);
 
+        employeePanelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                employeePanelButtonMouseReleased(evt);
+            }
+        });
+        navBar.add(employeePanelButton);
+
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void employeePanelButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_employeePanelButtonMouseReleased
+        showPanel(EmployeesInfoPanel.getInstance());
+    }// GEN-LAST:event_employeePanelButtonMouseReleased
 
     private void historyButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_navButton1MouseReleased
         showPanel(HistoryPanel.getInstance());
@@ -167,6 +186,7 @@ public class MainPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_logoutButtonMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.jpd.shop.common_files.data_types.NavButton employeePanelButton;
     private com.jpd.shop.common_files.data_types.NavButton historyButton;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;

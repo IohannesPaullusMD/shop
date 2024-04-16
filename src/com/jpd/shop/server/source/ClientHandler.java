@@ -75,6 +75,8 @@ public class ClientHandler implements Runnable {
                     break;
 
                 default:
+                    DatabaseQueries.updateEmployeeLoginInfo(employeeLoginInfo);
+                    OUTPUT_STREAM.writeObject(0);
                     break;
             }
     }
@@ -105,6 +107,10 @@ public class ClientHandler implements Runnable {
 
             case 2:
                 OUTPUT_STREAM.writeObject(DatabaseQueries.getTransactionHistory());
+                break;
+
+            case 3:
+                OUTPUT_STREAM.writeObject(DatabaseQueries.getEmployeeInfoList());
                 break;
 
             // TODO: add code

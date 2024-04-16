@@ -52,6 +52,57 @@ public class DatabaseQueries {
         }
     }
 
+    static Object[][] getEmployeeInfoList() {
+
+        Object[][] objectToReturn = null;
+        ArrayList<Object[]> employees = new ArrayList<>();
+
+        try (PreparedStatement statement = getConnection().prepareStatement(
+                "SELECT * FROM employees")) {
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                EmployeeLoginInfo employee = new EmployeeLoginInfo(
+                        resultSet.getInt("id_pk"),
+                        resultSet.getString("type"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"));
+
+                employees.add(employee.toObjectArray());
+            }
+
+            objectToReturn = new Object[employees.size()][4];
+
+            for (int i = 0; i < objectToReturn.length; i++) {
+                for (int j = 0; j < 4; j++) {
+                    objectToReturn[i][j] = employees.get(i)[j];
+                }
+            }
+
+        } catch (SQLException e) {
+            closeConnection();
+        } finally {
+            return objectToReturn;
+        }
+    }
+
+    static void updateEmployeeLoginInfo(EmployeeLoginInfo employeeLoginInfo) {
+        String query = "UPDATE employees "
+                + "SET type = ?, username = ?, password = ? "
+                + "WHERE id_pk = " + employeeLoginInfo.id();
+
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+
+            statement.setString(1, employeeLoginInfo.type());
+            statement.setString(2, employeeLoginInfo.username());
+            statement.setString(3, employeeLoginInfo.password());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            closeConnection();
+        }
+    }
+
     static ProductData[] getProducts(int productsCategory) {
 
         ProductData[] products = null;

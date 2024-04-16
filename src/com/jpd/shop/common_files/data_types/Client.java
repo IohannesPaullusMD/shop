@@ -17,6 +17,7 @@ public class Client {
     public static final int GET_FRIES_PRODUCTS = 12;
     public static final int GET_DRINKS_PRODUCTS = 13;
     public static final int GET_TRANSACTION_HISTORY = 20;
+    public static final int GET_LIST_OF_EMPLOYEES = 30;
 
     private static Client client;
 
