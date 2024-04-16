@@ -7,8 +7,8 @@ import java.net.Socket;
 public class Server implements Runnable {
     private ServerSocket serverSocket;
 
-    public Server() throws IOException {
-        this.serverSocket = new ServerSocket(55555);
+    public Server(int port) throws IOException {
+        this.serverSocket = new ServerSocket(port);
         MainFrame.jLabel1.setText(Boolean.toString(this.serverSocket.isClosed()));
     }
 
@@ -24,7 +24,6 @@ public class Server implements Runnable {
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             } catch (IOException e) {
-                e.printStackTrace();
                 MainFrame.jLabel1.setText(e.getMessage());
                 closeServerSocket();
             }
@@ -38,8 +37,9 @@ public class Server implements Runnable {
             if (serverSocket != null) {
                 serverSocket.close();
             }
+            
+            MainFrame.jLabel1.setText("server closed");
         } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             MainFrame.jLabel1.setText("error");
         }

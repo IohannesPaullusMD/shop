@@ -75,9 +75,7 @@ public class DatabaseQueries {
             objectToReturn = new Object[employees.size()][4];
 
             for (int i = 0; i < objectToReturn.length; i++) {
-                for (int j = 0; j < 4; j++) {
-                    objectToReturn[i][j] = employees.get(i)[j];
-                }
+                objectToReturn[i] = employees.get(i);
             }
 
         } catch (SQLException e) {
@@ -283,14 +281,14 @@ public class DatabaseQueries {
         ArrayList<Object[]> transactionList = new ArrayList<>();
 
         try (PreparedStatement statement = getConnection().prepareStatement(
-                "SELECT * FROM transactions")) {
+                "SELECT * FROM transactions ORDER BY id_pk DESC")) {
 
             ResultSet resultSet = statement.executeQuery();
 
             for (int i = 0; resultSet.next(); i++) {
                 Object[] data = new Object[3];
 
-                data[0] = resultSet.getString("id_pk");
+                data[0] = resultSet.getInt("id_pk");
                 data[1] = resultSet.getString("date_time");
                 data[2] = resultSet.getString("cashier");
 
@@ -323,6 +321,7 @@ public class DatabaseQueries {
 
             while (resultSet.next()) {
                 TransactionDetails transactionDetails = new TransactionDetails(
+                        resultSet.getInt("id_pk"),
                         resultSet.getInt("transaction_id"),
                         resultSet.getString("product_name"),
                         resultSet.getFloat("price"),
@@ -331,12 +330,10 @@ public class DatabaseQueries {
                 details.add(transactionDetails.toObjectArray());
             }
 
-            objectToReturn = new Object[details.size()][4];
+            objectToReturn = new Object[details.size()][5];
 
             for (int i = 0; i < objectToReturn.length; i++) {
-                for (int j = 0; j < 4; j++) {
-                    objectToReturn[i][j] = details.get(i)[j];
-                }
+                objectToReturn[i] = details.get(i);
             }
 
         } catch (SQLException e) {

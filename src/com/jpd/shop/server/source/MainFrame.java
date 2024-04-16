@@ -4,8 +4,15 @@
  */
 package com.jpd.shop.server.source;
 
+import java.awt.Graphics;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.net.ServerSocket;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -13,19 +20,30 @@ import java.net.ServerSocket;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private final String[] BUTTON_TEXT = { "Open Server", "Close Server" };
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+    }
 
+    private void openServer() {
         try {
-            Server server = new Server();
+            int port = Integer.parseInt(portNumField.getText());
+
+            if (port > 0xFFFF) {
+                throw new IOException("Port should be less than " + 0xFFFF);
+            }
+
+            Server server = new Server(port);
             new Thread(server).start();
+            jButton1.setText(BUTTON_TEXT[1]);
 
         } catch (IOException e) {
-            e.printStackTrace();
             jLabel1.setText(e.getMessage());
+            jButton1.setText(BUTTON_TEXT[0]);
         }
     }
 
@@ -36,35 +54,109 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        portNumField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 336));
+        setMinimumSize(new java.awt.Dimension(400, 336));
+        setPreferredSize(new java.awt.Dimension(400, 336));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
-        jButton1.setText("CLICK TO CLOSE SERVER");
+        jButton1.setText(BUTTON_TEXT[0]);
         jButton1.setPreferredSize(new java.awt.Dimension(400, 100));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(0, 200, 400, 100);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("How have you been?");
         jLabel1.setPreferredSize(new java.awt.Dimension(400, 300));
-        getContentPane().add(jLabel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 400, 130);
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        jPanel1.setLayout(null);
+
+        jLabel2.setText("Port:");
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(100, 0, 40, 25);
+
+        portNumField.setText("55555");
+        portNumField.setMaximumSize(new java.awt.Dimension(200, 25));
+        portNumField.setMinimumSize(new java.awt.Dimension(200, 25));
+        portNumField.setOpaque(true);
+        portNumField.setPreferredSize(new java.awt.Dimension(200, 25));
+        ((AbstractDocument) portNumField.getDocument()).setDocumentFilter(
+            new DocumentFilter() {
+                @Override
+                public void insertString(FilterBypass fb, int offset,
+                    String string, AttributeSet attr) throws BadLocationException {
+
+                    if (string == null) {
+                        return;
+                    }
+                    if (isValidInput(string)) {
+                        super.insertString(fb, offset, string, attr);
+                    }
+                }
+
+                @Override
+                public void replace(FilterBypass fb, int offset, int length,
+                    String text, AttributeSet attrs) throws BadLocationException {
+
+                    if (text == null) {
+                        return;
+                    }
+                    if (isValidInput(text)) {
+                        super.replace(fb, offset, length, text, attrs);
+                    }
+                }
+
+                private boolean isValidInput(String text) {
+                    // Use a regular expression to check if the input is a valid integer
+                    return text.matches("^[0-9]+$");
+                }
+            });
+            jPanel1.add(portNumField);
+            portNumField.setBounds(100, 20, 200, 30);
+
+            getContentPane().add(jPanel1);
+            jPanel1.setBounds(0, 130, 400, 70);
+
+            pack();
+            setLocationRelativeTo(null);
+        }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+        if (jButton1.getText().equals(BUTTON_TEXT[0])) {
+            openServer();
+            return;
+        }
+
+        // else
         System.exit(0);
     }// GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     public static final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField portNumField;
     // End of variables declaration//GEN-END:variables
 }

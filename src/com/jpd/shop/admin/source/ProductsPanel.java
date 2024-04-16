@@ -96,15 +96,15 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
             return;
         }
 
+        if (EDIT_SAVE_BUTTON.getText().equals("Save")) {
+            changeButtonState(false);
+            enableAdminPanelFields(false);
+        }
+
         if (PRODUCT_CARDS_CONTAINER.getComponents().length > 0) {
             PRODUCT_CARDS_CONTAINER.removeAll();
 
             ProductCard.changeSelectedCard(null);
-
-            if (EDIT_SAVE_BUTTON.getText().equals("Save")) {
-                changeButtonState(false);
-                enableAdminPanelFields(false);
-            }
         }
 
         products = (ProductData[]) object;
@@ -160,11 +160,11 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
 
         PRICE_NUM_FIELD.setValue(productData != null
                 ? productData.price() / 100.0f
-                : 0);
+                : Integer.valueOf(0));
 
         STOCK_NUM_FIELD.setValue(productData != null
                 ? productData.stock()
-                : 0);
+                : Integer.valueOf(0));
 
         CATEGORY_BOX.setSelectedIndex(productData != null
                 ? productData.category()
@@ -193,6 +193,14 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         CATEGORY_BOX.setEnabled(state);
     }
 
+    private void clearFields() {
+        PRODUCT_IMAGE.setIcon(null);
+        NAME_TEXT_FIELD.setText("");
+        PRICE_NUM_FIELD.setValue(0);
+        STOCK_NUM_FIELD.setValue(0);
+        CATEGORY_BOX.setSelectedIndex(0);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,7 +209,7 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setMaximumSize(new java.awt.Dimension(1000, 530));
@@ -213,424 +221,425 @@ public class ProductsPanel extends javax.swing.JPanel implements MyPanel_Interfa
         CATEGORY_PANEL.setMinimumSize(new java.awt.Dimension(50, 529));
         CATEGORY_PANEL.setPreferredSize(new java.awt.Dimension(50, 529));
         final ImageIcon ADD_ICON = new ImageIcon(getClass().getResource(
-                "/com/jpd/shop/common_files/icons/add_button.png"));
-        final ImageIcon BLUE_ADD_ICON = new ImageIcon(getClass().getResource(
-                "/com/jpd/shop/common_files/icons/blue_add_button.png"));
+            "/com/jpd/shop/common_files/icons/add_button.png"));
+    final ImageIcon BLUE_ADD_ICON = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_add_button.png"));
 
-        //
+//
 
-        final FunctionWithFourIntegerParametersButReturnsJLabel ADD_DIVIDER_LINE = (x, y, w, h) -> {
-            JLabel divider = new JLabel();
+final FunctionWithFourIntegerParametersButReturnsJLabel ADD_DIVIDER_LINE = (x, y, w, h) -> {
+    JLabel divider = new JLabel();
 
-            divider.setBackground(Colors.GRAY);
-            divider.setOpaque(true);
-            divider.setBounds(x, y, w, h);
-            divider.setVisible(true);
+    divider.setBackground(Colors.GRAY);
+    divider.setOpaque(true);
+    divider.setBounds(x, y, w, h);
+    divider.setVisible(true);
 
-            return divider;
-        };
+    return divider;
+    };
 
-        final FunctionWithNoParameterButReturnsProductData GET_NEW_PRODUCT_DATA = () -> {
-            String name = NAME_TEXT_FIELD.getText();
-            int price = (int) (((Number) PRICE_NUM_FIELD.getValue()).floatValue() * 100);
-            int stock = Integer.valueOf(STOCK_NUM_FIELD.getValue().toString());
-            int category = CATEGORY_BOX.getSelectedIndex();
-            byte[] imageInByte = null;
-            int id = (!isClickedADD_BUTTON)
-                    ? displayedProductData.id()
-                    : ProductData.NO_ID_YET;
-            ProductData newProduct = null;
+    final FunctionWithNoParameterButReturnsProductData GET_NEW_PRODUCT_DATA = () -> {
+        String name = NAME_TEXT_FIELD.getText();
+        int price = (int) (((Number) PRICE_NUM_FIELD.getValue()).floatValue() * 100);
+        int stock = Integer.valueOf(STOCK_NUM_FIELD.getValue().toString());
+        int category = CATEGORY_BOX.getSelectedIndex();
+        byte[] imageInByte = null;
+        int id = (!isClickedADD_BUTTON && displayedProductData != null)
+        ? displayedProductData.id()
+        : ProductData.NO_ID_YET;
+        ProductData newProduct = null;
 
-            try {
+        try {
 
-                Icon icon = PRODUCT_IMAGE.getIcon();
-                BufferedImage bufferedImage = new BufferedImage(
-                        icon.getIconWidth(),
-                        icon.getIconHeight(),
-                        BufferedImage.TYPE_INT_ARGB);
-                Graphics2D g2d = bufferedImage.createGraphics();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            Icon icon = PRODUCT_IMAGE.getIcon();
+            BufferedImage bufferedImage = new BufferedImage(
+                icon.getIconWidth(),
+                icon.getIconHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = bufferedImage.createGraphics();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-                icon.paintIcon(null, g2d, 0, 0);
-                g2d.dispose();
-                ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
-                byteArrayOutputStream.flush();
-                imageInByte = byteArrayOutputStream.toByteArray();
-                byteArrayOutputStream.close();
+            icon.paintIcon(null, g2d, 0, 0);
+            g2d.dispose();
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+            byteArrayOutputStream.flush();
+            imageInByte = byteArrayOutputStream.toByteArray();
+            byteArrayOutputStream.close();
 
-                newProduct = new ProductData(name, price, stock,
-                        category, imageInByte, id);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                return newProduct;
+            newProduct = new ProductData(name, price, stock,
+                category, imageInByte, id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return newProduct;
+        }
+
+    };
+
+    //
+    CATEGORY_PANEL.setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
+
+    constraints.insets = new Insets(5, 0, 5, 0);
+    constraints.gridwidth = GridBagConstraints.REMAINDER;
+    constraints.anchor = GridBagConstraints.CENTER;
+
+    ImageIcon icon;
+    ImageIcon blueIcon;
+    NavButton button;
+
+    // initialize burger button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/hamburger_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
+button = new NavButton(icon, blueIcon, false);
+
+NavButton.changeLastClickedButton(button);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_BURGER_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+
+    // initialize fries button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/fries_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
+button = new NavButton(icon, blueIcon, false);
+
+button.setIcon(icon);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_FRIES_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+
+    // initialize drinks button
+    {
+        icon = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/drinks_button.png"));
+    blueIcon = new ImageIcon(getClass().getResource(
+        "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
+button = new NavButton(icon, blueIcon, false);
+
+button.setIcon(icon);
+button.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        loadProducts(Client.GET_DRINKS_PRODUCTS);
+    }
+    });
+    button.setVisible(true);
+    CATEGORY_PANEL.add(button, constraints);
+    }
+    add(CATEGORY_PANEL);
+    CATEGORY_PANEL.setBounds(0, 0, 50, 529);
+
+    SCROLL_PANE.setBorder(null);
+    SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
+    SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
+
+    PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
+    PRODUCT_CARDS_CONTAINER.setMinimumSize(SCROLL_PANE.getPreferredSize());
+    PRODUCT_CARDS_CONTAINER.setPreferredSize(SCROLL_PANE.getPreferredSize());
+    PRODUCT_CARDS_CONTAINER.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+    PRODUCT_CARDS_CONTAINER.setVisible(true);
+    SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
+
+    add(SCROLL_PANE);
+    SCROLL_PANE.setBounds(50, 0, 700, 530);
+    SCROLL_PANE.getVerticalScrollBar().setUnitIncrement(16);
+
+    EDIT_PRODUCT_PANEL.setPreferredSize(new java.awt.Dimension(250, 530));
+    EDIT_PRODUCT_PANEL.setLayout(null);
+    EDIT_PRODUCT_PANEL.add(ADD_DIVIDER_LINE.call(0, 0, 1, 530));
+
+    // initialize ADD_BUTTON
+    {
+        ADD_BUTTON.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                isClickedADD_BUTTON = !isClickedADD_BUTTON;
+
+                displayProductDetails(!isClickedADD_BUTTON
+                    ? null
+                    : displayedProductData);
+
+                ProductCard.changeSelectedCard(null);
+
+                enableAdminPanelFields(isClickedADD_BUTTON);
+                changeButtonState(isClickedADD_BUTTON);
             }
 
-        };
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ADD_BUTTON.setIcon(BLUE_ADD_ICON);
+            }
 
-        //
-        CATEGORY_PANEL.setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-
-        constraints.insets = new Insets(5, 0, 5, 0);
-        constraints.gridwidth = GridBagConstraints.REMAINDER;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        ImageIcon icon;
-        ImageIcon blueIcon;
-        NavButton button;
-
-        // initialize burger button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/hamburger_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_hamburger_button.png"));
-            button = new NavButton(icon, blueIcon, false);
-
-            NavButton.changeLastClickedButton(button);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_BURGER_PRODUCTS);
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (!isClickedADD_BUTTON) {
+                    ADD_BUTTON.setIcon(ADD_ICON);
                 }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+            }
+        });
+        ADD_BUTTON.setIcon(ADD_ICON);
+        ADD_BUTTON.setBounds(200, 9, 36, 36);
+        ADD_BUTTON.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(ADD_BUTTON);
+    }
+
+    // initialize PRODUCT_IMAGE
+    {
+        PRODUCT_IMAGE.setBackground(Colors.GRAY); // temp la ini
+        PRODUCT_IMAGE.setOpaque(true);
+        PRODUCT_IMAGE.setBounds(50, 50, 150, 150);
+        PRODUCT_IMAGE.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(PRODUCT_IMAGE);
+
+        UPLOAD_IMAGE_BUTTON.addMouseListener(new MouseAdapter() {
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "PNG, JPG, JPEG", "png", "jpg", "jpeg");
+
+            {
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.setFileFilter(filter);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                UPLOAD_IMAGE_BUTTON.setBackground(Colors.BLUE);
+                UPLOAD_IMAGE_BUTTON.setForeground(Colors.WHITE);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE_HOVER);
+                UPLOAD_IMAGE_BUTTON.setForeground(Colors.BLACK);
+
+                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File imageFile = fileChooser.getSelectedFile();
+
+                    ImageIcon icon = new ImageIcon(imageFile.getAbsolutePath());
+                    icon = new ImageIcon(icon.getImage().getScaledInstance(
+                        PRODUCT_IMAGE.getWidth(), PRODUCT_IMAGE.getHeight(),
+                        Image.SCALE_SMOOTH));
+
+                PRODUCT_IMAGE.setIcon(icon);
+            }
         }
 
-        // initialize fries button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/fries_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_fries_button.png"));
-            button = new NavButton(icon, blueIcon, false);
-
-            button.setIcon(icon);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_FRIES_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE_HOVER);
         }
 
-        // initialize drinks button
-        {
-            icon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/drinks_button.png"));
-            blueIcon = new ImageIcon(getClass().getResource(
-                    "/com/jpd/shop/common_files/icons/blue_drinks_button.png"));
-            button = new NavButton(icon, blueIcon, false);
-
-            button.setIcon(icon);
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    loadProducts(Client.GET_DRINKS_PRODUCTS);
-                }
-            });
-            button.setVisible(true);
-            CATEGORY_PANEL.add(button, constraints);
+        @Override
+        public void mouseExited(MouseEvent e) {
+            UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE);
         }
-        add(CATEGORY_PANEL);
-        CATEGORY_PANEL.setBounds(0, 0, 50, 529);
+    });
+    UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE); // temp la ini
+    UPLOAD_IMAGE_BUTTON.setOpaque(false);
+    UPLOAD_IMAGE_BUTTON.setHorizontalAlignment(JLabel.CENTER);
+    UPLOAD_IMAGE_BUTTON.setVerticalAlignment(JLabel.CENTER);
+    UPLOAD_IMAGE_BUTTON.setBounds(75, 210, 100, 25);
+    UPLOAD_IMAGE_BUTTON.setVisible(false);
+    EDIT_PRODUCT_PANEL.add(UPLOAD_IMAGE_BUTTON);
+    }
 
-        SCROLL_PANE.setBorder(null);
-        SCROLL_PANE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        SCROLL_PANE.setMaximumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setMinimumSize(new java.awt.Dimension(700, 530));
-        SCROLL_PANE.setPreferredSize(new java.awt.Dimension(700, 530));
+    // initialize NAME_TEXT_FIELD
+    {
+        JLabel nameLabel = new JLabel("Name:");
+        nameLabel.setBounds(25, 260, 50, 25);
+        nameLabel.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(nameLabel);
 
-        PRODUCT_CARDS_CONTAINER.setBackground(Colors.WHITE_BACKGROUND);
-        PRODUCT_CARDS_CONTAINER.setMinimumSize(SCROLL_PANE.getPreferredSize());
-        PRODUCT_CARDS_CONTAINER.setPreferredSize(SCROLL_PANE.getPreferredSize());
-        PRODUCT_CARDS_CONTAINER.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        PRODUCT_CARDS_CONTAINER.setVisible(true);
-        SCROLL_PANE.setViewportView(PRODUCT_CARDS_CONTAINER);
+        NAME_TEXT_FIELD.setBounds(25, 285, 200, 25);
+        NAME_TEXT_FIELD.setEnabled(false);
+        NAME_TEXT_FIELD.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(NAME_TEXT_FIELD);
+    }
 
-        add(SCROLL_PANE);
-        SCROLL_PANE.setBounds(50, 0, 700, 530);
-        SCROLL_PANE.getVerticalScrollBar().setUnitIncrement(16);
+    // initialize PRICE_NUM_FIELD
+    {
+        JLabel priceLabel = new JLabel("Price:");
+        priceLabel.setBounds(25, 320, 50, 25);
+        priceLabel.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(priceLabel);
 
-        EDIT_PRODUCT_PANEL.setPreferredSize(new java.awt.Dimension(250, 530));
-        EDIT_PRODUCT_PANEL.setLayout(null);
-        EDIT_PRODUCT_PANEL.add(ADD_DIVIDER_LINE.call(0, 0, 1, 530));
+        PRICE_NUM_FIELD.setBounds(25, 345, 95, 25);
+        PRICE_NUM_FIELD.setEnabled(false);
+        PRICE_NUM_FIELD.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(PRICE_NUM_FIELD);
+    }
 
-        // initialize ADD_BUTTON
-        {
-            ADD_BUTTON.addMouseListener(new MouseAdapter() {
+    // initialize STOCK_NUM_FIELD
+    {
+        JLabel stockLabel = new JLabel("Stock");
+        stockLabel.setBounds(130, 320, 50, 25);
+        stockLabel.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(stockLabel);
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    isClickedADD_BUTTON = !isClickedADD_BUTTON;
+        STOCK_NUM_FIELD.setBounds(130, 345, 95, 25);
+        STOCK_NUM_FIELD.setEnabled(false);
+        STOCK_NUM_FIELD.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(STOCK_NUM_FIELD);
+    }
 
-                    displayProductDetails(!isClickedADD_BUTTON
-                            ? null
-                            : displayedProductData);
+    // initialize CATEGORY_BOX
+    {
+        JLabel categoryLabel = new JLabel("Category:");
+        categoryLabel.setBounds(25, 380, 75, 25);
+        categoryLabel.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(categoryLabel);
 
-                    ProductCard.changeSelectedCard(null);
+        CATEGORY_BOX.setBounds(25, 405, 200, 25);
+        CATEGORY_BOX.setEnabled(false);
+        CATEGORY_BOX.setFocusable(false);
+        CATEGORY_BOX.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(CATEGORY_BOX);
+    }
 
-                    enableAdminPanelFields(isClickedADD_BUTTON);
-                    changeButtonState(isClickedADD_BUTTON);
+    // initialize edit/save button
+    {
+        EDIT_SAVE_BUTTON.addMouseListener(new MouseAdapter() {
+            boolean isValidInputs;
+            boolean isEditButton;
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                EDIT_SAVE_BUTTON.setBackground(Colors.WHITE_HOVER);
+                EDIT_SAVE_BUTTON.setForeground(Colors.BLACK);
+
+                isEditButton = EDIT_SAVE_BUTTON.getText().equals("Edit");
+
+                if (!isEditButton) {
+                    isValidInputs = checkIfValidInputs();
                 }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    ADD_BUTTON.setIcon(BLUE_ADD_ICON);
+                if (!isValidInputs && !isEditButton) {
+                    JOptionPane.showMessageDialog(null,
+                        "Please input a proper value.");
+                    return;
                 }
 
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    if (!isClickedADD_BUTTON) {
-                        ADD_BUTTON.setIcon(ADD_ICON);
+                if (!isEditButton) {
+                    Client.getInstance()
+                    .makeARequestToServer(GET_NEW_PRODUCT_DATA.call());
+
+                    for (MouseListener listener
+                        : CATEGORY_PANEL.getComponents()[
+                        CATEGORY_BOX.getSelectedIndex() -1].getMouseListeners()){
+
+                        listener.mouseReleased(null);
                     }
-                }
-            });
-            ADD_BUTTON.setIcon(ADD_ICON);
-            ADD_BUTTON.setBounds(200, 9, 36, 36);
-            ADD_BUTTON.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(ADD_BUTTON);
-        }
-
-        // initialize PRODUCT_IMAGE
-        {
-            PRODUCT_IMAGE.setBackground(Colors.GRAY); // temp la ini
-            PRODUCT_IMAGE.setOpaque(true);
-            PRODUCT_IMAGE.setBounds(50, 50, 150, 150);
-            PRODUCT_IMAGE.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(PRODUCT_IMAGE);
-
-            UPLOAD_IMAGE_BUTTON.addMouseListener(new MouseAdapter() {
-                JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                        "PNG, JPG, JPEG", "png", "jpg", "jpeg");
-
-                {
-                    fileChooser.setAcceptAllFileFilterUsed(false);
-                    fileChooser.setFileFilter(filter);
+                    return;
                 }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    UPLOAD_IMAGE_BUTTON.setBackground(Colors.BLUE);
-                    UPLOAD_IMAGE_BUTTON.setForeground(Colors.WHITE);
+                changeButtonState(isEditButton);
+                enableAdminPanelFields(!isEditButton);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                EDIT_SAVE_BUTTON.setBackground(Colors.BLUE);
+                EDIT_SAVE_BUTTON.setForeground(Colors.WHITE);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                EDIT_SAVE_BUTTON.setBackground(Colors.WHITE_HOVER);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                EDIT_SAVE_BUTTON.setBackground(Colors.WHITE);
+            }
+
+            boolean checkIfValidInputs() {
+                return ((PRODUCT_IMAGE.getIcon() != null)
+                    && !NAME_TEXT_FIELD.getText().equals("")
+                    && (((Number) PRICE_NUM_FIELD.getValue()).floatValue() != 0.0)
+                    && CATEGORY_BOX.getSelectedIndex() != 0);
+            }
+
+        });
+        EDIT_SAVE_BUTTON.setBackground(Colors.WHITE);
+        EDIT_SAVE_BUTTON.setOpaque(false);
+        EDIT_SAVE_BUTTON.setHorizontalAlignment(JLabel.CENTER);
+        EDIT_SAVE_BUTTON.setVerticalAlignment(JLabel.CENTER);
+        EDIT_SAVE_BUTTON.setBounds(25, 455, 95, 50);
+        EDIT_SAVE_BUTTON.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(EDIT_SAVE_BUTTON);
+
+    }
+
+    // initialize delete/cancel button
+    {
+        DELETE_CANCEL_BUTTON.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE_HOVER);
+                DELETE_CANCEL_BUTTON.setForeground(Colors.BLACK);
+
+                if (DELETE_CANCEL_BUTTON.getText().equals("Delete")) {
+                    Client.getInstance().makeARequestToServer(
+                        new ProductData("", 0, 0, 0, null, displayedProductData.id()));
+                    loadProducts(displayedProductData.category() + 10);
+                } else {
+                    displayProductDetails(displayedProductData);
+                    enableAdminPanelFields(false);
+                    changeButtonState(false);
                 }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE_HOVER);
-                    UPLOAD_IMAGE_BUTTON.setForeground(Colors.BLACK);
+            }
 
-                    if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                        File imageFile = fileChooser.getSelectedFile();
+            @Override
+            public void mousePressed(MouseEvent e) {
+                DELETE_CANCEL_BUTTON.setBackground(Colors.BLUE);
+                DELETE_CANCEL_BUTTON.setForeground(Colors.WHITE);
+            }
 
-                        ImageIcon icon = new ImageIcon(imageFile.getAbsolutePath());
-                        icon = new ImageIcon(icon.getImage().getScaledInstance(
-                                PRODUCT_IMAGE.getWidth(), PRODUCT_IMAGE.getHeight(),
-                                Image.SCALE_SMOOTH));
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE_HOVER);
+            }
 
-                        PRODUCT_IMAGE.setIcon(icon);
-                    }
-                }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE);
+            }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE_HOVER);
-                }
+        });
 
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE);
-                }
-            });
-            UPLOAD_IMAGE_BUTTON.setBackground(Colors.WHITE); // temp la ini
-            UPLOAD_IMAGE_BUTTON.setOpaque(false);
-            UPLOAD_IMAGE_BUTTON.setHorizontalAlignment(JLabel.CENTER);
-            UPLOAD_IMAGE_BUTTON.setVerticalAlignment(JLabel.CENTER);
-            UPLOAD_IMAGE_BUTTON.setBounds(75, 210, 100, 25);
-            UPLOAD_IMAGE_BUTTON.setVisible(false);
-            EDIT_PRODUCT_PANEL.add(UPLOAD_IMAGE_BUTTON);
-        }
-
-        // initialize NAME_TEXT_FIELD
-        {
-            JLabel nameLabel = new JLabel("Name:");
-            nameLabel.setBounds(25, 260, 50, 25);
-            nameLabel.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(nameLabel);
-
-            NAME_TEXT_FIELD.setBounds(25, 285, 200, 25);
-            NAME_TEXT_FIELD.setEnabled(false);
-            NAME_TEXT_FIELD.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(NAME_TEXT_FIELD);
-        }
-
-        // initialize PRICE_NUM_FIELD
-        {
-            JLabel priceLabel = new JLabel("Price:");
-            priceLabel.setBounds(25, 320, 50, 25);
-            priceLabel.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(priceLabel);
-
-            PRICE_NUM_FIELD.setBounds(25, 345, 95, 25);
-            PRICE_NUM_FIELD.setEnabled(false);
-            PRICE_NUM_FIELD.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(PRICE_NUM_FIELD);
-        }
-
-        // initialize STOCK_NUM_FIELD
-        {
-            JLabel stockLabel = new JLabel("Stock");
-            stockLabel.setBounds(130, 320, 50, 25);
-            stockLabel.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(stockLabel);
-
-            STOCK_NUM_FIELD.setBounds(130, 345, 95, 25);
-            STOCK_NUM_FIELD.setEnabled(false);
-            STOCK_NUM_FIELD.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(STOCK_NUM_FIELD);
-        }
-
-        // initialize CATEGORY_BOX
-        {
-            JLabel categoryLabel = new JLabel("Category:");
-            categoryLabel.setBounds(25, 380, 75, 25);
-            categoryLabel.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(categoryLabel);
-
-            CATEGORY_BOX.setBounds(25, 405, 200, 25);
-            CATEGORY_BOX.setEnabled(false);
-            CATEGORY_BOX.setFocusable(false);
-            CATEGORY_BOX.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(CATEGORY_BOX);
-        }
-
-        // initialize edit/save button
-        {
-            EDIT_SAVE_BUTTON.addMouseListener(new MouseAdapter() {
-                boolean isValidInputs;
-                boolean isEditButton;
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    EDIT_SAVE_BUTTON.setBackground(Colors.WHITE_HOVER);
-                    EDIT_SAVE_BUTTON.setForeground(Colors.BLACK);
-
-                    isEditButton = EDIT_SAVE_BUTTON.getText().equals("Edit");
-
-                    if (!isEditButton) {
-                        isValidInputs = checkIfValidInputs();
-                    }
-
-                    if (!isValidInputs && !isEditButton) {
-                        JOptionPane.showMessageDialog(null,
-                                "Please input a proper value.");
-                        return;
-                    }
-
-                    if (!isEditButton) {
-                        Client.getInstance()
-                                .makeARequestToServer(GET_NEW_PRODUCT_DATA.call());
-
-                        for (MouseListener listener : CATEGORY_PANEL.getComponents()[CATEGORY_BOX.getSelectedIndex()
-                                - 1].getMouseListeners()) {
-
-                            listener.mouseReleased(null);
-                        }
-                        return;
-                    }
-
-                    changeButtonState(isEditButton);
-                    enableAdminPanelFields(isEditButton);
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    EDIT_SAVE_BUTTON.setBackground(Colors.BLUE);
-                    EDIT_SAVE_BUTTON.setForeground(Colors.WHITE);
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    EDIT_SAVE_BUTTON.setBackground(Colors.WHITE_HOVER);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    EDIT_SAVE_BUTTON.setBackground(Colors.WHITE);
-                }
-
-                boolean checkIfValidInputs() {
-                    return ((PRODUCT_IMAGE.getIcon() != null)
-                            && !NAME_TEXT_FIELD.getText().equals("")
-                            && (((Number) PRICE_NUM_FIELD.getValue()).floatValue() != 0.0)
-                            && CATEGORY_BOX.getSelectedIndex() != 0);
-                }
-
-            });
-            EDIT_SAVE_BUTTON.setBackground(Colors.WHITE);
-            EDIT_SAVE_BUTTON.setOpaque(false);
-            EDIT_SAVE_BUTTON.setHorizontalAlignment(JLabel.CENTER);
-            EDIT_SAVE_BUTTON.setVerticalAlignment(JLabel.CENTER);
-            EDIT_SAVE_BUTTON.setBounds(25, 455, 95, 50);
-            EDIT_SAVE_BUTTON.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(EDIT_SAVE_BUTTON);
-
-        }
-
-        // initialize delete/cancel button
-        {
-            DELETE_CANCEL_BUTTON.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE_HOVER);
-                    DELETE_CANCEL_BUTTON.setForeground(Colors.BLACK);
-
-                    if (DELETE_CANCEL_BUTTON.getText().equals("Delete")) {
-                        Client.getInstance().makeARequestToServer(
-                                new ProductData("", 0, 0, 0, null, displayedProductData.id()));
-                        loadProducts(displayedProductData.category() + 10);
-                    } else {
-                        displayProductDetails(displayedProductData);
-                        enableAdminPanelFields(false);
-                        changeButtonState(false);
-                    }
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    DELETE_CANCEL_BUTTON.setBackground(Colors.BLUE);
-                    DELETE_CANCEL_BUTTON.setForeground(Colors.WHITE);
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE_HOVER);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE);
-                }
-
-            });
-
-            DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE);
-            DELETE_CANCEL_BUTTON.setOpaque(false);
-            DELETE_CANCEL_BUTTON.setHorizontalAlignment(JLabel.CENTER);
-            DELETE_CANCEL_BUTTON.setVerticalAlignment(JLabel.CENTER);
-            DELETE_CANCEL_BUTTON.setBounds(130, 455, 95, 50);
-            DELETE_CANCEL_BUTTON.setVisible(true);
-            EDIT_PRODUCT_PANEL.add(DELETE_CANCEL_BUTTON);
-        }
-        add(EDIT_PRODUCT_PANEL);
-        EDIT_PRODUCT_PANEL.setBounds(750, 0, 250, 530);
+        DELETE_CANCEL_BUTTON.setBackground(Colors.WHITE);
+        DELETE_CANCEL_BUTTON.setOpaque(false);
+        DELETE_CANCEL_BUTTON.setHorizontalAlignment(JLabel.CENTER);
+        DELETE_CANCEL_BUTTON.setVerticalAlignment(JLabel.CENTER);
+        DELETE_CANCEL_BUTTON.setBounds(130, 455, 95, 50);
+        DELETE_CANCEL_BUTTON.setVisible(true);
+        EDIT_PRODUCT_PANEL.add(DELETE_CANCEL_BUTTON);
+    }
+    add(EDIT_PRODUCT_PANEL);
+    EDIT_PRODUCT_PANEL.setBounds(750, 0, 250, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
