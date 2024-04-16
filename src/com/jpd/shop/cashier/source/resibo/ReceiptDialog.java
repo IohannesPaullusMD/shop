@@ -154,7 +154,7 @@ public class ReceiptDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(240, 50, 50, 16);
 
-        setSize(new java.awt.Dimension(414, 507));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -36,7 +36,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleRequest(Object object) {
+    private void handleRequest(Object object) throws IOException {
         if (object instanceof Integer number) {
             readReceivedInt(number);
         } else if (object instanceof EmployeeLoginInfo employeeLoginInfo) {
@@ -48,37 +48,38 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleNewTransaction(Object[] data) {
-        try {
-            int result = DatabaseQueries.newTransaction(data);
-            OUTPUT_STREAM.writeObject(result);
-        } catch (IOException e) {
-            closeEverything();
-        }
+    private void handleNewTransaction(Object[] data) throws IOException {
+        int result = DatabaseQueries.newTransaction(data);
+        OUTPUT_STREAM.writeObject(result);
     }
 
-    private void handleEmployeeLoginInfoRequest(EmployeeLoginInfo employeeLoginInfo) {
-        try {
-            if (employeeLoginInfo.type().equals("")) { // waray type it gin se-send kun na login la... basta...
-                employeeLoginInfo = DatabaseQueries.checkIfEmployeeLoginInfoExists(employeeLoginInfo);
+    private void handleEmployeeLoginInfoRequest(EmployeeLoginInfo employeeLoginInfo) throws IOException {
+        if (employeeLoginInfo.type().equals("")) { // waray type it gin se-send kun na login la... basta...
+            employeeLoginInfo = DatabaseQueries.checkIfEmployeeLoginInfoExists(employeeLoginInfo);
 
-                if (employeeLoginInfo == null) {
-                    OUTPUT_STREAM.writeObject(-1); // wrong username or password
-                } else if (!employeeLoginInfo.type().equals("CASHIER") && IS_ADMIN_APP) {
-                    OUTPUT_STREAM.writeObject(1); // has access
-                } else {
-                    OUTPUT_STREAM.writeObject(0); // no access
-                }
-
-            } else if (employeeLoginInfo.id() == EmployeeLoginInfo.NO_ID_YET) {
-
+            if (employeeLoginInfo == null) {
+                OUTPUT_STREAM.writeObject(-1); // wrong username or password
+            } else if (!employeeLoginInfo.type().equals("CASHIER") && IS_ADMIN_APP) {
+                OUTPUT_STREAM.writeObject(1); // has access
+            } else {
+                OUTPUT_STREAM.writeObject(0); // no access
             }
-        } catch (IOException e) {
-            closeEverything();
-        }
+
+        } else
+            switch (employeeLoginInfo.id()) {
+                case EmployeeLoginInfo.NO_ID_YET:
+                    break;
+
+                case 0: // check kun may access
+
+                    break;
+
+                default:
+                    break;
+            }
     }
 
-    private void handleProductDataRequest(ProductData productData) {
+    private void handleProductDataRequest(ProductData productData) throws IOException {
         if (productData.id() == ProductData.NO_ID_YET) {
             DatabaseQueries.addNewProduct(productData);
         } else if (!productData.name().equals("")) {
@@ -90,15 +91,27 @@ public class ClientHandler implements Runnable {
         readReceivedInt(11); // TODO: tanggala ini
     }
 
-    private void readReceivedInt(int number) {
-        try {
-            switch (number / 10) {
-                case 1: // get Products it request kun 1
-                    OUTPUT_STREAM.writeObject(DatabaseQueries.getProducts(number));
-                    break;
-            }
-        } catch (IOException e) {
-            closeEverything();
+    private void readReceivedInt(int number) throws IOException {
+
+        if (number < 0) {
+            OUTPUT_STREAM.writeObject(DatabaseQueries.getTransactionDetails(-number));
+            return;
+        }
+
+        switch (number / 10) {
+            case 1: // get Products it request kun 1
+                OUTPUT_STREAM.writeObject(DatabaseQueries.getProducts(number));
+                break;
+
+            case 2:
+                OUTPUT_STREAM.writeObject(DatabaseQueries.getTransactionHistory());
+                break;
+
+            // TODO: add code
+
+            default:
+
+                break;
         }
     }
 

@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import com.jpd.shop.common_files.Colors;
+import com.jpd.shop.common_files.Panels.HistoryPanel;
 import com.jpd.shop.common_files.Panels.LoginPanel;
 import com.jpd.shop.common_files.MainFrame;
 import com.jpd.shop.common_files.data_types.MyPanel_Interface;
@@ -59,6 +60,10 @@ public class MainPanel extends javax.swing.JPanel {
             "/com/jpd/shop/common_files/icons/logo.png"));
     private final ImageIcon BLUE_SHOW_PRODUCTS_ICON = new ImageIcon(getClass().getResource(
             "/com/jpd/shop/common_files/icons/blue_logo.png"));
+    private final ImageIcon HISTORY_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/history.png"));
+    private final ImageIcon BLUE_HISTORY_ICON = new ImageIcon(getClass().getResource(
+            "/com/jpd/shop/common_files/icons/blue_history.png"));
 
     public MainPanel() {
         initComponents();
@@ -79,6 +84,9 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -86,6 +94,7 @@ public class MainPanel extends javax.swing.JPanel {
         logoutButton = new javax.swing.JLabel();
         showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON,
                 BLUE_SHOW_PRODUCTS_ICON, true);
+        historyButton = new com.jpd.shop.common_files.data_types.NavButton(HISTORY_ICON, BLUE_HISTORY_ICON, true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -125,9 +134,20 @@ public class MainPanel extends javax.swing.JPanel {
         NavButton.changeLastClickedButton(showProductsButton);
         navBar.add(showProductsButton);
 
+        historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                historyButtonMouseReleased(evt);
+            }
+        });
+        navBar.add(historyButton);
+
         add(navBar);
         navBar.setBounds(0, 530, 1000, 50);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void historyButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_navButton1MouseReleased
+        showPanel(HistoryPanel.getInstance());
+    }// GEN-LAST:event_navButton1MouseReleased
 
     private void showProductsButtonMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_showProductsButtonMouseReleased
         showPanel(ProductsPanel.getInstance());
@@ -147,6 +167,7 @@ public class MainPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_logoutButtonMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.jpd.shop.common_files.data_types.NavButton historyButton;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navBar;
     private com.jpd.shop.common_files.data_types.NavButton showProductsButton;

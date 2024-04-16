@@ -70,6 +70,7 @@ public class NavButton extends JLayeredPane implements MouseListener {
         button.setHorizontalAlignment(JLabel.CENTER);
         button.setBackground(Colors.WHITE_HOVER);
         button.setOpaque(false);
+        button.setIcon(icon);
         button.setVisible(true);
         this.add(button, JLayeredPane.DEFAULT_LAYER);
     }

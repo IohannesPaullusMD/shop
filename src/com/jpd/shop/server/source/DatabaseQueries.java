@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.jpd.shop.common_files.data_types.Client;
 import com.jpd.shop.common_files.data_types.EmployeeLoginInfo;
 import com.jpd.shop.common_files.data_types.ProductData;
+import com.jpd.shop.common_files.data_types.TransactionDetails;
 
 @SuppressWarnings("finally")
 public class DatabaseQueries {
@@ -197,6 +198,75 @@ public class DatabaseQueries {
             e.printStackTrace();
             closeConnection();
             return -1;
+        }
+    }
+
+    public static Object[][] getTransactionHistory() {
+
+        Object[][] objectToReturn = null;
+        ArrayList<Object[]> transactionList = new ArrayList<>();
+
+        try (PreparedStatement statement = getConnection().prepareStatement(
+                "SELECT * FROM transactions")) {
+
+            ResultSet resultSet = statement.executeQuery();
+
+            for (int i = 0; resultSet.next(); i++) {
+                Object[] data = new Object[3];
+
+                data[0] = resultSet.getString("id_pk");
+                data[1] = resultSet.getString("date_time");
+                data[2] = resultSet.getString("cashier");
+
+                transactionList.add(i, data);
+            }
+
+            objectToReturn = new Object[transactionList.size()][3];
+
+            for (int i = 0; i < objectToReturn.length; i++) {
+                for (int j = 0; j < 3; j++) {
+                    objectToReturn[i][j] = transactionList.get(i)[j];
+                }
+            }
+        } catch (SQLException e) {
+            closeConnection();
+        } finally {
+            return objectToReturn;
+        }
+    }
+
+    public static Object[][] getTransactionDetails(int id) {
+
+        Object[][] objectToReturn = null;
+        ArrayList<Object[]> details = new ArrayList<>();
+        String query = "SELECT * FROM transaction_details "
+                + "WHERE transaction_id = " + id;
+
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                TransactionDetails transactionDetails = new TransactionDetails(
+                        resultSet.getInt("transaction_id"),
+                        resultSet.getString("product_name"),
+                        resultSet.getFloat("price"),
+                        resultSet.getInt("quantity"));
+
+                details.add(transactionDetails.toObjectArray());
+            }
+
+            objectToReturn = new Object[details.size()][4];
+
+            for (int i = 0; i < objectToReturn.length; i++) {
+                for (int j = 0; j < 4; j++) {
+                    objectToReturn[i][j] = details.get(i)[j];
+                }
+            }
+
+        } catch (SQLException e) {
+            closeConnection();
+        } finally {
+            return objectToReturn;
         }
     }
 
