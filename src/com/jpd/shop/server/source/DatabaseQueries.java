@@ -103,6 +103,31 @@ public class DatabaseQueries {
         }
     }
 
+    static void addNewEmployee(EmployeeLoginInfo employeeLoginInfo) {
+        String query = "INSERT INTO employees(type, username, password) "
+                + "VALUES (?, ?, ?)";
+
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+
+            statement.setString(1, employeeLoginInfo.type());
+            statement.setString(2, employeeLoginInfo.username());
+            statement.setString(3, employeeLoginInfo.password());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            closeConnection();
+        }
+    }
+
+    static void deleteEmployee(int id) {
+        try (PreparedStatement statement = getConnection().prepareStatement(
+                "DELETE FROM employees WHERE id_pk = " + id)) {
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            closeConnection();
+        }
+    }
+
     static ProductData[] getProducts(int productsCategory) {
 
         ProductData[] products = null;

@@ -65,20 +65,17 @@ public class ClientHandler implements Runnable {
                 OUTPUT_STREAM.writeObject(0); // no access
             }
 
-        } else
-            switch (employeeLoginInfo.id()) {
-                case EmployeeLoginInfo.NO_ID_YET:
-                    break;
-
-                case 0: // check kun may access
-
-                    break;
-
-                default:
-                    DatabaseQueries.updateEmployeeLoginInfo(employeeLoginInfo);
-                    OUTPUT_STREAM.writeObject(0);
-                    break;
+        } else {
+            if (employeeLoginInfo.id() == EmployeeLoginInfo.NO_ID_YET) {
+                DatabaseQueries.addNewEmployee(employeeLoginInfo);
+            } else if (employeeLoginInfo.username() == null) {
+                DatabaseQueries.deleteEmployee(employeeLoginInfo.id());
+            } else {
+                DatabaseQueries.updateEmployeeLoginInfo(employeeLoginInfo);
             }
+
+            OUTPUT_STREAM.writeObject(0);
+        }
     }
 
     private void handleProductDataRequest(ProductData productData) throws IOException {

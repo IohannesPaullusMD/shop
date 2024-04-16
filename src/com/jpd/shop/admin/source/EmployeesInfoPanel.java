@@ -61,6 +61,8 @@ public class EmployeesInfoPanel extends javax.swing.JPanel implements MyPanel_In
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -80,11 +82,21 @@ public class EmployeesInfoPanel extends javax.swing.JPanel implements MyPanel_In
 
         addButton.setText("Add");
         addButton.setFocusable(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
         add(addButton);
         addButton.setBounds(730, 20, 75, 30);
 
         deleteButton.setText("Delete");
         deleteButton.setFocusable(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
         add(deleteButton);
         deleteButton.setBounds(910, 20, 75, 30);
 
@@ -98,6 +110,21 @@ public class EmployeesInfoPanel extends javax.swing.JPanel implements MyPanel_In
         add(editButton);
         editButton.setBounds(820, 20, 75, 30);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deleteButtonActionPerformed
+
+        if (TABLE.getSelectedRow() == -1) {
+            return;
+        }
+
+        Client.getInstance().makeARequestToServer(new EmployeeLoginInfo(
+                (int) tableData[TABLE.getSelectedRow()][0], "Delete", null, null));
+        loadEmployees();
+    }// GEN-LAST:event_deleteButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addButtonActionPerformed
+        EmployeeInfoDialog.showDialog(null);
+    }// GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = TABLE.getSelectedRow();

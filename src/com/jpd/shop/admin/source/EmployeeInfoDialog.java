@@ -37,7 +37,8 @@ public class EmployeeInfoDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -91,9 +92,9 @@ public class EmployeeInfoDialog extends javax.swing.JDialog {
 
         employeeTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(EmployeeLoginInfo.TYPES_OF_EMPLOYEE));
         employeeTypeComboBox.setPreferredSize(new java.awt.Dimension(200, 25));
-        if (EMPLOYEE_LOGIN_INFO != null) {
+        if(EMPLOYEE_LOGIN_INFO != null){
             employeeTypeComboBox.setSelectedItem(
-                    EMPLOYEE_LOGIN_INFO.type());
+                EMPLOYEE_LOGIN_INFO.type());
         }
         getContentPane().add(employeeTypeComboBox);
         employeeTypeComboBox.setBounds(30, 190, 270, 25);
@@ -125,6 +126,10 @@ public class EmployeeInfoDialog extends javax.swing.JDialog {
     }// GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_saveButtonActionPerformed
+        if (employeeTypeComboBox.getSelectedIndex() == 0) {
+            return;
+        }
+
         EmployeeLoginInfo employeeLoginInfo = new EmployeeLoginInfo(
                 EMPLOYEE_LOGIN_INFO == null
                         ? EmployeeLoginInfo.NO_ID_YET
