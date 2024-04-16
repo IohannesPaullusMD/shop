@@ -88,7 +88,8 @@ public class PaymentDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -215,7 +216,7 @@ public class PaymentDialog extends javax.swing.JDialog {
     }// GEN-LAST:event_editButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cancelButtonActionPerformed
-        // ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.removeAll();
+        ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.removeAll();
         this.dispose();
     }// GEN-LAST:event_cancelButtonActionPerformed
 

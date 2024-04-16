@@ -80,6 +80,14 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true)"/>
           </AuxValues>
         </Component>
+        <Component class="com.jpd.shop.common_files.data_types.NavButton" name="historyButton">
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="historyButtonMouseReleased"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jpd.shop.common_files.data_types.NavButton(HISTORY_ICON, BLUE_HISTORY_ICON, true)"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
