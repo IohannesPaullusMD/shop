@@ -39,6 +39,10 @@ public class TrayProductCard extends javax.swing.JPanel {
         initComponents();
     }
 
+    public int getQuantity() {
+        return previousQuantity;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
@@ -105,7 +109,8 @@ public class TrayProductCard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         IMAGE = new javax.swing.JLabel(getImage());
@@ -113,7 +118,7 @@ public class TrayProductCard extends javax.swing.JPanel {
         PRICE_LABEL = new javax.swing.JLabel();
         QUANTITY_LABEL = new javax.swing.JLabel();
         PRICE = new javax.swing.JLabel(getProductPrice());
-        removeButton = new javax.swing.JLabel(){
+        removeButton = new javax.swing.JLabel() {
             final int RADIUS = 18;
             Shape shape;
 
@@ -186,9 +191,11 @@ public class TrayProductCard extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 removeButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 removeButtonMouseExited(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 removeButtonMouseReleased(evt);
             }

@@ -146,6 +146,60 @@ public class DatabaseQueries {
         }
     }
 
+    // data[0] = cashier name
+    // data[1] = order
+    static int newTransaction(Object[] data) {
+
+        // order column 0 = product id
+        // order column 1 = quantity
+        int[][] order = (int[][]) data[1];
+        String updateProducts = "";
+        String values = "";
+
+        for (int i = 0; i < order.length; i++) {
+
+            values += "(@transaction_id, "
+                    + "(SELECT name FROM products WHERE id_pk = "
+                    + order[i][0] + "), "
+                    + "(SELECT price FROM products WHERE id_pk = "
+                    + order[i][0] + "), "
+                    + order[i][1] + ((i == order.length - 1) ? ");" : "), ");
+
+            updateProducts += "UPDATE products "
+                    + "SET stock = stock - " + order[i][1]
+                    + " WHERE id_pk = " + order[i][0] + "; ";
+        }
+
+        String query = updateProducts
+
+                // declare variables
+                + "SET @current_date_time = NOW(); "
+                + "SET @cashier = \"" + (String) data[0] + "\"; "
+
+                + "INSERT INTO transactions"
+                + "(date_time, cashier) "
+                + "VALUES (@current_date_time, @cashier); "
+
+                // another variable
+                + "SET @transaction_id = "
+                + "(SELECT id_pk FROM transactions "
+                + "WHERE date_time = @current_date_time "
+                + "AND cashier = @cashier); "
+
+                + "INSERT INTO transaction_details"
+                + "(transaction_id, product_name, price, quantity) "
+                + "VALUES" + values;
+
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.executeUpdate();
+            return 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
+            return -1;
+        }
+    }
+
     private static Connection getConnection() {
         if (databaseConnection == null) {
             connectToDatabase();
@@ -156,7 +210,7 @@ public class DatabaseQueries {
 
     private static void connectToDatabase() {
 
-        final String DATABASE_URL = "jdbc:mysql://localhost:3306/ikaw_bahala";
+        final String DATABASE_URL = "jdbc:mysql://localhost:3306/ikaw_bahala?allowMultiQueries=true";
         final String USERNAME = "root";
         final String PASSWORD = "";
 

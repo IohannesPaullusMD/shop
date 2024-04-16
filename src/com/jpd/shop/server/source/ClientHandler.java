@@ -43,6 +43,17 @@ public class ClientHandler implements Runnable {
             handleEmployeeLoginInfoRequest(employeeLoginInfo);
         } else if (object instanceof ProductData productData) {
             handleProductDataRequest(productData);
+        } else if (object instanceof Object[] data) {
+            handleNewTransaction(data);
+        }
+    }
+
+    private void handleNewTransaction(Object[] data) {
+        try {
+            int result = DatabaseQueries.newTransaction(data);
+            OUTPUT_STREAM.writeObject(result);
+        } catch (IOException e) {
+            closeEverything();
         }
     }
 

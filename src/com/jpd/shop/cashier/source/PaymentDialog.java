@@ -1,5 +1,6 @@
 package com.jpd.shop.cashier.source;
 
+import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.InputVerifier;
@@ -9,6 +10,8 @@ import javax.swing.SpinnerNumberModel;
 
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.MainFrame;
+import com.jpd.shop.common_files.data_types.Client;
+import com.jpd.shop.common_files.data_types.ProductData;
 
 /**
  *
@@ -161,8 +164,21 @@ public class PaymentDialog extends javax.swing.JDialog {
             return;
         }
 
-        // TODO add your handling code here:
+        Component[] orderInTray = ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.getComponents();
+        int[][] order = new int[orderInTray.length][2];
+        Object[] dataToSend = { MainPanel.getLoggedInEmployeeName(), order };
 
+        for (int i = 0; i < orderInTray.length; i++) {
+            TrayProductCard trayProductCard = (TrayProductCard) orderInTray[i];
+            order[i][0] = trayProductCard.PRODUCT_DATA.id();
+            order[i][1] = trayProductCard.getQuantity(true);
+        }
+
+        // TODO: add code
+
+        Client.getInstance().makeARequestToServer(dataToSend);
+
+        ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.removeAll();
         this.dispose();
     }// GEN-LAST:event_orderButtonActionPerformed
 
@@ -171,7 +187,7 @@ public class PaymentDialog extends javax.swing.JDialog {
     }// GEN-LAST:event_editButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cancelButtonActionPerformed
-        ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.removeAll();
+        // ProductsPanel.getInstance().TRAY_PRODUCTS_CONTAINER.removeAll();
         this.dispose();
     }// GEN-LAST:event_cancelButtonActionPerformed
 

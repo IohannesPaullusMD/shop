@@ -12,6 +12,7 @@ public class Server implements Runnable {
         MainFrame.jLabel1.setText(Boolean.toString(this.serverSocket.isClosed()));
     }
 
+    //
     @Override
     public void run() {
         // MainFrame.jLabel1.setText(Boolean.toString(this.serverSocket.isClosed()));
@@ -25,7 +26,7 @@ public class Server implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
                 MainFrame.jLabel1.setText(e.getMessage());
-                // closeServerSocket();
+                closeServerSocket();
             }
         }
         // MainFrame.jLabel1.setText("End");

@@ -278,6 +278,7 @@ public class LoginPanel extends javax.swing.JPanel {
             if (MainFrame.getInstance().isAdminApp()) {
                 panel = com.jpd.shop.admin.source.MainPanel.getInstance();
             } else {
+                com.jpd.shop.cashier.source.MainPanel.setLoggedInEmployee(usernameField.getText());
                 panel = com.jpd.shop.cashier.source.MainPanel.getInstance();
             }
 

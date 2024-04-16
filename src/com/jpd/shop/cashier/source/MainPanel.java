@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import com.jpd.shop.common_files.Colors;
 import com.jpd.shop.common_files.Panels.LoginPanel;
 import com.jpd.shop.common_files.MainFrame;
+import com.jpd.shop.common_files.data_types.EmployeeLoginInfo;
 import com.jpd.shop.common_files.data_types.MyPanel_Interface;
 import com.jpd.shop.common_files.data_types.NavButton;
 
@@ -17,6 +18,7 @@ public class MainPanel extends javax.swing.JPanel {
 
     private static MainPanel mainPanel;
     private static MyPanel_Interface shownPanel;
+    private static String loggedInEmployeeName;
 
     public static final MainPanel getInstance() {
         if (mainPanel == null) {
@@ -41,6 +43,14 @@ public class MainPanel extends javax.swing.JPanel {
         mainPanel.repaint();
 
         shownPanel = panel;
+    }
+
+    public static void setLoggedInEmployee(String name) {
+        loggedInEmployeeName = name;
+    }
+
+    public static String getLoggedInEmployeeName() {
+        return loggedInEmployeeName;
     }
 
     private static final void dispose() {
@@ -80,12 +90,14 @@ public class MainPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
         logoutButton = new javax.swing.JLabel();
-        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON, BLUE_SHOW_PRODUCTS_ICON, true);
+        showProductsButton = new com.jpd.shop.common_files.data_types.NavButton(SHOW_PRODUCTS_ICON,
+                BLUE_SHOW_PRODUCTS_ICON, true);
 
         setMaximumSize(new java.awt.Dimension(1000, 580));
         setMinimumSize(new java.awt.Dimension(1000, 580));
@@ -98,7 +110,8 @@ public class MainPanel extends javax.swing.JPanel {
 
         logoutButton.setBackground(navBar.getBackground());
         logoutButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
+        logoutButton.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/com/jpd/shop/common_files/icons/logout.png"))); // NOI18N
         logoutButton.setToolTipText(null);
         logoutButton.setCursor(MainFrame.HAND_CURSOR);
         logoutButton.setOpaque(true);
@@ -106,9 +119,11 @@ public class MainPanel extends javax.swing.JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseExited(evt);
             }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseReleased(evt);
             }
