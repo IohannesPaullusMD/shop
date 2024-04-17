@@ -2,3 +2,5 @@
 /build/classes/
 *.class
 
+*.class
+/build/classes
